@@ -1,20 +1,38 @@
 <main
-  class="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-[#000020] to-[#171A4A] text-white relative ">
-  <section class="flex flex-col items-center w-1/4">
-    <img class="w-4/5 h-auto" src="/assets/logo.svg" alt="astrobit-logo">
-    <div class="flex flex-col items-center">
-      <h2 class="text-center font-bold text-4xl">{{ title }}</h2>
-      <button
-        class=" w-1/3 rounded-lg text-center font-black italic text-xl bg-[#FF5E2E] hover:bg-[#FF825F] active:bg-[#FFA836]">
-        GO!
-      </button>
+  class="flex items-center justify-center p-12 min-h-screen relative bg-gradient-to-b from-dark-blue to-pale-blue text-white">
+  <section class="flex flex-col items-center w-1/4 gap-10 relative z-10">
 
-      <br>
-      <a class="text-center text-amber-50 hover:text-[#FF825F] active:text-[#FFA836]" href="#">Do you have account? Click here</a>
+    <!-- Logo -->
+    <img class="w-3/4 h-auto" src="/assets/logo.svg" alt="astrobit-logo">
+
+    <div class="flex flex-col items-center w-full gap-10">
+      <h2 class="text-center font-bold text-3xl">{{ title }}</h2>
+
+      <!-- Input de e-mail -->
+      <div class="flex flex-col w-full gap-2.5">
+        <label for="email" class="p-0.5">{{ emailLabel }}</label>
+        <input class="rounded-lg w-full h-10 p-2 focus:outline-none focus:ring-2 focus:ring-orange-salmon text-black"
+               id="email" type="email" autofocus placeholder="{{emailLabel}}">
+      </div>
+
+      <!-- Input de senha -->
+      <div class="flex flex-col w-full gap-2.5">
+        <label for="password" class="p-0.5">{{ passwordLabel }}</label>
+        <input class="rounded-lg w-full h-10 p-2 focus:outline-none focus:ring-2 focus:ring-orange-salmon text-black"
+               id="password" type="password" placeholder="{{passwordLabel}}">
+      </div>
+
+      <!-- Botão -->
+      <button
+        class="w-1/3 h-10 rounded-lg text-center font-black italic text-xl bg-orange-salmon hover:bg-light-salmon active:bg-cool-yellow">
+        {{ primaryBtnText }}
+      </button>
     </div>
   </section>
 
-<!--    <section class="bg-amber-50 object-top">-->
-<!--      <img src="/assets/planet-illustration.png" alt="background" >-->
-<!--    </section>-->
+  <!--  Imagem para ajustar o position na tela-->
+  <!--  <section class="absolute bottom-1/2 right-0 w-1/4">-->
+  <!--    <img src="/assets/planet-illustration.png" alt="background-illustration" class="w-full h-auto object-cover">-->
+  <!--  </section>-->
+
 </main>

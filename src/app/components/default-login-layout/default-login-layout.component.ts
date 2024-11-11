@@ -1,15 +1,16 @@
-import {Component} from '@angular/core';
-import {NgOptimizedImage} from '@angular/common';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-default-login-layout',
   standalone: true,
-  imports: [
-    NgOptimizedImage
-  ],
+  imports: [],
   templateUrl: './default-login-layout.component.html',
   styleUrl: './default-login-layout.component.scss'
 })
 export class DefaultLoginLayoutComponent {
-  title = "Login"
+  @Input() title: string = "";
+  @Input() emailLabel = "";
+  @Input() passwordLabel = "";
+  @Input() primaryBtnText = "";
+
 }
