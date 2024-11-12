@@ -3,8 +3,11 @@
   emailLabel="E-mail"
   passwordLabel="Password"
   primaryBtnText="GO!"
+  secondaryBtnText="SIGN UP"
+
   (submit)="submit()"
-  (navigate)="navigate()"
+  (navigate) = "navigate()"
+  [disableprimaryBtn] = !loginForm.valid
 >
   <form [formGroup]="loginForm" class="w-full ">
     <app-primary-input

@@ -10,6 +10,9 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 export class DefaultLoginLayoutComponent {
   @Input() title: string = "";
   @Input() primaryBtnText = "";
+  @Input() secondaryBtnText = "";
+
+  @Input() disableprimaryBtn: boolean = true;
 
   @Output("submit") onSubmit = new EventEmitter();
   @Output("navigate") onNavigate = new EventEmitter();
@@ -18,7 +21,7 @@ export class DefaultLoginLayoutComponent {
     this.onSubmit.emit();
   }
 
-  navigate(){
-     this.onNavigate.emit();
+  navigate() {
+    this.onNavigate.emit()
   }
 }
