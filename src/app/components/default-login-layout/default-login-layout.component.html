@@ -3,13 +3,23 @@
   <section class="flex flex-col items-center w-1/4 gap-10 relative z-10">
 
     <!-- Logo -->
-    <img class="w-3/4 h-auto" src="/assets/logo.svg" alt="astrobit-logo">
+    <a class="cursor-pointer flex flex-col items-center" (click)="navigate()">
+      <img class="w-3/4 h-auto" src="/assets/logo.svg" alt="astrobit-logo">
+    </a>
 
     <div class="flex flex-col items-center w-full gap-10">
       <h2 class="text-center font-bold text-3xl">{{ title }}</h2>
 
       <ng-content></ng-content>
-
+      <!-- Botão -->
+      <button
+        (click)="submit( )"
+        class="w-1/3 h-10 rounded-lg text-center font-black italic text-xl bg-orange-salmon hover:bg-light-salmon active:bg-cool-yellow">
+        {{ primaryBtnText }}
+      </button>
+    </div>
+  </section>
+</main>
 <!--      <form class="flex flex-col items-center w-full gap-10">-->
 <!--        &lt;!&ndash; Input de e-mail &ndash;&gt;-->
 <!--        <div class="flex flex-col w-full gap-2.5">-->
@@ -25,19 +35,13 @@
 <!--                 id="password" type="password" name="password" placeholder="{{passwordLabel}}">-->
 <!--        </div>-->
 
-<!--        &lt;!&ndash; Botão &ndash;&gt;-->
-<!--        <button-->
-<!--          class="w-1/3 h-10 rounded-lg text-center font-black italic text-xl bg-orange-salmon hover:bg-light-salmon active:bg-cool-yellow">-->
-<!--          {{ primaryBtnText }}-->
-<!--        </button>-->
+
 <!--      </form>-->
 
-    </div>
-  </section>
 
-  <!--  Imagem para ajustar o position na tela-->
-  <!--  <section class="absolute bottom-1/2 right-0 w-1/4">-->
-  <!--    <img src="/assets/planet-illustration.png" alt="background-illustration" class="w-full h-auto object-cover">-->
-  <!--  </section>-->
+<!--  Imagem para ajustar o position na tela-->
+<!--  <section class="absolute bottom-1/2 right-0 w-1/4">-->
+<!--    <img src="/assets/planet-illustration.png" alt="background-illustration" class="w-full h-auto object-cover">-->
+<!--  </section>-->
 
-</main>
+
