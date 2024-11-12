@@ -9,7 +9,5 @@ export class LoginService {
   constructor(private httpClient: HttpClient) {
   }
 
-  login(name: string, password: string) {
-    return this.httpClient.post("/login", {name, password})
-  }
+
 }
