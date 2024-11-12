@@ -1,13 +1,13 @@
-<app-default-login-layout
-  title="Login"
+<app-default-signup-layout
+  title="Sign up"
   primaryBtnText="GO!"
   secondaryBtnText="SIGN UP"
 
-  (submit)="submit()"
-  (navigate) = "navigate()"
-  [disableprimaryBtn] = !loginForm.valid
->
-  <form [formGroup]="loginForm" class="w-full ">
+  (submit)="submit()">
+<!--  (navigate)="navigate()"-->
+<!--  [disableprimaryBtn]=!signupForm.valid-->
+
+  <form [formGroup]="signupForm" class="w-full ">
     <app-primary-input
       formControlName="email"
       type="email"
@@ -31,4 +31,4 @@
     </a>
 
   </form>
-</app-default-login-layout>
+</app-default-signup-layout>
