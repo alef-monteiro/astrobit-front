@@ -1,13 +1,23 @@
-<app-default-signup-layout
-  title="Sign up"
-  primaryBtnText="GO!"
-  secondaryBtnText="SIGN UP"
+<app-default-login-layout
+  title="Sign In"
+  primaryBtnText="SIGN UP"
+  secondaryBtnText="LOG IN"
 
-  (submit)="submit()">
-<!--  (navigate)="navigate()"-->
-<!--  [disableprimaryBtn]=!signupForm.valid-->
+  (submit)="submit()"
+  (navigate)="navigate()"
+  [disableprimaryBtn]=!signupForm.valid
+>
+
 
   <form [formGroup]="signupForm" class="w-full ">
+    <app-primary-input
+      formControlName="name"
+      type="text"
+      label="Name"
+      placeholder="John Doe"
+    >
+    </app-primary-input>
+
     <app-primary-input
       formControlName="email"
       type="email"
@@ -20,15 +30,17 @@
       formControlName="password"
       type="password"
       label="Password"
-      placeholder="Enter yout password..."
+      placeholder="Enter your password"
     >
     </app-primary-input>
 
-    <a
-      class="flex flex-row-reverse w-full text-[0.7rem] text-amber-50 hover:text-orange-salmon active:text-light-salmon cursor-pointer underline"
-      href="#">
-      Forgot password?
-    </a>
+    <app-primary-input
+      formControlName="passwordConfirm"
+      type="password"
+      label="Confirm Password"
+      placeholder="Confirm your password"
+    >
+    </app-primary-input>
 
   </form>
-</app-default-signup-layout>
+</app-default-login-layout>

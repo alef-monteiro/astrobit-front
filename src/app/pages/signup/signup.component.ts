@@ -1,13 +1,13 @@
 import {Component} from '@angular/core';
 import {DefaultLoginLayoutComponent} from '../../components/default-login-layout/default-login-layout.component';
-import {Router, RouterOutlet} from "@angular/router";
+import {Router} from "@angular/router";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {PrimaryInputComponent} from '../../components/primary-input/primary-input.component';
 import {LoginService} from '../../services/login.service';
 import {ToastrService} from 'ngx-toastr';
 
 interface SignupForm {
-  username: FormControl;
+  name: FormControl;
   email: FormControl;
   password: FormControl;
   passwordConfirm: FormControl;
@@ -17,10 +17,9 @@ interface SignupForm {
   selector: 'app-signup',
   standalone: true,
   imports: [
-    DefaultLoginLayoutComponent,
-    RouterOutlet,
     ReactiveFormsModule,
-    PrimaryInputComponent
+    PrimaryInputComponent,
+    DefaultLoginLayoutComponent
   ],
   providers: [
     LoginService,
@@ -29,7 +28,7 @@ interface SignupForm {
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })
-export class LoginComponent {
+export class SignUpComponent {
   signupForm!: FormGroup<SignupForm>;
 
   constructor(
@@ -38,7 +37,7 @@ export class LoginComponent {
     private toastrService: ToastrService
   ) {
     this.signupForm = new FormGroup({
-      username: new FormControl("", [Validators.required, Validators.minLength(6)]),
+      name: new FormControl("", [Validators.required, Validators.minLength(3)]),
       email: new FormControl("", [Validators.required, Validators.email]),
       password: new FormControl("", [Validators.required, Validators.minLength(6)]),
       passwordConfirm: new FormControl("", [Validators.required, Validators.minLength(6)])
@@ -50,13 +49,13 @@ export class LoginComponent {
   submit() {
     // console.log(this.signupForm.valid)
     this.signupService.login(this.signupForm.value.email, this.signupForm.value.password).subscribe({
-      next: () => this.toastrService.success("Login succesfully"),
+      next: () => this.toastrService.success("Sign up succesfully"),
       error: () => this.toastrService.error("Sorry, something went wrong.\nTry again later.")
     })
   }
 
   navigate() {
-    this.router.navigate(['signup'])
+    this.router.navigate(['login'])
   }
 
 }

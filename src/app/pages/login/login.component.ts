@@ -49,7 +49,7 @@ export class LoginComponent {
   }
 
   navigate() {
-    this.router.navigate(['login'])
+    this.router.navigate(['signup'])
   }
 
 }
