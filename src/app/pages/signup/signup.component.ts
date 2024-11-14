@@ -27,7 +27,7 @@ interface SignupForm {
     DefaultSignupLayoutComponent
   ],
   providers: [
-    LoginService,
+    // LoginService,
     ToastrService
   ],
   templateUrl: './signup.component.html',

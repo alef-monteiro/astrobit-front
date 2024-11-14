@@ -29,7 +29,6 @@ export class PrimaryInputComponent implements ControlValueAccessor {
   // não entendi esta parte sobre o problema com formControlName em está conectado com um pai
   value: string = "";
   onChange: any = () => {  }
-
   onTouched: any = () => {  }
 
   onInput(event: Event) {

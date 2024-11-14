@@ -1,1 +1,25 @@
-<p>interview works!</p>
+<app-default-signup-layout
+  title="Interview"
+  primaryBtnText="SAVE"
+  (submit)="submit()"
+  (navigate)="navigate()"
+  [disablePrimaryBtn]=!interviewForm.valid
+>
+  <form [formGroup]="interviewForm" class="w-full ">
+    <app-primary-input
+      formControlName="username"
+      type="text"
+      label="Username"
+      placeholder="JOHNDOE"
+      autofocus
+    >
+    </app-primary-input>
+    <app-secondary-input-datalist
+      formControlName="subject"
+      label="Subject"
+      inputName="subject"
+      placeholder="..."
+    ></app-secondary-input-datalist>
+  </form>
+
+</app-default-signup-layout>

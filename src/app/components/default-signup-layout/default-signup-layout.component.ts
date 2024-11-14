@@ -15,19 +15,20 @@ export class DefaultSignupLayoutComponent {
   @Input() disablePrimaryBtn: boolean = true;
 
   @Output("next") onNext = new EventEmitter();
-  // @Output("submit") onSubmit = new EventEmitter();
+  @Output("submit") onSubmit = new EventEmitter();
   @Output("navigate") onNavigate = new EventEmitter();
 
-  // submit(){
-  //   this.onSubmit.emit()
-  // }
-
+  // sign up page
   next() {
     this.onNext.emit(['interview']);
   }
 
+  // interview page
   navigate() {
     this.onNavigate.emit(['login']);
   }
 
+  submit() {
+    this.onSubmit.emit()
+  }
 }
