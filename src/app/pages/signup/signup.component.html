@@ -1,11 +1,10 @@
-<app-default-login-layout
+<app-default-signup-layout
   title="Sign In"
-  primaryBtnText="SIGN UP"
-  secondaryBtnText="LOG IN"
+  primaryBtnText="NEXT"
 
-  (submit)="submit()"
+  (next)="next()"
   (navigate)="navigate()"
-  [disableprimaryBtn]=!signupForm.valid
+  [disablePrimaryBtn]=!signupForm.valid
 >
 
 
@@ -41,6 +40,15 @@
       placeholder="Confirm your password"
     >
     </app-primary-input>
+    <div *ngIf="signupForm.hasError('mismatch') && signupForm.get('confirmPassword')?.touched">
+      Passwords don't match.
+    </div>
 
+
+    <a
+      class="flex flex-row-reverse w-full text-[0.7rem] text-amber-50 hover:text-orange-salmon active:text-light-salmon cursor-pointer underline"
+      (click)="navigate()">
+      You already have an account? Click here.
+    </a>
   </form>
-</app-default-login-layout>
+</app-default-signup-layout>
