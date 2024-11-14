@@ -16,6 +16,7 @@ export class LoginService {
       tap(value => {
         sessionStorage.setItem("auth-token", value.token)
         sessionStorage.setItem("username", value.username)
+        sessionStorage.setItem("name", value.name)
         sessionStorage.setItem("avatar", value.avatar)
       })
     )

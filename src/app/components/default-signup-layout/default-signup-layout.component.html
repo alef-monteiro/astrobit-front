@@ -17,7 +17,7 @@
       <div class="flex flex-col items-center justify-around w-full">
         <button
           (click)="next()"
-          [disabled]="disableprimaryBtn"
+          [disabled]=disablePrimaryBtn
           class="w-1/3 h-10 rounded-lg text-center font-black italic text-xl bg-orange-salmon hover:bg-light-salmon active:bg-cool-yellow disabled:bg-blue-950">
           {{ primaryBtnText }}
         </button>
@@ -25,6 +25,7 @@
     </div>
   </section>
 
+<!-- falta colocar o service de dados temporários, mas usar o ngondestroy -->
   <section class="absolute bottom-1/2 right-0 w-1/4">
     <img src="/assets/planet-illustration.png" alt="background-illustration" class="w-full h-auto object-cover">
   </section>

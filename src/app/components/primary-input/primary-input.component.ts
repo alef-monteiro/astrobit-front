@@ -18,9 +18,9 @@ type InputTypes = "text" | "password" | "email" | "password_confirmation";
   templateUrl: './primary-input.component.html',
   styleUrl: './primary-input.component.scss'
 })
+
 export class PrimaryInputComponent implements ControlValueAccessor {
   @Input() type: InputTypes = "text";
-  // @Input() formName: string = "";
   @Input() placeholder: string = "";
   @Input() label: string = "";
   @Input() inputName: string = "";
@@ -28,10 +28,9 @@ export class PrimaryInputComponent implements ControlValueAccessor {
 
   // não entendi esta parte sobre o problema com formControlName em está conectado com um pai
   value: string = "";
-  onChange: any = () => {
-  }
-  onTouched: any = () => {
-  }
+  onChange: any = () => {  }
+
+  onTouched: any = () => {  }
 
   onInput(event: Event) {
     const value = (event.target as HTMLInputElement).value;
