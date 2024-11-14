@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
-import {DefaultLoginLayoutComponent} from '../../components/default-login-layout/default-login-layout.component';
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {PrimaryInputComponent} from '../../components/primary-input/primary-input.component';
 import {LoginService} from '../../services/login.service';
 import {ToastrService} from 'ngx-toastr';
+import {DefaultSignupLayoutComponent} from '../../components/default-signup-layout/default-signup-layout.component';
 
 interface SignupForm {
   name: FormControl;
@@ -19,7 +19,7 @@ interface SignupForm {
   imports: [
     ReactiveFormsModule,
     PrimaryInputComponent,
-    DefaultLoginLayoutComponent
+    DefaultSignupLayoutComponent
   ],
   providers: [
     LoginService,
@@ -54,8 +54,8 @@ export class SignUpComponent {
     })
   }
 
-  navigate() {
-    this.router.navigate(['login'])
+  next() {
+    this.router.navigate(['interview'])
   }
 
 }

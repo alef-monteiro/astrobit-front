@@ -5,7 +5,7 @@
 
   (submit)="submit()"
   (navigate) = "navigate()"
-  [disableprimaryBtn] = !loginForm.valid
+  [disablePrimaryBtn] = !loginForm.valid
 >
   <form [formGroup]="loginForm" class="w-full ">
     <app-primary-input
