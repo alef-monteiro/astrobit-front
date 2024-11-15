@@ -73,8 +73,7 @@ export class InterviewComponent {
     }
   }
 
-
   onNavigate() {
-    this.router.navigate(['login']);
+    this.router.navigate(['login'])
   }
 }
