@@ -7,9 +7,9 @@ import {
   Validators
 } from '@angular/forms';
 import {PrimaryInputComponent} from '../../components/primary-input/primary-input.component';
-import {LoginService} from '../../services/login.service';
 import {ToastrService} from 'ngx-toastr';
 import {DefaultSignupLayoutComponent} from '../../components/default-signup-layout/default-signup-layout.component';
+import {SignupDataService} from '../../services/signup-data.service';
 
 interface SignupForm {
   name: FormControl;
@@ -27,7 +27,7 @@ interface SignupForm {
     DefaultSignupLayoutComponent
   ],
   providers: [
-    // LoginService,
+    SignupDataService,
     ToastrService
   ],
   templateUrl: './signup.component.html',
@@ -38,8 +38,8 @@ export class SignUpComponent {
 
   constructor(
     private router: Router,
-    // private signupService: LoginService,
-    // private toastrService: ToastrService
+    private signupService: SignupDataService,
+    private toastrService: ToastrService
   ) {
     this.signupForm = new FormGroup({
         name: new FormControl("", [Validators.required, Validators.minLength(3)]),
@@ -47,7 +47,7 @@ export class SignUpComponent {
         password: new FormControl("", [Validators.required, Validators.minLength(6)]),
         passwordConfirm: new FormControl("", [Validators.required, Validators.minLength(6)])
       },
-     )
+    )
 
   }
 
@@ -60,11 +60,19 @@ export class SignUpComponent {
   //   })
   // }
 
-  next() {
-    this.router.navigate(['interview'])
+  onNext() {
+    if (this.signupForm.valid) {
+      this.signupService.saveData('signup', this.signupForm)
+      this.router.navigate(['interview'])
+      this.toastrService.success("Data save successfully!")
+
+    } else {
+      this.toastrService.error("Error, sorry. Try to check your data.")
+    }
   }
 
-  navigate() {
+  // Deve ir à landing-page, mas ainda não foi feita.
+  onNavigate() {
     this.router.navigate(['login'])
   }
 

@@ -34,6 +34,7 @@ export class PrimaryInputComponent implements ControlValueAccessor {
   onInput(event: Event) {
     const value = (event.target as HTMLInputElement).value;
     this.onChange(value);
+
   }
 
   writeValue(value: string): void {

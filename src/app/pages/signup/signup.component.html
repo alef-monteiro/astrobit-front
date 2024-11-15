@@ -2,8 +2,8 @@
   title="Sign In"
   primaryBtnText="NEXT"
 
-  (next)="next()"
-  (navigate)="navigate()"
+  (next)="onNext()"
+  (navigate)="onNavigate()"
   [disablePrimaryBtn]=!signupForm.valid
 >
 
@@ -41,13 +41,10 @@
       placeholder="Confirm your password"
     >
     </app-primary-input>
-<!--    <div *ngIf="signupForm.hasError('mismatch') && signupForm.get('confirmPassword')?.touched">-->
-    <!--      Passwords don't match.-->
-    <!--    </div>-->
 
     <a
-      class="flex flex-col items-center w-full text-[0.7rem] text-amber-50 hover:text-orange-salmon active:text-light-salmon cursor-pointer underline"
-      (click)="navigate()">
+      class="flex flex-col items-center w-full mt-10 text-[0.7rem] text-amber-50 hover:text-orange-salmon active:text-light-salmon cursor-pointer underline"
+      (click)="onNavigate()">
       You already have an account? Click here.
     </a>
   </form>

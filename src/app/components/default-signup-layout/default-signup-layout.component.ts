@@ -20,15 +20,12 @@ export class DefaultSignupLayoutComponent {
 
   // sign up page
   next() {
-    this.onNext.emit(['interview']);
+    this.onNext.emit();
   }
 
   // interview page
   navigate() {
-    this.onNavigate.emit(['login']);
+    this.onNavigate.emit();
   }
 
-  submit() {
-    this.onSubmit.emit()
-  }
 }

@@ -1,9 +1,8 @@
 <app-default-signup-layout
   title="Interview"
-  primaryBtnText="SAVE"
-  (submit)="submit()"
-  (navigate)="navigate()"
-  [disablePrimaryBtn]=!interviewForm.valid
+  [disablePrimaryBtn] = !interviewForm.valid
+  (navigate)="onNavigate()"
+  (next)="onSubmit()"
 >
   <form [formGroup]="interviewForm" class="w-full ">
     <app-primary-input
@@ -18,7 +17,7 @@
       formControlName="subject"
       label="Subject"
       inputName="subject"
-      placeholder="..."
+      placeholder=""
     ></app-secondary-input-datalist>
   </form>
 

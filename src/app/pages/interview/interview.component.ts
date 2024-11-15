@@ -1,11 +1,10 @@
 import {Component} from '@angular/core';
 import {DefaultSignupLayoutComponent} from '../../components/default-signup-layout/default-signup-layout.component';
 import {
-  CheckboxRequiredValidator, FormBuilder,
+  FormBuilder,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
-  SelectControlValueAccessor,
   Validators
 } from '@angular/forms';
 import {
@@ -14,6 +13,7 @@ import {
 import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {PrimaryInputComponent} from '../../components/primary-input/primary-input.component';
+import {SignupDataService} from '../../services/signup-data.service';
 
 interface InterviewForm {
   username: FormControl;
@@ -30,6 +30,7 @@ interface InterviewForm {
     PrimaryInputComponent
   ],
   providers: [
+    SignupDataService,
     ToastrService,
     FormBuilder
   ],
@@ -41,8 +42,8 @@ export class InterviewComponent {
 
   constructor(
     private router: Router,
-    private formBulder: FormBuilder,
-    private toastService: ToastrService
+    private toastService: ToastrService,
+    private interviewService: SignupDataService
   ) {
     this.interviewForm = new FormGroup({
       username: new FormControl('', [Validators.required, Validators.minLength(6)]),
@@ -50,11 +51,30 @@ export class InterviewComponent {
     })
   }
 
-  submit() {
-    console.log(this.interviewForm.valid)
+  onSubmit() {
+    if (this.interviewForm.valid) {
+      this.interviewService.saveData('interview', this.interviewForm.value);
+
+      // Enviar os dados completos para o backend
+      this.interviewService.submitData().subscribe({
+        next: () => {
+          this.toastService.success('Data saved successfully!');
+          this.router.navigate(['dashboard']);
+
+          console.log('Dados enviados:', JSON.stringify(this.interviewForm.value));
+        },
+        error: (err) => {
+          this.toastService.error('Error sending data, please try again.');
+          console.error('Erro ao enviar dados:', err);
+        }
+      });
+    } else {
+      this.toastService.error('Error, please check your data.');
+    }
   }
 
-  navigate() {
-    this.router.navigate(['login'])
+
+  onNavigate() {
+    this.router.navigate(['login']);
   }
 }

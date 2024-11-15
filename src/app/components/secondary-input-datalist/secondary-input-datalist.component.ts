@@ -53,7 +53,6 @@ export class SecondaryInputDatalistComponent implements ControlValueAccessor {
     this.value = value;
     this.onChange(value);
 
-    console.log(value);
   }
 
 
