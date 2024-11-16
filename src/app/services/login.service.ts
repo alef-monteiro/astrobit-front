@@ -17,7 +17,6 @@ export class LoginService {
         sessionStorage.setItem("auth-token", value.token)
         sessionStorage.setItem("name", value.name)
         sessionStorage.setItem("username", value.username)
-        sessionStorage.setItem("avatar", value.avatar)
       })
     )
   }

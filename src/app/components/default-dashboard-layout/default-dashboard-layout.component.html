@@ -1,1 +1,21 @@
-<p>dashboard</p>
+<main class="relative flex items-start justify-start p-12 min-h-screen
+        bg-gradient-to-b from-dark-blue to-pale-blue text-white">
+
+  <!--  Sidenav-->
+  <app-sidenav
+    [username]="username"
+    [userAvgGrade]="userAvgGrade"
+    [userCoins]="userCoins"
+    [userRank]="userRank"
+    [logoutText]="logoutText"
+    (navigate)="navigate()"
+    class="w-1/4"
+  ></app-sidenav>
+
+  <!--  Content-->
+  <ng-content></ng-content>
+
+  <!--  Ranking-status-->
+  <app-ranking-box></app-ranking-box>
+
+</main>

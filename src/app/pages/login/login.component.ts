@@ -41,11 +41,22 @@ export class LoginComponent {
   }
 
   submit() {
-    // console.log(this.loginForm.valid)
-    this.loginService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
-      next: () => this.toastrService.success("Login succesfully"),
-      error: () => this.toastrService.error("Sorry, something went wrong.\nTry again later.")
-    })
+    if (this.loginForm.valid) {
+      this.loginService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
+        next: () => {
+          this.toastrService.success("Login succesfully")
+          this.router.navigate(['homepage'])
+        },
+        error: () => {
+          // remover o navigate depois de ajustado
+          this.toastrService.error("Error sending data, please try again later.")
+          this.router.navigate(['homepage'])
+        }
+      })
+    } else {
+      this.toastrService.error("Error, sorry. Try to check your data.")
+    }
+
   }
 
   navigate() {
