@@ -59,17 +59,19 @@ export class InterviewComponent {
       this.interviewService.submitData().subscribe({
         next: () => {
           this.toastService.success('Data saved successfully!');
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['homepage']);
 
           console.log('Dados enviados:', JSON.stringify(this.interviewForm.value));
         },
         error: (err) => {
-          this.toastService.error('Error sending data, please try again.');
+          // Remover o naviagate
+          this.toastService.error('Error sending data, please try again later.');
           console.error('Erro ao enviar dados:', err);
+          this.router.navigate(['homepage'])
         }
       });
     } else {
-      this.toastService.error('Error, please check your data.');
+      this.toastService.error('Error, sorry. Try to check your data.');
     }
   }
 
