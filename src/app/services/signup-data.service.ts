@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {SignupResponse} from '../type/signup-response';
 
 @Injectable({
   providedIn: 'root'
@@ -28,10 +29,10 @@ export class SignupDataService {
 
   // Enviar os dados completos para o backend
   submitData(): Observable<any> {
-    const url = 'https://localhost:8000/signup';
+    const url = 'https://localhost:8000/register';
     const completeData = this.getCompleteData();
 
     // Enviando os dados completos para o backend
-    return this.httpClient.post(url, completeData);
+    return this.httpClient.post<SignupResponse>(url, completeData);
   }
 }
