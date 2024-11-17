@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {NavigationExtras, Router} from '@angular/router';
-import { NgOptimizedImage} from "@angular/common";
 
 interface MenuItem {
   title: string;
