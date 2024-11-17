@@ -3,7 +3,6 @@ import {SidenavComponent} from './sidenav/sidenav.component';
 import {RankingBoxComponent} from './ranking-box/ranking-box.component';
 import {Router} from '@angular/router';
 
-
 @Component({
   selector: 'app-default-dashboard-layout',
   standalone: true,
