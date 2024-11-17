@@ -12,9 +12,7 @@ interface MenuItem {
 @Component({
   selector: 'app-sidenav',
   standalone: true,
-  imports: [
-    NgOptimizedImage,
-  ],
+  imports: [],
   templateUrl: './sidenav.component.html',
   styleUrl: './sidenav.component.scss'
 })
