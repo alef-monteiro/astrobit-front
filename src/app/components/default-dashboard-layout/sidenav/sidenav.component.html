@@ -1,6 +1,6 @@
 <section class="flex flex-col w-fit gap-6">
   <!-- Logo Section -->
-  <a (click) = "navigate()" class="flex flex-col items-center cursor-pointer">
+  <a (click)="onNavigate()" class="flex flex-col items-center cursor-pointer">
     <img src="assets/logo.svg" alt="astrobit-logo" class="w-2/3 h-auto">
   </a>
 
@@ -8,7 +8,10 @@
   <div class="flex flex-col items-center gap-2.5">
     <img src="assets/icon-user.svg" alt="user-icon" class="w-2/5 h-auto">
     <div>
-      <h2 class="text-center font-extrabold text-xl">#{{ username }}</h2>
+      <h2
+        class="text-center font-extrabold text-xl">
+        #{{ username }}
+      </h2>
       <p class="text-center font-regular text-xl">{{ userAvgGrade }} </p>
       <p class="text-center font-regular text-xl italic text-green-500">${{ userCoins }}</p>
     </div>
@@ -28,7 +31,9 @@
     }
   </div>
 
-  <a class="flex justify-center ursor-pointer text-red-500 cursor-pointer hover:font-semibold active:text-white" >
+  <a (click)="onLogout()"
+     class="flex justify-center cursor-pointer hover:font-semibold
+  text-red-500 active:text-white">
     {{ logoutText }}
   </a>
 </section>

@@ -8,12 +8,14 @@
   [disablePrimaryBtn] = !loginForm.valid
 >
   <form [formGroup]="loginForm" class="w-full ">
+
+<!--  Mudar para email após alteração no login, por hora user name-->
     <app-primary-input
       autofocus
-      formControlName="email"
-      type="email"
-      label="E-mail"
-      placeholder="email@email.com"
+      formControlName="username"
+      type=text
+      label="Usename (temporarily)"
+      placeholder="username"
     >
     </app-primary-input>
 

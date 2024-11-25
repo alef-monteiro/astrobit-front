@@ -16,8 +16,7 @@ import {HttpClient} from '@angular/common/http';
     DefaultLoginLayoutComponent,
     PrimaryInputComponent
   ],
-  providers: [
-  ],
+  providers: [],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -33,7 +32,8 @@ export class LoginComponent {
     private httptClient: HttpClient
   ) {
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
+      username: ['', [Validators.required, Validators.minLength(6)]], // Synchronous validators in an array
+      // email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     })
   }
@@ -43,7 +43,32 @@ export class LoginComponent {
   }
 
   public onSubmit() {
-  console.log(this.loginForm.getRawValue())
+    let username: string = this.loginForm.value.username
+
+    if (this.loginForm.valid) {
+      this.httptClient.post(this.apiEndpoints.endpoints.loginUser,
+        this.loginForm.getRawValue(),
+        {withCredentials: true})
+        .subscribe({
+          // substituir o data pelo tipo login-response
+          next: (data: any) => {
+            this.toastr.success(
+              `Welcome, #${username.toUpperCase()}`
+            )
+            this.router.navigate(['homepage'])
+          },
+
+          error: () => {
+            this.toastr.error(
+              'Sorry, something went wrong. Please try again.'
+            )
+          }
+        })
+    } else {
+      this.toastr.error(
+        'Sorry, Invalid form. Please try again.'
+      )
+    }
   }
 
 

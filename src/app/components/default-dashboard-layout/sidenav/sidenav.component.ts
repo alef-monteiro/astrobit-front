@@ -15,6 +15,7 @@ interface MenuItem {
   templateUrl: './sidenav.component.html',
   styleUrl: './sidenav.component.scss'
 })
+
 export class SidenavComponent {
   public menuList: MenuItem[] = [];
   public router: Router = new Router();
@@ -22,10 +23,10 @@ export class SidenavComponent {
   @Input() username: string = "";
   @Input() userAvgGrade: number = 0.0;
   @Input() userCoins: number = 0;
-  @Input() logoutText: string="";
-  @Input() userRank: string = "";
+  @Input() logoutText: string = "";
 
-  @Output("navigate") onNavigate = new EventEmitter();
+  @Output('logout') logout = new EventEmitter<boolean>();
+  @Output('navigate') navigate = new EventEmitter();
 
   constructor() {
     this.menuList = [
@@ -37,7 +38,7 @@ export class SidenavComponent {
     this.changeMenu(this.menuList[0]);
   }
 
-  protected changeMenu(menuItem: MenuItem) {
+  private changeMenu(menuItem: MenuItem) {
     this.menuList.forEach((m: MenuItem) => {
       m.isCurrent = m.route === menuItem.route;
     });
@@ -49,8 +50,11 @@ export class SidenavComponent {
     this.router.navigate([route], extras).then();
   }
 
-  public navigate(): void {
-    this.onNavigate.emit();
+  public onNavigate(): void {
+    this.navigate.emit();
   }
 
+  onLogout() {
+    this.logout.emit();
+  }
 }
