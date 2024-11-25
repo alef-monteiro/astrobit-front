@@ -3,7 +3,6 @@ import {DefaultLoginLayoutComponent} from '../../components/default-login-layout
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PrimaryInputComponent} from '../../components/primary-input/primary-input.component';
-import {LoginService} from '../../services/login.service';
 import {ToastrService} from 'ngx-toastr';
 import {SharedModule} from '../../../shared/shared.module';
 import {ApiEndpointsService} from '../../services/api-endpoints.service';
@@ -18,7 +17,6 @@ import {HttpClient} from '@angular/common/http';
     PrimaryInputComponent
   ],
   providers: [
-    LoginService
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
