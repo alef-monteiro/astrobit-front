@@ -19,6 +19,7 @@ export class DefaultDashboardLayoutComponent {
   userCoins: number = 152;
   logoutText: string = "Logout";
   userRank: string = "2";
+  titleRankin: string = "ranking";
 
   constructor(private router: Router) {
   }

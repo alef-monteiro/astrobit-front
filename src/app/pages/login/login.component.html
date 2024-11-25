@@ -3,12 +3,13 @@
   primaryBtnText="GO!"
   secondaryBtnText="SIGN UP"
 
-  (submit)="submit()"
-  (navigate) = "navigate()"
+  (submit) = "onSubmit()"
+  (navigate) = "onNavigate()"
   [disablePrimaryBtn] = !loginForm.valid
 >
   <form [formGroup]="loginForm" class="w-full ">
     <app-primary-input
+      autofocus
       formControlName="email"
       type="email"
       label="E-mail"
@@ -25,7 +26,8 @@
     </app-primary-input>
 
     <a
-      class="flex flex-row-reverse w-full text-[0.7rem] text-amber-50 hover:text-orange-salmon active:text-light-salmon cursor-pointer underline"
+      class="flex flex-row-reverse w-full text-[0.7rem]
+      text-amber-50 hover:text-orange-salmon active:text-light-salmon cursor-pointer underline"
       href="#">
       Forgot password?
     </a>

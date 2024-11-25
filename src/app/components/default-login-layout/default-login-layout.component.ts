@@ -11,17 +11,17 @@ export class DefaultLoginLayoutComponent {
   @Input() title: string = "";
   @Input() primaryBtnText = "";
   @Input() secondaryBtnText = "";
-
   @Input() disablePrimaryBtn: boolean = true;
 
-  @Output("submit") onSubmit = new EventEmitter();
-  @Output("navigate") onNavigate = new EventEmitter();
+  @Output("submit") submit = new EventEmitter();
+  @Output("navigate") navigate = new EventEmitter();
 
-  submit() {
-    this.onSubmit.emit();
+  onSubmit() {
+    this.submit.emit();
   }
 
-  navigate() {
-    this.onNavigate.emit()
+  onNavigate() {
+    this.navigate.emit();
   }
+
 }
