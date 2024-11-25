@@ -1,4 +1,4 @@
-<main class="relative flex items-start justify-start p-12 min-h-screen
+<main class="relative flex items-start justify-start p-0 min-h-screen
         bg-gradient-to-b from-dark-blue to-pale-blue text-white">
 
   <!--  Sidenav-->
@@ -13,9 +13,13 @@
   ></app-sidenav>
 
   <!--  Content-->
-  <ng-content></ng-content>
+  <ng-content class="2/4"></ng-content>
 
   <!--  Ranking-status-->
-  <app-ranking-box></app-ranking-box>
+  <app-ranking-box
+    [titleRanking]="titleRankin"
+
+    class="1/4"
+  ></app-ranking-box>
 
 </main>

@@ -3,7 +3,8 @@
   <section class=" relative flex flex-col items-center gap-5 w-1/4 z-10">
 
     <!-- Logo -->
-    <a class="flex flex-col items-center cursor-pointer" (click)="navigate()">
+    <a class="flex flex-col items-center cursor-pointer"
+       (click)="onNavigate()">
       <img class="w-full h-auto" src="/assets/logo.svg" alt="astrobit-logo">
     </a>
 
@@ -16,14 +17,15 @@
       <!-- Botão -->
       <div class="flex flex-row items-center justify-around w-full">
         <button
-          (click)="submit()"
+          type="submit"
+          (click) = "onSubmit()"
           [disabled]="disablePrimaryBtn"
           class="w-1/3 h-10 rounded-lg text-center font-black italic text-xl bg-orange-salmon hover:bg-light-salmon active:bg-cool-yellow disabled:bg-blue-950">
           {{ primaryBtnText }}
         </button>
 
         <button
-          (click)="navigate()"
+          (click)="onNavigate()"
           class="w-1/3 h-10 rounded-lg text-center font-black italic text-xl bg-orange-salmon hover:bg-light-salmon active:bg-cool-yellow">
           {{ secondaryBtnText }}
         </button>
@@ -36,28 +38,5 @@
   </section>
 
 </main>
-<!--      <form class="flex flex-col items-center w-full gap-10">-->
-<!--        &lt;!&ndash; Input de e-mail &ndash;&gt;-->
-<!--        <div class="flex flex-col w-full gap-2.5">-->
-<!--          <label for="email" class="p-0.5">{{ emailLabel }}</label>-->
-<!--          <input class="rounded-lg w-full h-10 p-2 focus:outline-none focus:ring-2 focus:ring-orange-salmon text-black"-->
-<!--                 id="email" type="email" name="email" autofocus placeholder="{{emailLabel}}">-->
-<!--        </div>-->
-
-<!--        &lt;!&ndash; Input de senha &ndash;&gt;-->
-<!--        <div class="flex flex-col w-full gap-2.5">-->
-<!--          <label for="password" class="p-0.5">{{ passwordLabel }}</label>-->
-<!--          <input class="rounded-lg w-full h-10 p-2 focus:outline-none focus:ring-2 focus:ring-orange-salmon text-black"-->
-<!--                 id="password" type="password" name="password" placeholder="{{passwordLabel}}">-->
-<!--        </div>-->
-
-
-<!--      </form>-->
-
-
-<!--  Imagem para ajustar o position na tela-->
-<!--  <section class="absolute bottom-1/2 right-0 w-1/4">-->
-<!--    <img src="/assets/planet-illustration.png" alt="background-illustration" class="w-full h-auto object-cover">-->
-<!--  </section>-->
 
 

@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {SignupResponse} from '../type/signup-response';
+
+// POSSIVELMENTE VÁ SER DELETADO.
+
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class SignupDataService {
   }
 
   // Obter os dados completos para enviar ao backend
-    getCompleteData() {
+  getCompleteData() {
     return this.signupData;
   }
 
@@ -27,12 +28,19 @@ export class SignupDataService {
     this.signupData = {};
   }
 
-  // Enviar os dados completos para o backend
-  submitData(): Observable<any> {
-    const url = 'https://localhost:8000/register';
-    const completeData = this.getCompleteData();
-
-    // Enviando os dados completos para o backend
-    return this.httpClient.post<SignupResponse>(url, completeData);
-  }
+  // // Enviar os dados completos para o backend
+  // submitData(): Observable<any> {
+  //   const url = 'https://localhost:8000/register';
+  //   const completeData = this.getCompleteData();
+  //
+  //   // Enviando os dados completos para o backend
+  //   return this.httpClient.post<SignupResponse>(url, completeData);
+  // }
+  //
+  //
+  // // Obter lista de assuntos
+  // getSubjectList(): Observable<SubjectResponse> {
+  //   const url = 'https://localhost:8000/subjects';
+  //   return this.httpClient.get<SubjectResponse>(url);
+  // }
 }
