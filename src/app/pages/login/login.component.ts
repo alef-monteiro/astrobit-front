@@ -52,7 +52,7 @@ export class LoginComponent {
             this.toastr.success(
               `Welcome, ${user.name}`
             )
-            this.router.navigate([''])
+            this.router.navigate(['homepage'])
           },
           error: () => {
             this.toastr.error(
