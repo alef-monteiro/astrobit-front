@@ -6,7 +6,7 @@ import {jwtDecode} from 'jwt-decode';
 
 
 interface User {
-  id: string;
+  id: number;
   name: string;
   username: string;
   email: string;
@@ -27,6 +27,9 @@ export class LoginDataService {
     private endPointService: ApiEndpointsService) {
   }
 
+
+  // Seguinte, tem que fazer umas lógicas de tratamento de erro aqui ainda
+
   public login(username: string, password: string) {
     return this.httpClient.post<LoginResponse>
     (this.endPointService.endpoints.loginUser,
@@ -37,7 +40,6 @@ export class LoginDataService {
             sessionStorage.setItem('auth-token', value.access)
             sessionStorage.setItem('refresh', value.refresh)
             console.log('Token salvo:', value.access);
-
           }
         )
       )
@@ -45,6 +47,7 @@ export class LoginDataService {
 
 
   get user(): User | null {
+    debugger
     const token = sessionStorage.getItem('auth-token');
     if(!token){
       return null;

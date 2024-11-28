@@ -6,6 +6,7 @@ import {PrimaryInputComponent} from '../../components/primary-input/primary-inpu
 import {ToastrService} from 'ngx-toastr';
 import {SharedModule} from '../../../shared/shared.module';
 import {LoginDataService} from '../../../shared/services/login-data.service';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,8 @@ import {LoginDataService} from '../../../shared/services/login-data.service';
   imports: [
     SharedModule,
     DefaultLoginLayoutComponent,
-    PrimaryInputComponent
+    PrimaryInputComponent,
+    NgIf
   ],
   providers: [],
   templateUrl: './login.component.html',
@@ -50,7 +52,7 @@ export class LoginComponent {
         .subscribe({
           next: () => {
             this.toastr.success(
-              `Welcome, ${user.name}`
+            `Welcome, ${user.name}`
             )
             this.router.navigate(['homepage'])
           },

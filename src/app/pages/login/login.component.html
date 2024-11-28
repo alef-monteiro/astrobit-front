@@ -3,13 +3,13 @@
   primaryBtnText="GO!"
   secondaryBtnText="SIGN UP"
 
-  (submit) = "onSubmit()"
-  (navigate) = "onNavigate()"
-  [disablePrimaryBtn] = !loginForm.valid
+  (submit)="onSubmit()"
+  (navigate)="onNavigate()"
+  [disablePrimaryBtn]=!loginForm.valid
 >
   <form [formGroup]="loginForm" class="w-full ">
 
-<!--  Mudar para email após alteração no login, por hora user name-->
+    <!--  Mudar para email após alteração no login, por hora user name-->
     <app-primary-input
       autofocus
       formControlName="username"
@@ -18,6 +18,10 @@
       placeholder="username"
     >
     </app-primary-input>
+    <div *ngIf="loginForm.controls['username'].hasError('minlength')">
+      Username must be at least 6 characters long.
+    </div>
+
 
     <app-primary-input
       formControlName="password"
@@ -26,6 +30,10 @@
       placeholder="Enter yout password..."
     >
     </app-primary-input>
+
+    <div *ngIf="loginForm.controls['password'].hasError('minlength')">
+      Password must be at least 6 characters long.
+    </div>
 
     <a
       class="flex flex-row-reverse w-full text-[0.7rem]
