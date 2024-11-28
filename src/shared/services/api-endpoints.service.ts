@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +15,6 @@ export class ApiEndpointsService {
     loginUser: `${this.baseUrl}token/`, // Ajuste caso esteja utilizando JWT ou outro metodo
     logoutUser: `${this.baseUrl}logout/`, // Ajuste conforme o metodo de autenticação
     getUserById: (userId: number) => `${this.baseUrl}users/${userId}/`, // Para obter um usuário específico
-
     // Assuntos
     getSubjects: `${this.baseUrl}subjects/`,
     getSubjectById: (id: number) => `${this.baseUrl}subjects/${id}/`,
@@ -28,5 +27,6 @@ export class ApiEndpointsService {
     postUserScore: `${this.baseUrl}scores/`,
   };
 
-  constructor() {}
+  constructor() {
+  }
 }

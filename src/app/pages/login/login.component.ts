@@ -5,8 +5,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PrimaryInputComponent} from '../../components/primary-input/primary-input.component';
 import {ToastrService} from 'ngx-toastr';
 import {SharedModule} from '../../../shared/shared.module';
-import {ApiEndpointsService} from '../../services/api-endpoints.service';
-import {HttpClient} from '@angular/common/http';
+import {LoginDataService} from '../../../shared/services/login-data.service';
 
 @Component({
   selector: 'app-login',
@@ -24,12 +23,12 @@ import {HttpClient} from '@angular/common/http';
 export class LoginComponent {
   loginForm!: FormGroup;
 
+
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private apiEndpoints: ApiEndpointsService,
     private toastr: ToastrService,
-    private httptClient: HttpClient
+    private loginService: LoginDataService
   ) {
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(6)]], // Synchronous validators in an array
@@ -38,26 +37,23 @@ export class LoginComponent {
     })
   }
 
+
   public onNavigate() {
     this.router.navigate(['register']);
   }
 
   public onSubmit() {
-    let username: string = this.loginForm.value.username
+    let user = this.loginService.user;
 
     if (this.loginForm.valid) {
-      this.httptClient.post(this.apiEndpoints.endpoints.loginUser,
-        this.loginForm.getRawValue(),
-        {withCredentials: true})
+      this.loginService.login(this.loginForm.value.username, this.loginForm.value.password)
         .subscribe({
-          // substituir o data pelo tipo login-response
-          next: (data: any) => {
+          next: () => {
             this.toastr.success(
-              `Welcome, #${username.toUpperCase()}`
+              `Welcome, ${user.name}`
             )
             this.router.navigate(['homepage'])
           },
-
           error: () => {
             this.toastr.error(
               'Sorry, something went wrong. Please try again.'

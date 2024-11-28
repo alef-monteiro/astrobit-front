@@ -6,7 +6,7 @@ import {Router} from '@angular/router';
 import {PrimaryInputComponent} from '../../components/primary-input/primary-input.component';
 import {SharedModule} from '../../../shared/shared.module';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ApiEndpointsService} from '../../services/api-endpoints.service';
+import {ApiEndpointsService} from '../../../shared/services/api-endpoints.service';
 import {HttpClient} from '@angular/common/http';
 import {NgIf} from '@angular/common';
 import {ToastrService} from 'ngx-toastr';

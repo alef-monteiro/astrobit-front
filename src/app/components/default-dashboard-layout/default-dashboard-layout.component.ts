@@ -4,7 +4,7 @@ import {RankingBoxComponent} from './ranking-box/ranking-box.component';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {ToastrService} from 'ngx-toastr';
-import {ApiEndpointsService} from '../../services/api-endpoints.service';
+import {ApiEndpointsService} from '../../../shared/services/api-endpoints.service';
 
 @Component({
   selector: 'app-default-dashboard-layout',
@@ -16,12 +16,12 @@ import {ApiEndpointsService} from '../../services/api-endpoints.service';
   templateUrl: './default-dashboard-layout.component.html',
   styleUrl: './default-dashboard-layout.component.scss'
 })
+
 export class DefaultDashboardLayoutComponent {
   username: string = "USERNAME";
   userAvgGrade: number = 8.5;
   userCoins: number = 152;
   logoutText: string = "Logout";
-  userRank: string = "2";
   titleRankin: string = "ranking";
 
   constructor(
@@ -36,10 +36,15 @@ export class DefaultDashboardLayoutComponent {
   }
 
   public onLogout(): void {
-    this.httpClient.get(this.endPointService.endpoints.logoutUser,
+    this.httpClient.get(
+      this.endPointService.endpoints.logoutUser,
       {withCredentials: true}).subscribe({
-
+      next: (data: any) => {
+        console.log("data.name", data.name);
+      },
+      error: err => {
+        console.log('error');
       }
-    )
+    })
   }
 }

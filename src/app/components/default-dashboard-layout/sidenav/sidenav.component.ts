@@ -25,7 +25,7 @@ export class SidenavComponent {
   @Input() userCoins: number = 0;
   @Input() logoutText: string = "";
 
-  @Output('logout') logout = new EventEmitter<boolean>();
+  @Output('logout') logout = new EventEmitter();
   @Output('navigate') navigate = new EventEmitter();
 
   constructor() {
