@@ -3,23 +3,18 @@
 
   <!--  Sidenav-->
   <app-sidenav
-    [username]="username"
-    [userAvgGrade]="userAvgGrade"
-    [userCoins]="userCoins"
     [logoutText]="logoutText"
-    (navigate)="onNavigate()"
+    [username]=""
+    [userPoints]=""
+
     (logout)="onLogout()"
-    class="w-1/4"
-  ></app-sidenav>
+  >
+  </app-sidenav>
 
   <!--  Content-->
-  <ng-content class="2/4"></ng-content>
+  <ng-content></ng-content>
 
   <!--  Ranking-status-->
-  <app-ranking-box
-    [titleRanking]="titleRankin"
-
-    class="1/4"
-  ></app-ranking-box>
+  <app-ranking-box></app-ranking-box>
 
 </main>

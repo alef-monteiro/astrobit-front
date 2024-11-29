@@ -29,32 +29,57 @@ export class LoginDataService {
 
 
   // Seguinte, tem que fazer umas lógicas de tratamento de erro aqui ainda
-
   public login(username: string, password: string) {
-    return this.httpClient.post<LoginResponse>
-    (this.endPointService.endpoints.loginUser,
-      {username, password},
-      {withCredentials: true})
-      .pipe(
-        tap((value) => {
-            sessionStorage.setItem('auth-token', value.access)
-            sessionStorage.setItem('refresh', value.refresh)
-            console.log('Token salvo:', value.access);
-          }
-        )
-      )
+    return this.httpClient.post<LoginResponse>(
+      this.endPointService.endpoints.loginUser,
+      { username, password },
+      { withCredentials: true }
+    ).pipe(
+      tap((value) => {
+        console.log('Token recebido:', value.access);
+
+        // Armazene o token no sessionStorage
+        sessionStorage.setItem('auth-token', value.access);
+        sessionStorage.setItem('refresh', value.refresh);
+      })
+    );
   }
 
 
+
   get user(): User | null {
-    debugger
     const token = sessionStorage.getItem('auth-token');
-    if(!token){
+
+    if (!token) {
+      console.warn('Nenhum token encontrado no armazenamento.');
       return null;
     }
-    const payload = jwtDecode<User>(token);
-    const user = payload as User;
 
-    return user ? user : null;
+    try {
+      const payload = jwtDecode<any>(token);
+
+      if (!payload.id || !payload.name || !payload.username || !payload.email) {
+        console.error('Token JWT não contém as informações esperadas:', payload);
+        return null;
+      }
+
+      return {
+        id: payload.id,
+        name: payload.name,
+        username: payload.username,
+        email: payload.email,
+      };
+    } catch (error) {
+      console.error('Erro ao decodificar o token JWT:', error);
+      return null;
+    }
+  }
+
+
+  public logout():
+    void {
+    sessionStorage.removeItem('auth-token');
+    sessionStorage.removeItem('refresh');
+    console.log('Usuário desconectado.');
   }
 }

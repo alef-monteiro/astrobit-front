@@ -1,19 +1,21 @@
 <section class="flex flex-col w-fit gap-6">
   <!-- Logo Section -->
-  <a (click)="onNavigate()" class="flex flex-col items-center cursor-pointer">
-    <img src="assets/logo.svg" alt="astrobit-logo" class="w-2/3 h-auto">
+  <a class="flex flex-col items-center cursor-pointer">
+    <p>Logo</p>
   </a>
 
   <!-- User Info Section -->
   <div class="flex flex-col items-center gap-2.5">
-    <img src="assets/icon-user.svg" alt="user-icon" class="w-2/5 h-auto">
+    <p>Imagem tlgd?</p>
     <div>
       <h2
         class="text-center font-extrabold text-xl">
         #{{ username }}
       </h2>
-      <p class="text-center font-regular text-xl">{{ userAvgGrade }} </p>
-      <p class="text-center font-regular text-xl italic text-green-500">${{ userCoins }}</p>
+      <p class="text-center font-regular text-xl">
+        {{ userPoints }}
+      </p>
+
     </div>
   </div>
 
@@ -21,18 +23,18 @@
   <div class="flex flex-col items-center justify-center gap-3">
     @for (menu of menuList; track menu.isCurrent) {
       <button
+        (click)="onNavigate(menu.route)"
         class="flex items-center justify-start gap-5 w-1/2 rounded-lg p-2
          bg-transparent hover:bg-orange-salmon hover:font-bold active:bg-cool-yellow">
-
         <img [src]="menu.icon" alt="{{menu.title}} - icon" class="w-auto h-2/5 ml-2">
         <p class="font-regular text-xl">{{ menu.title }}</p>
       </button>
 
     }
   </div>
-
-  <a (click)="onLogout()"
-     class="flex justify-center cursor-pointer hover:font-semibold
+  <a
+    (click)="onLogout()"
+    class="flex justify-center cursor-pointer hover:font-semibold
   text-red-500 active:text-white">
     {{ logoutText }}
   </a>

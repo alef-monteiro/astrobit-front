@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {ToastrService} from 'ngx-toastr';
 import {ApiEndpointsService} from '../../../shared/services/api-endpoints.service';
+import {LoginDataService} from '../../../shared/services/login-data.service';
 
 @Component({
   selector: 'app-default-dashboard-layout',
@@ -18,33 +19,15 @@ import {ApiEndpointsService} from '../../../shared/services/api-endpoints.servic
 })
 
 export class DefaultDashboardLayoutComponent {
-  username: string = "USERNAME";
-  userAvgGrade: number = 8.5;
-  userCoins: number = 152;
-  logoutText: string = "Logout";
-  titleRankin: string = "ranking";
 
-  constructor(
-    private router: Router,
-    private httpClient: HttpClient,
-    private toastr: ToastrService,
-    private endPointService: ApiEndpointsService) {
+  public logoutText: string = 'Logout';
+
+  constructor(private router: Router,
+              private loginService: LoginDataService) {
   }
 
-  public onNavigate(): void {
-    this.router.navigate(['/homepage']);
-  }
+  onLogout() {
+    return this.loginService.logout(), this.router.navigate(['login']);
 
-  public onLogout(): void {
-    this.httpClient.get(
-      this.endPointService.endpoints.logoutUser,
-      {withCredentials: true}).subscribe({
-      next: (data: any) => {
-        console.log("data.name", data.name);
-      },
-      error: err => {
-        console.log('error');
-      }
-    })
   }
 }
