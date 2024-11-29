@@ -48,26 +48,29 @@ export class LoginComponent {
     let user = this.loginService.user;
 
     if (this.loginForm.valid) {
-      this.loginService.login(this.loginForm.value.username, this.loginForm.value.password)
-        .subscribe({
-          next: () => {
-            this.toastr.success(
-            `Welcome, ${user.name}`
-            )
-            this.router.navigate(['homepage'])
-          },
-          error: () => {
-            this.toastr.error(
-              'Sorry, something went wrong. Please try again.'
-            )
+      this.loginService.login(this.loginForm.value.username, this.loginForm.value.password).subscribe({
+        next: () => {
+          console.log('Login realizado com sucesso.');
+          const user = this.loginService.user;
+          if (user) {
+            console.log('Usuário logado:', user);
+            this.toastr.success(`Welcome, ${user.name}!`)
+            this.router.navigate(['homepage']);
+          } else {
+            console.warn('Token não processado corretamente.');
           }
-        })
+        },
+        error: (err) => {
+          console.error('Erro no login:', err);
+        },
+      });
     } else {
       this.toastr.error(
         'Sorry, Invalid form. Please try again.'
       )
     }
   }
-
-
 }
+
+
+

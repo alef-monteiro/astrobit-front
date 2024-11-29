@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {NgOptimizedImage} from '@angular/common';
 import {NavigationExtras, Router} from '@angular/router';
 
 interface MenuItem {
@@ -17,44 +18,31 @@ interface MenuItem {
 })
 
 export class SidenavComponent {
-  public menuList: MenuItem[] = [];
-  public router: Router = new Router();
-
-  @Input() username: string = "";
-  @Input() userAvgGrade: number = 0.0;
-  @Input() userCoins: number = 0;
-  @Input() logoutText: string = "";
+  @Input() logoutText: string;
+  @Input() username: string;
+  @Input() userPoints: string;
 
   @Output('logout') logout = new EventEmitter();
-  @Output('navigate') navigate = new EventEmitter();
 
-  constructor() {
+  public menuList: MenuItem[] = [];
+
+  constructor(private router: Router) {
     this.menuList = [
-      {title: 'Home', icon: 'assets/nav-icons/home.svg', route: '/homepage', isCurrent: false},
-      {title: 'Profile', icon: 'assets/nav-icons/account.svg', route: '/profile', isCurrent: false},
-      {title: 'Store', icon: 'assets/nav-icons/shopping_cart.svg', route: '/store', isCurrent: false},
-      {title: 'Settings', icon: 'assets/nav-icons/settings.svg', route: '/config', isCurrent: false},
-    ];
-    this.changeMenu(this.menuList[0]);
+      {title: 'Home', icon: '/assets/nav-icon/home.svg', route: 'homepage', isCurrent: true},
+      {title: 'Profile', icon: '/assets/nav-icon/profile.svg', route: 'profile', isCurrent: true},
+      {title: 'Ranking', icon: '/assets/nav-icon/ranking.svg', route: 'ranking', isCurrent: true},
+      {title: 'Settings', icon: '/assets/nav-icon/settings.svg', route: 'settings', isCurrent: true},
+    ]
   }
 
-  private changeMenu(menuItem: MenuItem) {
-    this.menuList.forEach((m: MenuItem) => {
-      m.isCurrent = m.route === menuItem.route;
-    });
-    this.goToPage(menuItem.route);
+  onNavigate(url: string) {
+    return this.router.navigate([url]);
   }
 
-  public goToPage(route: string): void {
-    const extras: NavigationExtras = {queryParamsHandling: 'merge'};
-    this.router.navigate([route], extras).then();
+
+  onLogout(): void {
+    return this.logout.emit();
   }
 
-  public onNavigate(): void {
-    this.navigate.emit();
-  }
-
-  onLogout() {
-    this.logout.emit();
-  }
 }
+
