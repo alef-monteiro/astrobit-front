@@ -24,6 +24,7 @@ import {NgIf} from '@angular/common';
 
 export class LoginComponent {
   loginForm!: FormGroup;
+  loading: boolean;
 
 
   constructor(

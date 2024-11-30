@@ -3,6 +3,7 @@
   primaryBtnText="GO!"
   secondaryBtnText="SIGN UP"
 
+  (loading) = 'loading'
   (submit)="onSubmit()"
   (navigate)="onNavigate()"
   [disablePrimaryBtn]=!loginForm.valid
@@ -41,6 +42,11 @@
       href="#">
       Forgot password?
     </a>
-
   </form>
+
+  @if (loading){
+    <img src="assets/icon.svg">
+  }
 </app-default-login-layout>
+
+
