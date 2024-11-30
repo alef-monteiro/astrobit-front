@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {NgOptimizedImage} from '@angular/common';
-import {NavigationExtras, Router} from '@angular/router';
+import {Router} from '@angular/router';
+import {LoginDataService} from '../../../../shared/services/login-data.service';
 
 interface MenuItem {
   title: string;
@@ -19,26 +19,26 @@ interface MenuItem {
 
 export class SidenavComponent {
   @Input() logoutText: string;
-  @Input() username: string;
-  @Input() userPoints: string;
-
   @Output('logout') logout = new EventEmitter();
 
+  public userPoints: string = '100';
   public menuList: MenuItem[] = [];
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              public loginService: LoginDataService,) {
     this.menuList = [
-      {title: 'Home', icon: '/assets/nav-icon/home.svg', route: 'homepage', isCurrent: true},
-      {title: 'Profile', icon: '/assets/nav-icon/profile.svg', route: 'profile', isCurrent: true},
-      {title: 'Ranking', icon: '/assets/nav-icon/ranking.svg', route: 'ranking', isCurrent: true},
-      {title: 'Settings', icon: '/assets/nav-icon/settings.svg', route: 'settings', isCurrent: true},
-    ]
+      {title: 'Home', icon: '/assets/nav-icons/home.svg', route: 'homepage', isCurrent: false},
+      {title: 'Profile', icon: '/assets/nav-icons/account.svg', route: 'profile', isCurrent: false},
+      {title: 'Ranking', icon: '/assets/nav-icons/ranking.svg', route: 'ranking', isCurrent: false},
+      {title: 'Settings', icon: '/assets/nav-icons/settings.svg', route: 'settings', isCurrent: false},
+    ];
   }
 
-  onNavigate(url: string) {
-    return this.router.navigate([url]);
-  }
 
+  changeMenu(menu: MenuItem) {
+    this.menuList.forEach((item: MenuItem) => (item.isCurrent = item === menu));
+    this.router.navigate([menu.route]);
+  }
 
   onLogout(): void {
     return this.logout.emit();

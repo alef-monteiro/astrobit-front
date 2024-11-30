@@ -2,9 +2,6 @@ import {Component} from '@angular/core';
 import {SidenavComponent} from './sidenav/sidenav.component';
 import {RankingBoxComponent} from './ranking-box/ranking-box.component';
 import {Router} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
-import {ToastrService} from 'ngx-toastr';
-import {ApiEndpointsService} from '../../../shared/services/api-endpoints.service';
 import {LoginDataService} from '../../../shared/services/login-data.service';
 
 @Component({
@@ -19,7 +16,6 @@ import {LoginDataService} from '../../../shared/services/login-data.service';
 })
 
 export class DefaultDashboardLayoutComponent {
-
   public logoutText: string = 'Logout';
 
   constructor(private router: Router,
@@ -27,7 +23,7 @@ export class DefaultDashboardLayoutComponent {
   }
 
   onLogout() {
-    return this.loginService.logout(), this.router.navigate(['login']);
-
+    return this.loginService.logout(),
+      this.router.navigate(['login']);
   }
 }

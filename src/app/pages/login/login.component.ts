@@ -45,8 +45,6 @@ export class LoginComponent {
   }
 
   public onSubmit() {
-    let user = this.loginService.user;
-
     if (this.loginForm.valid) {
       this.loginService.login(this.loginForm.value.username, this.loginForm.value.password).subscribe({
         next: () => {

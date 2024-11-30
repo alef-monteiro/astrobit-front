@@ -19,5 +19,5 @@ export const routes: Routes = [
   {
     path: "homepage",
     component: HomepageComponent
-  }
+  },
 ];

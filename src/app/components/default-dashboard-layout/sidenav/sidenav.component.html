@@ -10,7 +10,7 @@
     <div>
       <h2
         class="text-center font-extrabold text-xl">
-        #{{ username }}
+        #{{ loginService.user.username.toUpperCase() }}
       </h2>
       <p class="text-center font-regular text-xl">
         {{ userPoints }}
@@ -23,10 +23,13 @@
   <div class="flex flex-col items-center justify-center gap-3">
     @for (menu of menuList; track menu.isCurrent) {
       <button
-        (click)="onNavigate(menu.route)"
+        (click)="changeMenu(menu)"
         class="flex items-center justify-start gap-5 w-1/2 rounded-lg p-2
          bg-transparent hover:bg-orange-salmon hover:font-bold active:bg-cool-yellow">
-        <img [src]="menu.icon" alt="{{menu.title}} - icon" class="w-auto h-2/5 ml-2">
+
+          <img [src]="menu.icon" alt="{{menu.title}}-icon"
+               class="w-auto h-2/5 ml-2">
+
         <p class="font-regular text-xl">{{ menu.title }}</p>
       </button>
 
