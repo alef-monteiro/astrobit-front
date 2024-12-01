@@ -1,0 +1,61 @@
+<app-default-register-layout
+  [title]="title"
+  [primaryBtnText]="primaryBtnText"
+  [disablePrimaryBtn]=!registerForm.valid
+  (navigate)="onNavigate()"
+  (submit)="onSubmit()"
+>
+  <form
+    [formGroup]="registerForm"
+
+    class="w-full">
+
+    <app-primary-input
+      autofocus
+      formControlName="name"
+      type='text'
+      label='Name'
+      placeholder='John Doe'
+    >
+    </app-primary-input>
+
+    <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched">
+      <small class="text-orange-salmon" *ngIf="registerForm.get('name')?.hasError('minlength')">Name must be at least 3
+        characters</small>
+    </div>
+
+    <app-primary-input
+      formControlName="username"
+      type='text'
+      label='Username'
+      placeholder='Username'
+    >
+    </app-primary-input>
+
+    <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
+      <small class="text-orange-salmon" *ngIf="registerForm.get('username')?.hasError('minlength')">Name must be at
+        least 6 characters</small>
+    </div>
+
+    <app-primary-input
+      formControlName="email"
+      type='email'
+      label='E-mail'
+      placeholder='email@email.com'
+    >
+    </app-primary-input>
+
+    <app-primary-input
+      formControlName="password"
+      type='password'
+      label='Password'
+      placeholder='Min 6 characters'
+    >
+    </app-primary-input>
+    <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+      <small class="text-orange-salmon" *ngIf="registerForm.get('password')?.hasError('minlength')">Password must be at
+        least 6 characters</small>
+    </div>
+
+  </form>
+</app-default-register-layout>

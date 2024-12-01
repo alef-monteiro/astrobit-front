@@ -17,16 +17,16 @@ export const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: "signup",
-    component: SignUpComponent
-  },
-  {
-    path: "interview",
-    component: InterviewComponent
+    path: "register",
+    component: RegisterComponent
   },
   {
     path: "homepage",
     component: HomepageComponent
+  },
+  {
+    path: "gamepage",
+    component: GamePageComponent
   },
   {
     path: "ranking",
