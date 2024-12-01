@@ -2,3 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 @import 'ngx-toastr/toastr';
+
+
+img {
+  user-select: none; /* Evita a seleção */
+  -webkit-user-drag: none; /* Evita arrastar no Chrome, Safari e outros navegadores WebKit */
+  -moz-user-drag: none; /* Evita arrastar no Firefox */
+  -o-user-drag: none; /* Evita arrastar em navegadores antigos */
+  user-drag: none; /* Evita arrastar */
+}
+
+/* Estiliza a barra de rolagem (container) */
+::-webkit-scrollbar {
+  width: 8px; /* Largura da barra */
+  height: 8px; /* Altura da barra (horizontal) */
+}
+
+/* Estiliza o "thumb" da barra (a parte que se move) */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #161949, #000020); /* Cor degradê */
+  border-radius: 4px; /* Arredondado */
+}
+
+/* Adiciona um efeito ao passar o mouse */
+::-webkit-scrollbar-thumb:hover {
+  background:  #161949; /* Cor mais escura ao hover */
+}
+
+/* Estiliza o fundo da barra de rolagem */
+::-webkit-scrollbar-track {
+  background: linear-gradient(to bottom, #161949, #000020); /* Cor de fundo */
+}

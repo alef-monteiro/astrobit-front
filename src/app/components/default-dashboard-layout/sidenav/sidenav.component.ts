@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Router} from '@angular/router';
 import {LoginDataService} from '../../../../shared/services/login-data.service';
+import {ToastrService} from 'ngx-toastr';
 
 interface MenuItem {
   title: string;
@@ -25,7 +26,8 @@ export class SidenavComponent {
   public menuList: MenuItem[] = [];
 
   constructor(private router: Router,
-              public loginService: LoginDataService,) {
+              public loginService: LoginDataService,
+              private toastr: ToastrService) {
     this.menuList = [
       {title: 'Home', icon: '/assets/nav-icons/home.svg', route: 'homepage', isCurrent: false},
       {title: 'Profile', icon: '/assets/nav-icons/account.svg', route: 'profile', isCurrent: false},
@@ -41,7 +43,8 @@ export class SidenavComponent {
   }
 
   onLogout(): void {
-    return this.logout.emit();
+
+    return this.logout.emit()
   }
 
 }

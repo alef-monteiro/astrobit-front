@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Output} from '@angular/core';
 import {DefaultLoginLayoutComponent} from '../../components/default-login-layout/default-login-layout.component';
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -24,7 +24,6 @@ import {NgIf} from '@angular/common';
 
 export class LoginComponent {
   loginForm!: FormGroup;
-  loading: boolean;
 
 
   constructor(
@@ -51,7 +50,7 @@ export class LoginComponent {
         next: () => {
           const user = this.loginService.user;
           if (user) {
-            this.toastr.success(`Login successfully, ${user.name}`)
+            this.toastr.info(`Login successfully, ${user.username}!`)
             this.toastr.success(`Welcome, ${user.name}!`)
             this.router.navigate(['homepage']);
           } else {
@@ -68,6 +67,7 @@ export class LoginComponent {
       )
     }
   }
+
 }
 
 
