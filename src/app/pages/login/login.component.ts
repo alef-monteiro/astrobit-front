@@ -1,4 +1,4 @@
-import {Component, Output} from '@angular/core';
+import {Component, OnInit, Output} from '@angular/core';
 import {DefaultLoginLayoutComponent} from '../../components/default-login-layout/default-login-layout.component';
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -22,7 +22,7 @@ import {NgIf} from '@angular/common';
   styleUrl: './login.component.scss'
 })
 
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
 
 
@@ -38,7 +38,9 @@ export class LoginComponent {
       password: ['', [Validators.required, Validators.minLength(6)]],
     })
   }
-
+  ngOnInit() {
+    this.loginForm.markAllAsTouched();
+  }
 
   public onNavigate() {
     this.router.navigate(['register']);

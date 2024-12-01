@@ -18,14 +18,18 @@
           type="submit"
           (click)="onSubmit()"
           [disabled]="disablePrimaryBtn || loading"
-          class="w-1/3 h-10 rounded-lg text-center font-black italic md:text-base sm:text-xs text-xs bg-orange-salmon hover:bg-light-salmon active:bg-cool-yellow disabled:bg-blue-950">
+          class="w-1/3 h-10 rounded-lg text-center font-black italic
+          md:text-base sm:text-xs text-xs
+          bg-orange-salmon hover:bg-light-salmon active:bg-cool-yellow disabled:bg-blue-950">
           {{ primaryBtnText }}
         </button>
 
         <button
           (click)="onNavigate()"
           [disabled]="loading"
-          class="w-1/3 h-10 rounded-lg text-center font-black italic md:text-base sm:text-xs whitespace-nowrap truncate bg-orange-salmon hover:bg-light-salmon active:bg-cool-yellow">
+          class="w-1/3 h-10 rounded-lg text-center font-black italic
+          md:text-base sm:text-xs whitespace-nowrap truncate
+          bg-orange-salmon hover:bg-light-salmon active:bg-cool-yellow">
           {{ secondaryBtnText }}
         </button>
       </div>
@@ -40,7 +44,12 @@
     <img src="assets/icon.svg" alt="Carregando..." class="relative z-50 w-16 h-16 animate-ping">
   </div>
 
-  <section class="absolute right-0">
-    <img src="/assets/planet-illustration2.png" alt="background-illustration" class="w-auto h-auto object-cover rotate-80 align-top">
+  <section class="absolute inset-0 z-0">
+    <img
+      src="/assets/bg.png"
+      alt="background-illustration"
+      class="background-img"
+    >
   </section>
+
 </main>

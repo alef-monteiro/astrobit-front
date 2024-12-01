@@ -33,3 +33,86 @@ img {
 ::-webkit-scrollbar-track {
   background: linear-gradient(to bottom, #161949, #000020); /* Cor de fundo */
 }
+
+
+.background-img {
+  width: 100vw; /* Largura total da tela */
+  height: 100vh; /* Altura total da tela */
+  object-fit: cover; /* Cobre a tela sem distorcer a imagem */
+  position: absolute; /* Fixa na tela */
+  top: 0;
+  left: 0;
+  z-index: -1; /* Coloca a imagem atrás do conteúdo */
+}
+
+/* Estilos responsivos para o "zoom" */
+@media (max-width: 1024px) {
+  .background-img {
+    transform: scale(1.2); /* Aumenta o zoom */
+  }
+}
+
+@media (max-width: 768px) {
+  .background-img {
+    transform: scale(1.5); /* Aumenta mais o zoom */
+  }
+}
+.background-img {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1; /* Mantém a imagem atrás do conteúdo */
+}
+
+@media (max-width: 1024px) {
+  .background-img {
+    transform: scale(1.2);
+  }
+}
+
+@media (max-width: 768px) {
+  .background-img {
+    transform: scale(1.5);
+  }
+}
+
+@media (max-width: 480px) {
+  .background-img {
+    transform: scale(2);
+  }
+}
+
+
+@media (max-width: 480px) {
+  .background-img {
+    transform: scale(2); /* Zoom maior em telas muito pequenas */
+  }
+}
+
+/* Estilo base para a imagem */
+.responsive-zoom {
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Aumentar o zoom em telas menores */
+@media (max-width: 1024px) {
+  .responsive-zoom {
+    transform: scale(1.2); /* Zoom de 20% */
+  }
+}
+
+@media (max-width: 768px) {
+  .responsive-zoom {
+    transform: scale(1.5); /* Zoom de 50% */
+  }
+}
+
+@media (max-width: 480px) {
+  .responsive-zoom {
+    transform: scale(2); /* Zoom de 100% */
+  }
+}
+
