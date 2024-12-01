@@ -5,18 +5,18 @@
   <app-sidenav
     [logoutText]="logoutText"
     (logout)="onLogout()"
-    class="col-span-2 rounded-lg bg-white/10"
+    class="col-span-2 rounded-lg "
   >
   </app-sidenav>
 
   <!-- Content (Cards) -->
-  <div class="col-span-6 flex flex-col gap-4 text-start items-center bg-white/10">
+  <div class="col-span-6 flex flex-col gap-4 text-start items-center ">
     <ng-content>
     </ng-content>
   </div>
 
   <!-- Ranking-status -->
-  <app-ranking-box class="col-span-2 bg-white/10 p-4 rounded-lg">
+  <app-ranking-box class="col-span-2  p-4 rounded-lg">
   </app-ranking-box>
 
 </main>
