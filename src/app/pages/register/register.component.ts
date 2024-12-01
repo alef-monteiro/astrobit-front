@@ -6,9 +6,10 @@ import {Router} from '@angular/router';
 import {PrimaryInputComponent} from '../../components/primary-input/primary-input.component';
 import {SharedModule} from '../../../shared/shared.module';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ApiEndpointsService} from '../../services/api-endpoints.service';
+import {ApiEndpointsService} from '../../../shared/services/api-endpoints.service';
 import {HttpClient} from '@angular/common/http';
 import {NgIf} from '@angular/common';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -33,6 +34,7 @@ export class RegisterComponent implements OnInit {
     private formBuilder: FormBuilder,
     private apiEndpoints: ApiEndpointsService,
     private httpClient: HttpClient,
+    private toastr: ToastrService
   ) {
     this.registerForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(3)]], // Synchronous validators in an array
@@ -53,18 +55,28 @@ export class RegisterComponent implements OnInit {
 
 
   public onSubmit(): void {
-    this.registerForm.markAllAsTouched();
-
+    let name: string = this.registerForm.value.name
     if (this.registerForm.valid) {
       this.httpClient.post(
         this.apiEndpoints.endpoints.registerUser,
         this.registerForm.getRawValue()
-      ).subscribe(data => {
-        console.log(data);
-        this.onNavigate()
-      });
+      ).subscribe({
+        next: (data: any) => {
+          this.toastr.success(
+            `Register successifuly, ${name}!`
+          )
+          this.router.navigate(['login']);
+        },
+        error: () => {
+          this.toastr.error(
+            'Sorry, something went wrong. Please try again.'
+          )
+        }
+      })
     } else {
-      console.log('Formulário inválido');
+      this.toastr.error(
+        'Sorry, Invalid form. Please try again.'
+      )
     }
   }
 }
