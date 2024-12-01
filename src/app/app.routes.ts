@@ -1,8 +1,8 @@
 import {Routes} from '@angular/router';
+import {RegisterComponent} from './pages/register/register.component';
 import {LoginComponent} from './pages/login/login.component';
-import {SignUpComponent} from './pages/signup/signup.component';
-import {InterviewComponent} from './pages/interview/interview.component';
 import {HomepageComponent} from './pages/homepage/homepage.component';
+import {GamePageComponent} from './pages/game-page/game-page.component';
 
 export const routes: Routes = [
   {
@@ -14,15 +14,15 @@ export const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: "signup",
-    component: SignUpComponent
-  },
-  {
-    path: "interview",
-    component: InterviewComponent
+    path: "register",
+    component: RegisterComponent
   },
   {
     path: "homepage",
     component: HomepageComponent
+  },
+  {
+    path: "gamepage",
+    component: GamePageComponent
   }
 ];

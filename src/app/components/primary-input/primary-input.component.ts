@@ -21,9 +21,9 @@ type InputTypes = "text" | "password" | "email" | "password_confirmation";
 
 export class PrimaryInputComponent implements ControlValueAccessor {
   @Input() type: InputTypes = "text";
-  @Input() placeholder: string = "";
   @Input() label: string = "";
   @Input() inputName: string = "";
+  @Input() placeholder: string = "";
 
 
   // não entendi esta parte sobre o problema com formControlName em está conectado com um pai
@@ -34,7 +34,6 @@ export class PrimaryInputComponent implements ControlValueAccessor {
   onInput(event: Event) {
     const value = (event.target as HTMLInputElement).value;
     this.onChange(value);
-
   }
 
   writeValue(value: string): void {

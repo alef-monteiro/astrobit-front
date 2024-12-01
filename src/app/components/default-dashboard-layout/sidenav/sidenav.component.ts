@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {NavigationExtras, Router} from '@angular/router';
+import {Router} from '@angular/router';
+import {LoginDataService} from '../../../../shared/services/login-data.service';
+import {ToastrService} from 'ngx-toastr';
 
 interface MenuItem {
   title: string;
@@ -15,42 +17,35 @@ interface MenuItem {
   templateUrl: './sidenav.component.html',
   styleUrl: './sidenav.component.scss'
 })
+
 export class SidenavComponent {
+  @Input() logoutText: string;
+  @Output('logout') logout = new EventEmitter();
+
+  public userPoints: string = '100';
   public menuList: MenuItem[] = [];
-  public router: Router = new Router();
 
-  @Input() username: string = "";
-  @Input() userAvgGrade: number = 0.0;
-  @Input() userCoins: number = 0;
-  @Input() logoutText: string="";
-  @Input() userRank: string = "";
-
-  @Output("navigate") onNavigate = new EventEmitter();
-
-  constructor() {
+  constructor(private router: Router,
+              public loginService: LoginDataService,
+              private toastr: ToastrService) {
     this.menuList = [
-      {title: 'Home', icon: 'assets/nav-icons/home.svg', route: '/homepage', isCurrent: false},
-      {title: 'Profile', icon: 'assets/nav-icons/account.svg', route: '/profile', isCurrent: false},
-      {title: 'Store', icon: 'assets/nav-icons/shopping_cart.svg', route: '/store', isCurrent: false},
-      {title: 'Settings', icon: 'assets/nav-icons/settings.svg', route: '/config', isCurrent: false},
+      {title: 'Home', icon: '/assets/nav-icons/home.svg', route: 'homepage', isCurrent: false},
+      {title: 'Profile', icon: '/assets/nav-icons/account.svg', route: 'profile', isCurrent: false},
+      {title: 'Ranking', icon: '/assets/nav-icons/ranking.svg', route: 'ranking', isCurrent: false},
+      {title: 'Settings', icon: '/assets/nav-icons/settings.svg', route: 'settings', isCurrent: false},
     ];
-    this.changeMenu(this.menuList[0]);
   }
 
-  protected changeMenu(menuItem: MenuItem) {
-    this.menuList.forEach((m: MenuItem) => {
-      m.isCurrent = m.route === menuItem.route;
-    });
-    this.goToPage(menuItem.route);
+
+  changeMenu(menu: MenuItem) {
+    this.menuList.forEach((item: MenuItem) => (item.isCurrent = item === menu));
+    this.router.navigate([menu.route]);
   }
 
-  public goToPage(route: string): void {
-    const extras: NavigationExtras = {queryParamsHandling: 'merge'};
-    this.router.navigate([route], extras).then();
-  }
+  onLogout(): void {
 
-  public navigate(): void {
-    this.onNavigate.emit();
+    return this.logout.emit()
   }
 
 }
+
