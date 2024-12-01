@@ -1,4 +1,4 @@
-import {Component, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {DefaultLoginLayoutComponent} from '../../components/default-login-layout/default-login-layout.component';
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -24,7 +24,7 @@ import {NgIf} from '@angular/common';
 
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
-
+  loading = false;
 
   constructor(
     private router: Router,
@@ -48,6 +48,7 @@ export class LoginComponent implements OnInit {
 
   public onSubmit() {
     if (this.loginForm.valid) {
+      this.loading = true;
       this.loginService.login(this.loginForm.value.username, this.loginForm.value.password).subscribe({
         next: () => {
           const user = this.loginService.user;
@@ -56,14 +57,19 @@ export class LoginComponent implements OnInit {
             this.toastr.success(`Welcome, ${user.name}!`)
             this.router.navigate(['homepage']);
           } else {
+            this.loading = false
             this.toastr.error(`Login fail!`);
           }
+          this.loading = false
         },
         error: (err) => {
+          this.loading = false
           console.error('Error', err);
         },
+
       });
     } else {
+      this.loading = false
       this.toastr.error(
         'Sorry, Invalid form. Please try again.'
       )

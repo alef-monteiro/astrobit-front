@@ -17,7 +17,7 @@
         <button
           type="submit"
           (click)="onSubmit()"
-          [disabled]="disablePrimaryBtn || loading"
+          [disabled]="disablePrimaryBtn"
           class="w-1/3 h-10 rounded-lg text-center font-black italic
           md:text-base sm:text-xs text-xs
           bg-orange-salmon hover:bg-light-salmon active:bg-cool-yellow disabled:bg-blue-950">
@@ -26,7 +26,6 @@
 
         <button
           (click)="onNavigate()"
-          [disabled]="loading"
           class="w-1/3 h-10 rounded-lg text-center font-black italic
           md:text-base sm:text-xs whitespace-nowrap truncate
           bg-orange-salmon hover:bg-light-salmon active:bg-cool-yellow">
@@ -35,14 +34,6 @@
       </div>
     </div>
   </section>
-
-  <!-- Loading -->
-  <div *ngIf="loading" class="fixed inset-0 z-50 flex items-center justify-center">
-    <!-- Fundo borrado -->
-    <div class="absolute inset-0 backdrop-blur-md bg-black/30"></div>
-    <!-- Ícone de loading -->
-    <img src="assets/icon.svg" alt="Carregando..." class="relative z-50 w-16 h-16 animate-ping">
-  </div>
 
   <section class="absolute inset-0 z-0">
     <img

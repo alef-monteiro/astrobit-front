@@ -43,7 +43,6 @@ export class SidenavComponent {
   }
 
   onLogout(): void {
-
     return this.logout.emit()
   }
 

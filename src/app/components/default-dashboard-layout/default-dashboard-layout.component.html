@@ -19,4 +19,11 @@
   <app-ranking-box class="col-span-2  p-4 rounded-lg">
   </app-ranking-box>
 
+
+  <div *ngIf="loading" class="fixed inset-0 z-50 flex items-center justify-center">
+    <!-- Fundo borrado -->
+    <div class="absolute inset-0 backdrop-blur-md bg-black/30"></div>
+    <!-- Ícone de loading -->
+    <img src="assets/icon.svg" alt="Carregando..." class="relative z-50 w-16 h-16 animate-ping">
+  </div>
 </main>
