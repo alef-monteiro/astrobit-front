@@ -1,5 +1,6 @@
-<main class="relative z-0 flex items-start justify-start p-12 min-h-screen bg-gradient-to-b from-dark-blue to-pale-blue text-white">
-  <section class="relative flex flex-col items-center gap-5 w-1/4 z-10">
+<main class="relative flex items-center p-12 min-h-screen overflow-hidden text-white bg-gradient-to-b from-dark-blue to-pale-blue">
+  <section class="relative z-10 flex-col items-center gap-5 w-1/4 min-w-[300px] ml-10 backdrop-blur-md p-8 rounded-2xl">
+
     <!-- Logo -->
     <a class="flex flex-col items-center cursor-pointer" (click)="onNavigate()">
       <img class="w-full h-auto" src="/assets/logo.svg" alt="astrobit-logo">
@@ -11,20 +12,20 @@
 
       <ng-content></ng-content>
 
-      <!-- Botões -->
+      <!-- Botão -->
       <div class="flex flex-row items-center justify-around w-full">
         <button
           type="submit"
           (click)="onSubmit()"
           [disabled]="disablePrimaryBtn || loading"
-          class="w-1/3 h-10 rounded-lg text-center font-black italic text-xl bg-orange-salmon hover:bg-light-salmon active:bg-cool-yellow disabled:bg-blue-950">
+          class="w-1/3 h-10 rounded-lg text-center font-black italic md:text-base sm:text-xs text-xs bg-orange-salmon hover:bg-light-salmon active:bg-cool-yellow disabled:bg-blue-950">
           {{ primaryBtnText }}
         </button>
 
         <button
           (click)="onNavigate()"
           [disabled]="loading"
-          class="w-1/3 h-10 rounded-lg text-center font-black italic text-xl bg-orange-salmon hover:bg-light-salmon active:bg-cool-yellow">
+          class="w-1/3 h-10 rounded-lg text-center font-black italic md:text-base sm:text-xs whitespace-nowrap truncate bg-orange-salmon hover:bg-light-salmon active:bg-cool-yellow">
           {{ secondaryBtnText }}
         </button>
       </div>
@@ -34,8 +35,12 @@
   <!-- Loading -->
   <div *ngIf="loading" class="fixed inset-0 z-50 flex items-center justify-center">
     <!-- Fundo borrado -->
-    <div class="absolute inset-0 backdrop-blur-md bg-black/30 "></div>
+    <div class="absolute inset-0 backdrop-blur-md bg-black/30"></div>
     <!-- Ícone de loading -->
     <img src="assets/icon.svg" alt="Carregando..." class="relative z-50 w-16 h-16 animate-ping">
   </div>
+
+  <section class="absolute right-0">
+    <img src="/assets/planet-illustration2.png" alt="background-illustration" class="w-auto h-auto object-cover rotate-80 align-top">
+  </section>
 </main>
