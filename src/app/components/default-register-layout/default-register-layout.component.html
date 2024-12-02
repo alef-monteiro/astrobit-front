@@ -1,19 +1,14 @@
 <main class="relative flex items-center justify-start p-12 min-h-screen overflow-hidden text-white bg-gradient-to-b from-dark-blue to-pale-blue">
-
-  <!-- Container Principal -->
-  <section class="relative z-10 flex flex-col items-center gap-5 w-1/4 min-w-[300px] ml-10 backdrop-blur-md p-8 rounded-2xl">
-
+  <section class="relative z-10 flex flex-col items-center gap-5 w-1/4 min-w-[300px] ml-10 backdrop-blur-md p-6 rounded-2xl max-h-[90vh] ">
     <!-- Logo -->
-    <a (click)="onNavigate()" class="flex flex-col items-center cursor-pointer">
+    <a class="flex flex-col items-center cursor-pointer" (click)="onNavigate()">
       <img class="w-full h-auto" src="/assets/logo.svg" alt="astrobit-logo">
     </a>
 
-    <!-- Formulário e Botões -->
+    <!-- Formulário + botões -->
     <div class="flex flex-col items-center w-full gap-5">
-      <!-- Título -->
       <h2 class="text-center font-bold text-3xl">{{ title }}</h2>
 
-      <!-- Conteúdo Angular Injetado -->
       <ng-content></ng-content>
 
       <!-- Botão de Ação -->
@@ -29,9 +24,12 @@
     </div>
   </section>
 
-  <!-- Imagem de fundo (estilo feat-itha) -->
-  <section class="absolute right-0">
-    <img src="/assets/planet-illustration2.png" alt="background-illustration" class="w-full h-auto object-cover rotate-80 align-top">
+  <!-- Imagem de fundo -->
+  <section class="absolute inset-0 z-0">
+    <img
+      src="/assets/bg.png"
+      alt="background-illustration"
+      class="background-img"
+    >
   </section>
-
 </main>

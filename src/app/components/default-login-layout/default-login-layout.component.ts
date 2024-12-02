@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {booleanAttribute, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NgIf} from '@angular/common';
 import {LoginDataService} from '../../../shared/services/login-data.service';
 
@@ -20,14 +20,11 @@ export class DefaultLoginLayoutComponent {
   @Output("submit") submit = new EventEmitter();
   @Output("navigate") navigate = new EventEmitter();
 
-  loading: boolean = false;
-
-  constructor(private loginService: LoginDataService) {
+  constructor() {
   }
 
   onSubmit() {
     this.submit.emit();
-    this.loading = true;
   }
 
   onNavigate() {

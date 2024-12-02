@@ -4,13 +4,15 @@ import {RankingBoxComponent} from './ranking-box/ranking-box.component';
 import {Router} from '@angular/router';
 import {LoginDataService} from '../../../shared/services/login-data.service';
 import {ToastrService} from 'ngx-toastr';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-default-dashboard-layout',
   standalone: true,
   imports: [
     SidenavComponent,
-    RankingBoxComponent
+    RankingBoxComponent,
+    NgIf
   ],
   templateUrl: './default-dashboard-layout.component.html',
   styleUrl: './default-dashboard-layout.component.scss'
@@ -18,6 +20,7 @@ import {ToastrService} from 'ngx-toastr';
 
 export class DefaultDashboardLayoutComponent {
   public logoutText: string = 'Logout';
+  loading: boolean = false;
 
   constructor(private router: Router,
               private loginService: LoginDataService,
