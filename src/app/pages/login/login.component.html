@@ -11,14 +11,15 @@
 
     <!--  Mudar para email após alteração no login, por hora user name-->
     <app-primary-input
-      autofocus
       formControlName="username"
       type=text
-      label="Usename (temporarily)"
+      label="Usename"
       placeholder="username"
+
     >
     </app-primary-input>
-    <div *ngIf="loginForm.controls['username'].hasError('minlength')">
+    <div *ngIf="loginForm.controls['username'].hasError('minlength')"
+    class="text-start text-xs">
       Username must be at least 6 characters long.
     </div>
 
@@ -31,7 +32,8 @@
     >
     </app-primary-input>
 
-    <div *ngIf="loginForm.controls['password'].hasError('minlength')">
+    <div *ngIf="loginForm.controls['password'].hasError('minlength')"
+         class="text-start text-xs mb-2">
       Password must be at least 6 characters long.
     </div>
 
@@ -46,12 +48,16 @@
 
 </app-default-login-layout>
 
+
 <div *ngIf="loading" class="fixed inset-0 z-50 flex items-center justify-center">
   <!-- Fundo borrado -->
-  <div class="absolute inset-0 backdrop-blur-md bg-black/30"></div>
+  <div class="absolute inset-0 backdrop-blur-md bg-black/30">
+  </div>
   <!-- Ícone de loading -->
   <img src="assets/icon.svg" alt="Carregando..." class="relative z-50 w-16 h-16 animate-ping">
 </div>
+
+
 
 
 

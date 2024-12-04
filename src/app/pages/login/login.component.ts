@@ -1,11 +1,11 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DefaultLoginLayoutComponent} from '../../components/default-login-layout/default-login-layout.component';
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PrimaryInputComponent} from '../../components/primary-input/primary-input.component';
 import {ToastrService} from 'ngx-toastr';
 import {SharedModule} from '../../../shared/shared.module';
-import {LoginDataService} from '../../../shared/services/login-data.service';
+import {UserDataService} from '../../../shared/services/user-data.service';
 import {NgIf} from '@angular/common';
 
 @Component({
@@ -29,8 +29,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private toastr: ToastrService,
-    private loginService: LoginDataService
+    public toastr: ToastrService,
+    public loginService: UserDataService
   ) {
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(6)]], // Synchronous validators in an array
@@ -65,6 +65,7 @@ export class LoginComponent implements OnInit {
         error: (err) => {
           this.loading = false
           console.error('Error', err);
+          this.toastr.error(`Login fail!`);
         },
 
       });
