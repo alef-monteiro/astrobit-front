@@ -14,11 +14,12 @@
       autofocus
       formControlName="username"
       type=text
-      label="Usename (temporarily)"
+      label="Usename"
       placeholder="username"
     >
     </app-primary-input>
-    <div *ngIf="loginForm.controls['username'].hasError('minlength')">
+    <div *ngIf="loginForm.controls['username'].hasError('minlength')"
+    class="text-start text-sm">
       Username must be at least 6 characters long.
     </div>
 

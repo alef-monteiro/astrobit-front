@@ -1,8 +1,9 @@
 <section
-  class="flex flex-col items-center w-full h-screen gap-5 text-white">
+  class="flex flex-col items-center w-full h-screen gap-5 text-white
+    rounded-xl">
   <!-- Logo Section -->
   <a class="flex flex-col items-center cursor-pointer">
-    <img src="assets/logo.svg">
+    <img src="assets/logo.svg" class="p-2">
   </a>
 
   <!-- User Info Section -->
@@ -22,17 +23,17 @@
   </div>
 
   <!-- Menu Section -->
-  <div class="flex flex-col w-full items-center justify-center gap-3 ">
+  <div class="flex flex-col w-full items-center justify-center px-5 gap-5 mb-10">
     @for (menu of menuList; track menu.isCurrent) {
       <button
         (click)="changeMenu(menu)"
-        class="flex items-center w-full gap-5 rounded-lg p-2
-         bg-transparent hover:bg-orange-salmon active:bg-cool-yellow">
+        class="flex flex-row w-full items-center justify-items-start
+          rounded-lg px-5 py-2 gap-5 font-bold text-xl last: mb-0
+          bg-transparent hover:bg-orange-salmon active:bg-cool-yellow">
 
-        <img [src]="menu.icon" alt="{{menu.title}}-icon"
-             class="ml-4">
+        <img [src]="menu.icon" alt="{{menu.title}}-icon">
 
-        <p class="font-regular text-xl">{{ menu.title }}</p>
+        <p class="font-regular text-xl block">{{ menu.title }}</p>
       </button>
     }
   </div>

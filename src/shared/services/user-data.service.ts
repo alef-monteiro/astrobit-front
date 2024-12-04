@@ -20,20 +20,28 @@ interface LoginResponse {
 @Injectable({
   providedIn: 'root'
 })
-export class LoginDataService {
+export class UserDataService {
 
   constructor(
     private httpClient: HttpClient,
-    private endPointService: ApiEndpointsService) {
+    private apiEndPoints: ApiEndpointsService) {
+  }
+
+
+  public register(name: string, username: string, email: string, password: string) {
+    return this.httpClient.post(
+      this.apiEndPoints.endpoints.registerUser,
+      {name, username, email, password}
+    )
   }
 
 
   // Seguinte, tem que fazer umas lógicas de tratamento de erro aqui ainda
   public login(username: string, password: string) {
     return this.httpClient.post<LoginResponse>(
-      this.endPointService.endpoints.loginUser,
-      { username, password },
-      { withCredentials: true }
+      this.apiEndPoints.endpoints.loginUser,
+      {username, password},
+      {withCredentials: true}
     ).pipe(
       tap((value) => {
         console.log('Token recebido:', value.access);
@@ -44,8 +52,6 @@ export class LoginDataService {
       })
     );
   }
-
-
 
   get user(): User | null {
     const token = sessionStorage.getItem('auth-token');
@@ -74,6 +80,7 @@ export class LoginDataService {
       return null;
     }
   }
+
 
 
   public logout():

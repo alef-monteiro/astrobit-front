@@ -1,14 +1,14 @@
-<main class="relative flex items-center p-12 min-h-screen overflow-hidden text-white bg-gradient-to-b from-dark-blue to-pale-blue">
-  <section class="relative z-10 flex-col items-center gap-5 w-1/4 min-w-[300px] ml-10 backdrop-blur-md p-8 rounded-2xl">
-
+<main class="relative flex items-center p-12 min-h-screen overflow-hidden
+text-white bg-gradient-to-b from-dark-blue to-pale-blue">
+  <section class="relative z-10 flex-col items-center gap-5 w-1/4 min-w-[300px] backdrop-blur-md p-8 rounded-2xl">
     <!-- Logo -->
-    <a class="flex flex-col items-center cursor-pointer" (click)="onNavigate()">
+    <div class="flex flex-col items-center">
       <img class="w-full h-auto" src="/assets/logo.svg" alt="astrobit-logo">
-    </a>
+    </div>
 
     <!-- Formulário + botões -->
     <div class="flex flex-col items-center w-full gap-5">
-      <h2 class="text-center font-bold text-3xl">{{ title }}</h2>
+      <p class="text-center font-bold text-3xl">{{ title }}</p>
 
       <ng-content></ng-content>
 
@@ -40,7 +40,7 @@
       src="/assets/bg.png"
       alt="background-illustration"
       class="background-img"
-    >
+     >
   </section>
 
 </main>
