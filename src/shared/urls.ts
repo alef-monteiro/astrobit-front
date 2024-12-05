@@ -4,5 +4,5 @@ export const URLS = {
   CLIENT: '/teste/client/',
   EMPLOYEE: '/teste/employee/',
   SALE: '/teste/sale/',
-  SCORE: '/api/scores'
+  SCORE: '/rankusers',
 }

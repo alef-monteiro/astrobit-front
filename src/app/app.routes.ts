@@ -1,11 +1,9 @@
 import {Routes} from '@angular/router';
 import {LoginComponent} from './pages/login/login.component';
-import {SignUpComponent} from './pages/signup/signup.component';
-import {InterviewComponent} from './pages/interview/interview.component';
 import {HomepageComponent} from './pages/homepage/homepage.component';
-import {
-  DefaultDashboardLayoutComponent
-} from './components/default-dashboard-layout/default-dashboard-layout.component';
+import {RegisterComponent} from './pages/register/register.component';
+import {GamePageComponent} from './pages/game-page/game-page.component';
+import {RankingComponent} from './pages/ranking/ranking.component';
 
 export const routes: Routes = [
   {
@@ -30,6 +28,6 @@ export const routes: Routes = [
   },
   {
     path: "ranking",
-    component: DefaultDashboardLayoutComponent
+    component: RankingComponent
   }
 ];

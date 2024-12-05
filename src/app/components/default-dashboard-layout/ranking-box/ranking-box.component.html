@@ -1,19 +1,24 @@
-<table class="table-auto" >
-  <thead>
-  <tr>
-    <th>POSITION</th>
-    <th>USERNAME</th>
-    <th>SCORE</th>
-  </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of sortedData; let i = index">
-      <td>{{i + 1 + '°'}}</td>
-      <td>{{item.user}}</td>
-      <td>{{item.score}}</td>
+<div class="flex flex-col w-fit gap-6 py-2">
+  <table class="flex flex-col items-center gap-5 text-center">
+    <thead>
+    <tr>
+      <th>POSITION</th>
+      <th>USERNAME</th>
+      <th>SCORE</th>
     </tr>
-  </tbody>
-</table>
+    </thead>
+    <tbody class="">
+      <tr *ngFor="let item of sortedData; let i = index" class="flex flex-row w-full justify-center rounded-lg
+                  px-5 py-3 gap-2 font-bold text-xl uppercase italic
+                   shadow-inner bg-[#d9d9d930]">
+        <td class="flex flex-row border-separate border-spacing-2">{{i + 1 + '°'}}</td>
+        <td class="flex flex-row border-separate border-spacing-2">{{item.username}}</td>
+        <td>{{item.score}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 
 <!--<section class="flex flex-col w-fit gap-6 py-2">-->
 <!--  <section class="flex flex-col items-center gap-5 text-center">-->
