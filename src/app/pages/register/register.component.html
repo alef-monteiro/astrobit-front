@@ -50,12 +50,12 @@
       formControlName="password"
       type='password'
       label='Password'
-      placeholder='Min 6 characters'
+      placeholder='Password'
     >
     </app-primary-input>
     <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
       <small class="text-start text-xs text-light-salmon" *ngIf="registerForm.get('password')?.hasError('minlength')">Password must be at
-        least 6 characters</small>
+        least 8 characters</small>
     </div>
 
   </form>

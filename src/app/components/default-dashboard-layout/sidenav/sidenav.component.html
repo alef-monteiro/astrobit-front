@@ -3,13 +3,13 @@
     rounded-xl">
   <!-- Logo Section -->
   <a class="flex flex-col items-center cursor-pointer">
-    <img src="assets/logo.svg" class="p-2">
+    <img src="assets/logo.svg" class="p-2" alt="logo">
   </a>
 
   <!-- User Info Section -->
   <div class="flex flex-col w-full items-center gap-3 backdrop-blur-xl  rounded-lg p-2">
     <div class="overflow-hidden rounded-full w-28 h-28">
-      <img src="assets/illustration-game-card.png" >
+      <img src="assets/illustration-game-card.png" alt="illustration-game-card">
     </div>
 
     <div>
@@ -23,19 +23,26 @@
   </div>
 
   <!-- Menu Section -->
-  <div class="flex flex-col w-full items-center justify-center px-5 gap-5 mb-10">
+  <div class="flex flex-col w-full items-center justify-center px-3 gap-5 mb-10">
     @for (menu of menuList; track menu.isCurrent) {
       <button
         (click)="changeMenu(menu)"
         class="flex flex-row w-full items-center justify-items-start
           rounded-lg px-5 py-2 gap-5 font-bold text-xl last: mb-0
-          bg-transparent hover:bg-orange-salmon active:bg-cool-yellow">
+          bg-transparent hover:bg-orange-salmon active:bg-cool-yellow
+          ">
 
         <img [src]="menu.icon" alt="{{menu.title}}-icon">
 
         <p class="font-regular text-xl block">{{ menu.title }}</p>
       </button>
     }
+    <button
+      class="flex flex-row w-fit items-center justify-center
+          rounded-full px-5 py-2 font-bold text-xl last: mb-0
+          bg-orange-salmon hover:bg-cool-yellow active:bg-light-salmon ">
+      <img src="assets/nav-icons/add.svg" class="w-full">
+    </button>
   </div>
 
   <!-- Logout Section -->

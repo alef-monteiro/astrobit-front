@@ -3,7 +3,8 @@ import {
   DefaultDashboardLayoutComponent
 } from '../../components/default-dashboard-layout/default-dashboard-layout.component';
 import {Router} from '@angular/router';
-import { GamecardDataService} from '../../../shared/services/gamecard-data.service';
+import {GameCardDataService} from '../../../shared/services/game-card-data.service';
+import {Card} from '../../../shared/models/card';
 
 
 @Component({
@@ -14,31 +15,20 @@ import { GamecardDataService} from '../../../shared/services/gamecard-data.servi
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent implements OnInit {
-  cardList: {
-    isCurrent: boolean; route: string; author:  string;
-    icon: `/assets/${string}`; title: string }[] = [];
+  public cardList: Card [] = [];
 
-  titleHome: string = 'MAKE YOUR CHOICE';
+  public titleHome: string = 'MAKE YOUR CHOICE';
 
   constructor(
     private route: Router,
-    public gamecardData: GamecardDataService,
+    public gamecardData: GameCardDataService,
   ) {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.gamecardData.getGameCards().subscribe({
       next: (data) => {
-        console.log('Lista de jogos:', data);
-
-        // Map data into the cardList
-        this.cardList = data.map((card, index) => ({
-          title: card.game_title || `Game ${index + 1}`,
-          icon: `/assets/${card.image}` || '/assets/illustration-game-card-blue.png', // Ajuste do ícone
-          author: card.author_name || 'Unknown',
-          route: 'game-page',
-          isCurrent: false
-        }));
+        this.cardList = data;
       },
       error: (error) => {
         console.error('Erro ao carregar os jogos:', error);
@@ -46,7 +36,11 @@ export class HomepageComponent implements OnInit {
     });
   }
 
-  onNavigate() {
-    return this.route.navigate(['homepage']);
+  public onNavigate(route:string) {
+    this.route.navigate([route]).then();
+  }
+
+  public onSubmit(id: number) {
+    this.gamecardData.getGameCardById(id);
   }
 }

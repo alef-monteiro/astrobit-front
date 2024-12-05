@@ -2,7 +2,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  HostListener,
+  HostListener, Input,
   OnDestroy,
   ViewChild
 } from '@angular/core';
@@ -20,7 +20,15 @@ export class DefaultGameLayoutComponent implements AfterViewInit, OnDestroy {
   private ctx!: CanvasRenderingContext2D;
   private animationId: number | null = null;
 
+  gameTitle = 'GameName';
+  authorName = 'AuthorName';
+
   constructor( private router: Router) {
+  }
+
+
+  onNavigate() {
+    this.router.navigate(['game'])
   }
 
   // Propriedades do Pac-Man
@@ -34,8 +42,7 @@ export class DefaultGameLayoutComponent implements AfterViewInit, OnDestroy {
   private mouthDirection: number = -0.02; // Velocidade de abertura/fechamento da boca
   private maxMouthAngle: number = 0.3;
   private minMouthAngle: number = 0.05;
-  gameName = 'GameName';
-  autorName = 'AutorName';
+
 
   ngAfterViewInit(): void {
     this.setupCanvas();
@@ -114,9 +121,5 @@ export class DefaultGameLayoutComponent implements AfterViewInit, OnDestroy {
     if (this.mouthAngle <= this.minMouthAngle || this.mouthAngle >= this.maxMouthAngle) {
       this.mouthDirection *= -1;
     }
-  }
-
-  onNavigate() {
-    this.router.navigate(['homepage'])
   }
 }
