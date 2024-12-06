@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
           if (user) {
             this.toastr.info(`Login successfully, ${user.username}!`)
             this.toastr.success(`Welcome, ${user.name}!`)
-            this.router.navigate(['homepage']);
+            this.router.navigate(['game']);
           } else {
             this.loading = false
             this.toastr.error(`Login fail!`);

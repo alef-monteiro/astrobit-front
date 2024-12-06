@@ -20,11 +20,11 @@ export const routes: Routes = [
     component: RegisterComponent
   },
   {
-    path: "homepage",
+    path: "game",
     component: HomepageComponent
   },
   {
-    path: "gamepage",
+    path: "game/:action",
     component: GamePageComponent
   },
   {
