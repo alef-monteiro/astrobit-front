@@ -1,101 +1,52 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {
   DefaultDashboardLayoutComponent
 } from '../../components/default-dashboard-layout/default-dashboard-layout.component';
 import {Router} from '@angular/router';
-import {LoginDataService} from '../../../shared/services/login-data.service';
+import { GamecardDataService} from '../../../shared/services/gamecard-data.service';
 
-interface CardData {
-  title: string;
-  icon: string;
-  route: string;
-  author: string;
-  isCurrent: boolean;
-}
 
 @Component({
   selector: 'app-homepage',
   standalone: true,
-  imports: [
-    DefaultDashboardLayoutComponent,
-  ],
+  imports: [DefaultDashboardLayoutComponent],
   templateUrl: './homepage.component.html',
-  styleUrl: './homepage.component.scss'
+  styleUrls: ['./homepage.component.scss']
 })
-export class HomepageComponent {
-  cardList: CardData[] = [];
+export class HomepageComponent implements OnInit {
+  cardList: {
+    isCurrent: boolean; route: string; author:  string;
+    icon: `/assets/${string}`; title: string }[] = [];
 
-  constructor(private route: Router,
-              public loginData: LoginDataService) {
-    this.cardList = [
-      {
-        title: 'Intro',
-        icon: '/assets/illustration-game-card-blue.png',
-        author: loginData.user.name,
-        route: 'gamepage',
-        isCurrent: false
-      },
-      {
-        title: 'ColorGame',
-        icon: '/assets/illustration-game-card.png',
-        author: loginData.user.name,
-        route: 'gamepage',
-        isCurrent: false
-      },
-      {
-        title: 'MathChallenge',
-        icon: '/assets/illustration-game-card-red.png',
-        author: loginData.user.name,
-        route: 'gamepage',
-        isCurrent: false
-      },
-      {
-        title: 'AAAAAAA',
-        icon: '/assets/illustration-game-card.png',
-        author: loginData.user.name,
-        route: 'gamepage',
-        isCurrent: false
-      },
-      {
-        title: 'BBBBBB',
-        icon: '/assets/illustration-game-card-purple.png',
-        author: loginData.user.name,
-        route: 'gamepage',
-        isCurrent: false
-      },
-      {
-        title: 'CCCCCCCC',
-        icon: '/assets/illustration-game-card-red.png',
-        author: loginData.user.name,
-        route: 'gamepage',
-        isCurrent: false
-      },
-      {
-        title: 'DDDDDDD',
-        icon: '/assets/illustration-game-card-red.png',
-        author: loginData.user.name,
-        route: 'gamepage',
-        isCurrent: false
-      },      {
-        title: 'EEEEEEEEE',
-        icon: '/assets/illustration-game-card-purple.png',
-        author: loginData.user.name,
-        route: 'gamepage',
-        isCurrent: false
-      },      {
-        title: 'FFFFFFFF',
-        icon: '/assets/illustration-game-card.png',
-        author: loginData.user.name,
-        route: 'gamepage',
-        isCurrent: false
-      },
-    ]
+  titleHome: string = 'MAKE YOUR CHOICE';
+
+  constructor(
+    private route: Router,
+    public gamecardData: GamecardDataService,
+  ) {
   }
 
-  changeMenu(card: CardData) {
-    this.cardList.forEach(
-      (item: CardData) => (item.isCurrent = item === card)
-    );
-    this.route.navigate([card.route]);
+  ngOnInit() {
+    this.gamecardData.getGameCards().subscribe({
+      next: (data) => {
+        console.log('Lista de jogos:', data);
+
+        // Map data into the cardList
+        this.cardList = data.map((card, index) => ({
+          title: card.game_title || `Game ${index + 1}`,
+          icon: `/assets/${card.image}` || '/assets/illustration-game-card-blue.png', // Ajuste do ícone
+          author: card.author_name || 'Unknown',
+          route: 'game-page',
+          isCurrent: false
+        }));
+      },
+      error: (error) => {
+        console.error('Erro ao carregar os jogos:', error);
+      }
+    });
+  }
+
+  onNavigate() {
+    return this.route.navigate(['homepage']);
   }
 }

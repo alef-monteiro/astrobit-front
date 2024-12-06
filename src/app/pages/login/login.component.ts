@@ -1,11 +1,11 @@
-import {Component, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DefaultLoginLayoutComponent} from '../../components/default-login-layout/default-login-layout.component';
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PrimaryInputComponent} from '../../components/primary-input/primary-input.component';
 import {ToastrService} from 'ngx-toastr';
 import {SharedModule} from '../../../shared/shared.module';
-import {LoginDataService} from '../../../shared/services/login-data.service';
+import {UserDataService} from '../../../shared/services/user-data.service';
 import {NgIf} from '@angular/common';
 
 @Component({
@@ -22,15 +22,15 @@ import {NgIf} from '@angular/common';
   styleUrl: './login.component.scss'
 })
 
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
-
+  loading = false;
 
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private toastr: ToastrService,
-    private loginService: LoginDataService
+    public toastr: ToastrService,
+    public loginService: UserDataService
   ) {
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(6)]], // Synchronous validators in an array
@@ -38,7 +38,9 @@ export class LoginComponent {
       password: ['', [Validators.required, Validators.minLength(6)]],
     })
   }
-
+  ngOnInit() {
+    this.loginForm.markAllAsTouched();
+  }
 
   public onNavigate() {
     this.router.navigate(['register']);
@@ -46,6 +48,7 @@ export class LoginComponent {
 
   public onSubmit() {
     if (this.loginForm.valid) {
+      this.loading = true;
       this.loginService.login(this.loginForm.value.username, this.loginForm.value.password).subscribe({
         next: () => {
           const user = this.loginService.user;
@@ -54,14 +57,20 @@ export class LoginComponent {
             this.toastr.success(`Welcome, ${user.name}!`)
             this.router.navigate(['homepage']);
           } else {
+            this.loading = false
             this.toastr.error(`Login fail!`);
           }
+          this.loading = false
         },
         error: (err) => {
+          this.loading = false
           console.error('Error', err);
+          this.toastr.error(`Login fail!`);
         },
+
       });
     } else {
+      this.loading = false
       this.toastr.error(
         'Sorry, Invalid form. Please try again.'
       )

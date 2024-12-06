@@ -8,8 +8,8 @@ import {Component, OnInit} from '@angular/core';
 import {NgForOf} from '@angular/common';
 import {Observable} from 'rxjs';
 import {URLS} from '../../../../shared/urls';
-import {RankUser} from '../../../../shared/models/rankuser';
 import {HttpClient} from '@angular/common/http';
+import {Score} from '../../../../shared/models/rankuser';
 
 @Component({
   selector: 'app-ranking-box',
@@ -22,7 +22,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class RankingBoxComponent implements OnInit {
 
-  public dataSource: RankUser[] = [];
+  public dataSource: Score[] = [];
 
   constructor(private http: HttpClient) {
   }
@@ -32,8 +32,8 @@ export class RankingBoxComponent implements OnInit {
   }
 
   public search(resetIndex:boolean = false): void {
-    this.getAll<RankUser>(URLS.SCORE).subscribe({
-      next: (data: RankUser[]) => {
+    this.getAll<Score>(URLS.SCORE).subscribe({
+      next: (data: Score[]) => {
         this.dataSource = data;
         console.log(data);
 

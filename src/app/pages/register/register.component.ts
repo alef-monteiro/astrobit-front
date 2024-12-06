@@ -6,10 +6,9 @@ import {Router} from '@angular/router';
 import {PrimaryInputComponent} from '../../components/primary-input/primary-input.component';
 import {SharedModule} from '../../../shared/shared.module';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ApiEndpointsService} from '../../../shared/services/api-endpoints.service';
-import {HttpClient} from '@angular/common/http';
 import {NgIf} from '@angular/common';
 import {ToastrService} from 'ngx-toastr';
+import {UserDataService} from '../../../shared/services/user-data.service';
 
 @Component({
   selector: 'app-register',
@@ -32,8 +31,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private apiEndpoints: ApiEndpointsService,
-    private httpClient: HttpClient,
+    private registerService: UserDataService,
     private toastr: ToastrService
   ) {
     this.registerForm = this.formBuilder.group({
@@ -55,15 +53,17 @@ export class RegisterComponent implements OnInit {
 
 
   public onSubmit(): void {
-    let name: string = this.registerForm.value.name
+    let nameUser: string = this.registerForm.value.name
     if (this.registerForm.valid) {
-      this.httpClient.post(
-        this.apiEndpoints.endpoints.registerUser,
-        this.registerForm.getRawValue()
+      this.registerService.register(
+        this.registerForm.value.name,
+        this.registerForm.value.username,
+        this.registerForm.value.email,
+        this.registerForm.value.password
       ).subscribe({
-        next: (data: any) => {
+        next: () => {
           this.toastr.success(
-            `Register successifuly, ${name}!`
+            `Register successifuly, ${nameUser}!`
           )
           this.router.navigate(['login']);
         },

@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {SidenavComponent} from './sidenav/sidenav.component';
 import {RankingBoxComponent} from './ranking-box/ranking-box.component';
 import {Router} from '@angular/router';
-import {LoginDataService} from '../../../shared/services/login-data.service';
+import {UserDataService} from '../../../shared/services/user-data.service';
 import {ToastrService} from 'ngx-toastr';
 
 @Component({
@@ -20,7 +20,7 @@ export class DefaultDashboardLayoutComponent {
   public logoutText: string = 'Logout';
 
   constructor(private router: Router,
-              private loginService: LoginDataService,
+              private loginService: UserDataService,
               private toastr: ToastrService) {
   }
 
