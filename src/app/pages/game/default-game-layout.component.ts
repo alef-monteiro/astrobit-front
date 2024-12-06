@@ -6,7 +6,7 @@ import {Card} from '../../../shared/models/card';
 import {GameCardDataService} from '../../../shared/services/game-card-data.service';
 
 @Component({
-  selector: 'app-default-game-layout',
+  selector: 'app-game',
   standalone: true,
   imports: [],
   templateUrl: './default-game-layout.component.html',

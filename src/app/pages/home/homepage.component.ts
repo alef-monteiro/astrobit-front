@@ -8,7 +8,7 @@ import {Card} from '../../../shared/models/card';
 
 
 @Component({
-  selector: 'app-homepage',
+  selector: 'app-home',
   standalone: true,
   imports: [DefaultDashboardLayoutComponent],
   templateUrl: './homepage.component.html',
