@@ -19,7 +19,7 @@ export class RankingBoxComponent {
   public positionList: PositionItem[] = [];
   public router: Router = new Router();
 
-  @Input() titleRanking = "";
+  @Input() titleRanking = "ranking";
   @Input() userPosition = "";
 
   constructor() {

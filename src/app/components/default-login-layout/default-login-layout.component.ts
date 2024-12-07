@@ -1,13 +1,9 @@
-import {booleanAttribute, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {NgIf} from '@angular/common';
-import {LoginDataService} from '../../../shared/services/login-data.service';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-default-login-layout',
   standalone: true,
-  imports: [
-    NgIf
-  ],
+  imports: [],
   templateUrl: './default-login-layout.component.html',
   styleUrl: './default-login-layout.component.scss'
 })

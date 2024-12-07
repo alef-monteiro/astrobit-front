@@ -1,10 +1,11 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiEndpointsService {
   private baseUrl: string = 'http://localhost:8000/api/';
+  private baseUrlCards: string = 'http://localhost:8000/gamecards/';
 
   public readonly endpoints = {
 
@@ -14,18 +15,15 @@ export class ApiEndpointsService {
     logoutUser: `${this.baseUrl}logout/`, // Ajuste conforme o metodo de autenticação
     getUserById: (userId: number) => `${this.baseUrl}users/${userId}/`, // Para obter um usuário específico
 
-    // Assuntos
-    getSubjects: `${this.baseUrl}subjects/`,
-    getSubjectById: (id: number) => `${this.baseUrl}subjects/${id}/`,
-
-    // Questões
-    getQuestionsBySubject: (subjectId: number) => `${this.baseUrl}questions/?subject=${subjectId}`, // Ajustado para passar via query params (se necessário)
-
     // Pontuação
     getUserScores: (userId: number) => `${this.baseUrl}scores/user/${userId}/`,
     postUserScore: `${this.baseUrl}scores/`,
+
+    // Game Cards
+    getGameCards: `${this.baseUrlCards}`, // Lista de cartões de jogo
+    getGameCardById: (id: number) => `${this.baseUrlCards}gamecards/${id}/`, // Cartão de jogo específico
+    rankUsers: `${this.baseUrl}rankusers/`, // Ranking de usuários
   };
 
-  constructor() {
-  }
+  constructor() {}
 }

@@ -1,11 +1,11 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DefaultLoginLayoutComponent} from '../../components/default-login-layout/default-login-layout.component';
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PrimaryInputComponent} from '../../components/primary-input/primary-input.component';
 import {ToastrService} from 'ngx-toastr';
 import {SharedModule} from '../../../shared/shared.module';
-import {LoginDataService} from '../../../shared/services/login-data.service';
+import {UserDataService} from '../../../shared/services/user-data.service';
 import {NgIf} from '@angular/common';
 
 @Component({
@@ -23,21 +23,21 @@ import {NgIf} from '@angular/common';
 })
 
 export class LoginComponent implements OnInit {
-  loginForm!: FormGroup;
-  loading = false;
+  public loginForm!: FormGroup;
+  public loading = false;
 
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private toastr: ToastrService,
-    private loginService: LoginDataService
+    public toastr: ToastrService,
+    public loginService: UserDataService
   ) {
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(6)]], // Synchronous validators in an array
-      // email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+       password: ['', [Validators.required, Validators.minLength(6)]],
     })
   }
+
   ngOnInit() {
     this.loginForm.markAllAsTouched();
   }
@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
           if (user) {
             this.toastr.info(`Login successfully, ${user.username}!`)
             this.toastr.success(`Welcome, ${user.name}!`)
-            this.router.navigate(['homepage']);
+            this.router.navigate(['game']);
           } else {
             this.loading = false
             this.toastr.error(`Login fail!`);
@@ -65,6 +65,7 @@ export class LoginComponent implements OnInit {
         error: (err) => {
           this.loading = false
           console.error('Error', err);
+          this.toastr.error(`Login fail!`);
         },
 
       });
