@@ -1,16 +1,38 @@
-<section class=" flex flex-col w-full gap-6 py-2">
-  <section class="flex flex-col items-center gap-5 text-center">
-    <h2 class="text-xl font-bold uppercase">
-      {{ titleRanking.toUpperCase() }}
-    </h2>
-    @for (position of positionList; track position.username) {
-      <div class="flex flex-row w-full justify-center rounded-lg
-                  px-5 py-3 gap-2 font-bold text-xl uppercase italic
-                  bg-white/10 last: mb-0 ">
-        <p>{{ position.id }}°</p><p>#{{ position.username }}</p>
-      </div>
-    }
-  </section>
-  <span></span>
-  <div></div>
-</section>
+<div class="flex flex-col w-fit gap-6 py-3 ">
+<table class="flex flex-col items-center gap-5 text-center ">
+  <thead>
+  <tr class="flex flex-row w-full justify-center gap-64 text-xl">
+    <th>POSITION</th>
+    <th>USERNAME</th>
+    <th>SCORE</th>
+  </tr>
+  </thead>
+  <tbody class="">
+  <tr *ngFor="let item of sortedData; let i = index" class="flex flex-row w-full justify-center rounded-lg
+                  px-6 py-3 gap-80 font-bold text-xl uppercase italic
+                   shadow-inner bg-[#d9d9d930] hover:bg-gray-300 m-3 items-center">
+    <td class="flex justify-center">{{i + 1 + '°'}}</td>
+    <td class="">{{item.username}}</td>
+    <td class="">{{item.score}}</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+
+<!--<section class="flex flex-col w-fit gap-6 py-2">-->
+<!--  <section class="flex flex-col items-center gap-5 text-center">-->
+<!--    <h2 class="text-xl font-bold uppercase">-->
+<!--      {{ titleRanking }}-->
+<!--    </h2>-->
+<!--    @for (position of positionList; track position.username) {-->
+<!--      <div class="flex flex-row w-full justify-center rounded-lg-->
+<!--                  px-5 py-3 gap-2 font-bold text-xl uppercase italic-->
+<!--                  bg-[#d9d9d930] ">-->
+<!--        <p>{{ position.id }}°</p><p>#{{ position.username }}</p>-->
+<!--      </div>-->
+<!--    }-->
+<!--  </section>-->
+<!--  <span></span>-->
+<!--  <div></div>-->
+<!--</section>-->

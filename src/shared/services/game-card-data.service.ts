@@ -29,8 +29,21 @@ export class GameCardDataService {
   }
 
   public getGameCardById(id: number): Observable<Card> {
-    const url = this.apiEndpoints.endpoints.getGameCards + id+'/';
-    return this.httpClient.get<Card>(url);
+    return this.httpClient.get<Card>
+    (`${this.apiEndpoints.endpoints.getGameCards}/${id}`).pipe(
+      tap((value) => {
+        console.log('Dados gamecard:', value);
+
+
+        // Armazene o token no sessionStorage
+        sessionStorage.setItem('game-title', value.game_title);
+        sessionStorage.setItem('author_name', value.author_name);
+        sessionStorage.setItem('description', value.description);
+        sessionStorage.setItem('link', value.link);
+        sessionStorage.setItem('image', value.image);
+
+      })
+    );
   }
 
 

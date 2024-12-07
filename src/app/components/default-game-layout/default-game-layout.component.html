@@ -1,0 +1,29 @@
+<main class="flex flex-col w-full gap-5 justify-center min-h-screen px-20 py-10 bg-gradient-to-b from-dark-blue to-pale-blue text-white">
+  <div class="flex flex-row gap-2 items-center">
+    <button
+      (click)="onNavigate()"
+      class="w-fit h-fit py-1 px-4 rounded-lg text-center font-black italic md:text-base sm:text-xs whitespace-nowrap truncate bg-orange-salmon hover:bg-light-salmon active:bg-cool-yellow">
+      <p class="text-3xl font-bold"><</p>
+    </button>
+
+    <h2 class="text-4xl font-bold uppercase italic">
+      #{{ gameTitle.toUpperCase() }}
+    </h2>
+  </div>
+
+  <section class="flex flex-col w-full h-full rounded-xl p-10 bg-white/10">
+    <!-- Canvas ajustado -->
+    <div class="game-container">
+      <canvas #gameCanvas class="w-full h-fit"></canvas>
+    </div>
+
+    <section class="flex flex-col gap-5 p-10">
+      <div>
+        <h2 class="text-3xl font-bold uppercase italic">
+          #{{ gameTitle.toUpperCase() }}
+        </h2>
+        <p class="text-2xl">{{ authorName }}</p>
+      </div>
+    </section>
+  </section>
+</main>
