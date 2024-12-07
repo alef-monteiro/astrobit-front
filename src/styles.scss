@@ -60,15 +60,3 @@ img {
   }
 }
 
-
-.game-container {
-  display: flex;
-  justify-content: center;
-  align-items: start;
-}
-
-canvas {
-  display: block;
-  background-color: #00002050; /* Fundo preto para o canvas */
-  border-radius: 8px; /* Bordas arredondadas opcionais */
-}
