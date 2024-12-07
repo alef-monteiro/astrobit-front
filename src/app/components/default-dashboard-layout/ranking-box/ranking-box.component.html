@@ -10,7 +10,7 @@
   <tbody class="">
   <tr *ngFor="let item of sortedData; let i = index" class="flex flex-row w-full justify-center rounded-lg
                   px-6 py-3 gap-80 font-bold text-xl uppercase italic
-                   shadow-inner bg-[#d9d9d930] m-3 items-center">
+                   shadow-inner bg-[#d9d9d930] hover:bg-gray-300 m-3 items-center">
     <td class="flex justify-center">{{i + 1 + '°'}}</td>
     <td class="">{{item.username}}</td>
     <td class="">{{item.score}}</td>

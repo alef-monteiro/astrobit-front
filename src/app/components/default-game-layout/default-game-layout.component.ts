@@ -12,7 +12,6 @@ import {Router} from '@angular/router';
   standalone: true,
   imports: [],
   templateUrl: './default-game-layout.component.html',
-  styleUrls: ['./default-game-layout.component.scss'] // Corrigido para 'styleUrls'
 })
 export class DefaultGameLayoutComponent implements AfterViewInit, OnDestroy {
   @ViewChild('gameCanvas', { static: true }) gameCanvas!: ElementRef<HTMLCanvasElement>;
