@@ -58,7 +58,7 @@ import {UserDataService} from '../../../shared/services/user-data.service';
           this.toastr.success(
             `Registered successifuly, ${gameTitle}!`,
           )
-          this.router.navigate(['game']);
+
         },
         error: () =>{
           this.toastr.error(
