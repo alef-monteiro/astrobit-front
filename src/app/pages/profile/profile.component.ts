@@ -1,42 +1,18 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component } from '@angular/core';
 import {
   DefaultDashboardLayoutComponent
 } from '../../components/default-dashboard-layout/default-dashboard-layout.component';
-import { ReactiveFormsModule} from '@angular/forms';
-import {ProfileStatsComponent} from './profile-stats/profile-stats.component';
-import {ProfileDataComponent} from './profile-data/profile-data.component';
-import {NgIf} from '@angular/common';
-import {ProfileEditComponent} from './profile-edit/profile-edit.component';
-import {UserDataService} from '../../../shared/services/user-data.service';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
   imports: [
-    DefaultDashboardLayoutComponent,
-    ReactiveFormsModule,
-    ProfileStatsComponent,
-    ProfileDataComponent,
-    ProfileEditComponent
+    DefaultDashboardLayoutComponent
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
 })
-
 export class ProfileComponent {
-  public activeProfileData: boolean = false;
-  public title: string = 'Profile';
-  public editBtnTxt: string = 'edit';
-  public saveBtnTxt: string = 'save';
+  titleProfile: string = 'Profile';
 
-  constructor(public userData: UserDataService) {
-  }
-
-  onNext() {
-  this.activeProfileData = !this.activeProfileData;
-  }
-
-  onSubmit() {
-    this.activeProfileData = !this.activeProfileData;
-  }
 }

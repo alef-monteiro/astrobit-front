@@ -17,7 +17,7 @@ import {Card} from '../../../shared/models/card';
 export class HomepageComponent implements OnInit {
   public cardList: Card [] = [];
 
-  public title: string = 'GAMES';
+  public titleHome: string = 'MAKE YOUR CHOICE';
 
   constructor(
     private route: Router,

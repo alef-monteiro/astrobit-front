@@ -63,7 +63,7 @@ export class RegisterComponent implements OnInit {
       ).subscribe({
         next: () => {
           this.toastr.success(
-            `Registered successifuly, ${nameUser}!`
+            `Register successifuly, ${nameUser}!`
           )
           this.router.navigate(['login']);
         },
