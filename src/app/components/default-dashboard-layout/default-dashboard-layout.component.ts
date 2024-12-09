@@ -4,9 +4,6 @@ import {RankingBoxComponent} from './ranking-box/ranking-box.component';
 import {Router} from '@angular/router';
 import {UserDataService} from '../../../shared/services/user-data.service';
 import {ToastrService} from 'ngx-toastr';
-import {
-  DefaultAvatarRankingLayoutComponent
-} from '../default-ranking-layout/default-avatar-ranking-layout/default-avatar-ranking-layout.component';
 
 @Component({
   selector: 'app-default-dashboard-layout',

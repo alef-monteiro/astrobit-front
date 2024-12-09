@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {NgForOf} from '@angular/common';
 import {Score} from '../../../../shared/models/rankuser';
 import {HttpClient} from '@angular/common/http';
 import {UserDataService} from '../../../../shared/services/user-data.service';
