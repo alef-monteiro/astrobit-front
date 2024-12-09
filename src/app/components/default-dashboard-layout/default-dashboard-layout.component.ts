@@ -14,7 +14,6 @@ import {
   imports: [
     SidenavComponent,
     RankingBoxComponent,
-    DefaultAvatarRankingLayoutComponent
   ],
   templateUrl: './default-dashboard-layout.component.html',
   styleUrl: './default-dashboard-layout.component.scss'

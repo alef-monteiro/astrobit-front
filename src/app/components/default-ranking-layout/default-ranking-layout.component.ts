@@ -4,8 +4,6 @@ import {Score} from '../../../shared/models/rankuser';
 import {HttpClient} from '@angular/common/http';
 import {URLS} from '../../../shared/urls';
 import {Observable} from 'rxjs';
-import {Router} from '@angular/router';
-import {UserDataService} from '../../../shared/services/user-data.service';
 
 @Component({
   selector: 'app-default-ranking-layout',
@@ -28,7 +26,7 @@ export class DefaultRankingLayoutComponent implements OnInit {
     this.search()
   }
 
-  public search(resetIndex:boolean = false): void {
+  public search(): void {
     this.getAll<Score>(URLS.SCORE).subscribe({
       next: (data: Score[]) => {
         this.dataSource = data;

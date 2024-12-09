@@ -10,7 +10,6 @@ import {Observable} from 'rxjs';
   selector: 'app-default-avatar-ranking-layout',
   standalone: true,
   imports: [
-    NgForOf
   ],
   templateUrl: './default-avatar-ranking-layout.component.html',
   styleUrl: './default-avatar-ranking-layout.component.scss'
@@ -37,7 +36,7 @@ export class DefaultAvatarRankingLayoutComponent implements OnInit {
     this.search()
   }
 
-  public search(resetIndex:boolean = false): void {
+  public search(): void {
     this.getAll<Score>(URLS.SCORE).subscribe({
       next: (data: Score[]) => {
         this.dataSource = data;

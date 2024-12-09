@@ -10,7 +10,6 @@ import {Observable} from 'rxjs';
 import {URLS} from '../../../../shared/urls';
 import {HttpClient} from '@angular/common/http';
 import {Score} from '../../../../shared/models/rankuser';
-import {Router} from '@angular/router';
 import {UserDataService} from '../../../../shared/services/user-data.service';
 
 @Component({
@@ -43,7 +42,7 @@ export class RankingBoxComponent implements OnInit {
     }
   }
 
-  public search(resetIndex:boolean = false): void {
+  public search(): void {
     this.getAll<Score>(URLS.SCORE).subscribe({
       next: (data: Score[]) => {
         this.dataSource = data;

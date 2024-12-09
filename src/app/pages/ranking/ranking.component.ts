@@ -1,11 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {
-  DefaultDashboardLayoutComponent
-} from '../../components/default-dashboard-layout/default-dashboard-layout.component';
+import {Component} from '@angular/core';
 import {
     DefaultAvatarRankingLayoutComponent
 } from "../../components/default-ranking-layout/default-avatar-ranking-layout/default-avatar-ranking-layout.component";
-import {RankingBoxComponent} from "../../components/default-dashboard-layout/ranking-box/ranking-box.component";
 import {SidenavComponent} from "../../components/default-dashboard-layout/sidenav/sidenav.component";
 import {Router} from '@angular/router';
 import {UserDataService} from '../../../shared/services/user-data.service';
