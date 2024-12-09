@@ -1,5 +1,7 @@
 <app-default-dashboard-layout>
-
+  <h1 class="text-start font-bold italic text-3xl w-full">
+    #{{ title.toUpperCase() }}
+  </h1>
   <section class="flex flex-row flex-wrap gap-10 justify-center">
 
     @for (data of cardList; track data.game_title) {

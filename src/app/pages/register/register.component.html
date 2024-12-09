@@ -19,7 +19,7 @@
     >
     </app-primary-input>
 
-    <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched">
+    <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')">
       <small class="text-start text-xs text-light-salmon" *ngIf="registerForm.get('name')?.hasError('minlength')">
         Name must be at least 3
         characters</small>
@@ -33,7 +33,7 @@
     >
     </app-primary-input>
 
-    <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
+    <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')">
       <small class="text-start text-xs text-light-salmon" *ngIf="registerForm.get('username')?.hasError('minlength')">
         Name must be at least 6 characters</small>
     </div>
@@ -53,7 +53,7 @@
       placeholder='Password'
     >
     </app-primary-input>
-    <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+    <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')">
       <small class="text-start text-xs text-light-salmon" *ngIf="registerForm.get('password')?.hasError('minlength')">Password must be at
         least 8 characters</small>
     </div>
