@@ -1,0 +1,82 @@
+<app-default-dashboard-layout>
+  <h1 class="text-start font-bold italic text-3xl w-full">
+    #{{ title.toUpperCase() }}
+  </h1>
+
+  <section class="flex flex-row items-center justify-start
+          w-full gap-60 rounded-xl bg-white/10">
+    <!-- Formulário -->
+    <form class="flex flex-col items-center p-5
+    ml-4 w-1/3 gap-5 ">
+      <app-primary-input
+        autofocus
+        type="link"
+        label="Image"
+        placeholder="Url image">
+      </app-primary-input>
+
+      <app-primary-input
+        type="text"
+        label="Title"
+        placeholder="Title">
+      </app-primary-input>
+
+      <app-primary-input
+        type="text"
+        label="Description"
+        placeholder="Description">
+      </app-primary-input>
+
+      <app-primary-input
+        type="link"
+        label="Link"
+        placeholder="Url Game">
+      </app-primary-input>
+
+      <button
+        type="submit"
+        (click)="onSubmit()"
+        class="w-1/3 h-10 rounded-lg text-center font-black italic
+               text-base bg-orange-salmon hover:bg-light-salmon active:bg-cool-yellow disabled:bg-blue-950">
+        SAVE
+      </button>
+    </form>
+
+    <!-- Card -->
+    <div
+      class="flex items-center justify-center h-fit">
+
+      <div
+        class="transform scale-[1.75] flex-shrink-0 p-3 relative overflow-hidden bg-white/10
+                hover:bg-gradient-to-t from-orange-salmon/80 to-light-salmon/80
+                active:bg-cool-yellow rounded-lg max-w-lg group">
+        <!-- Seção da imagem com animação -->
+        <div class="relative pt-2 px-2 flex items-center justify-center
+                    group-hover:scale-105 transition-transform">
+          <div
+            class="absolute w-40 h-40 bottom-0 left-0 -mb-20 ml-2"
+            style="background: radial-gradient(black, transparent 60%);
+                   transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1);
+                   opacity: 0.2;">
+          </div>
+
+          <!-- Imagem principal -->
+          <img class="relative w-32 h-auto" src="/assets/illustration-game-card.png" alt="illustration">
+        </div>
+
+        <div class="relative flex flex-col text-white gap-2 px-4 pb-4 mt-4">
+          <!-- Autor -->
+          <span class="block opacity-75 -mb-1 text-sm">
+            {{ authorName }}
+          </span>
+          <!-- Nome do jogo -->
+          <div class="flex justify-between">
+            <span class="block font-semibold text-lg">
+              Game Title
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</app-default-dashboard-layout>
