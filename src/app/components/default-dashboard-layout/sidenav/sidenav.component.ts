@@ -35,7 +35,7 @@ export class SidenavComponent {
   }
 
   public onNavigate(route:string) {
-    this.router.navigate([route]);
+    this.router.navigate([route]).then();
   }
 
 

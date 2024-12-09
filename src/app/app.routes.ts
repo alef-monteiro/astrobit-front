@@ -4,9 +4,7 @@ import {LoginComponent} from './pages/login/login.component';
 import {HomepageComponent} from './pages/homepage/homepage.component';
 import {GamePageComponent} from './pages/game-page/game-page.component';
 import {RankingComponent} from './pages/ranking/ranking.component';
-import {GameComponent} from './pages/game/game.component';
-import {AddGameComponent} from './pages/add-game/add-game.component';
-
+import {ProfileComponent} from './pages/profile/profile.component';
 
 export const routes: Routes = [
   {
@@ -28,10 +26,6 @@ export const routes: Routes = [
   {
     path: "game/:action",
     component: GamePageComponent
-  },
-  {
-    path: "add-game",
-    component: AddGameComponent
   },
   {
     path: "profile",

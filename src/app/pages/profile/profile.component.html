@@ -1,48 +1,6 @@
 <app-default-dashboard-layout>
-  <!-- Título da Página -->
-  <h1 class="text-start font-bold italic text-3xl w-full">
-    #{{ title.toUpperCase() }}
-  </h1>
 
-  <div class="grid grid-cols-2 items-center w-full p-10 gap-4
-                 rounded-xl bg-white/10 ">
-    <section class="flex flex-col items-center gap-5
-        border-white/10 border-r">
-
-      <app-profile-stats class="flex justify-center w-full">
-      </app-profile-stats>
-    </section>
-
-    <section class="flex flex-col items-center gap-10">
-      @if (activeProfileData) {
-        <app-profile-data
-          class="flex flex-col text-center gap-4 p-5">
-        </app-profile-data>
-        <button
-          type="button"
-          (click)="onNext()"
-          class="w-1/3 h-10 rounded-lg text-center font-black italic
-            md:text-base sm:text-xs text-xs
-          bg-orange-salmon hover:bg-light-salmon active:bg-cool-yellow disabled:bg-blue-950">
-          {{editBtnTxt.toUpperCase()}}
-        </button>
-      } @else {
-        <app-profile-edit>
-        </app-profile-edit>
-        <button
-          type="button"
-          (click)="onNext()"
-          class="w-1/3 h-10 rounded-lg text-center font-black italic
-            md:text-base sm:text-xs text-xs
-          bg-orange-salmon hover:bg-light-salmon active:bg-cool-yellow disabled:bg-blue-950">
-          {{saveBtnTxt.toUpperCase()}}
-        </button>
-      }
-
-
-
-    </section>
-
-
-  </div>
+  <h2 class="w-full text-4xl font-bold uppercase italic ">
+    #{{titleProfile.toUpperCase() }}
+  </h2>
 </app-default-dashboard-layout>

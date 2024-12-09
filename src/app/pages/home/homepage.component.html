@@ -1,7 +1,8 @@
 <app-default-dashboard-layout>
-  <h1 class="text-start font-bold italic text-3xl w-full">
-    #{{ title.toUpperCase() }}
-  </h1>
+  <!--  <h2 class="w-full text-4xl font-bold uppercase italic ">-->
+  <!--    #{{ titleHome.toUpperCase() }}-->
+  <!--  </h2>-->
+
   <section class="flex flex-row flex-wrap gap-10 justify-center">
 
     @for (data of cardList; track data.game_title) {
@@ -9,8 +10,8 @@
       <div (click)="onNavigate('/game/' + data.id)"
            class="flex items-center justify-center hover:cursor-pointer">
         <div
-          class="flex-shrink-0 p-2 relative overflow-hidden bg-white/10
-                hover:bg-gradient-to-t  from-orange-salmon/80 to-light-salmon/80
+          class="flex-shrink-0 p-2 relative overflow-hidden
+               bg-white/10 hover:bg-gradient-to-t  from-orange-salmon/80 to-light-salmon/80
                active:bg-cool-yellow
                rounded-lg max-w-xl group">
 
