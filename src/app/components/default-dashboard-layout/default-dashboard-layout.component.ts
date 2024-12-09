@@ -10,7 +10,7 @@ import {ToastrService} from 'ngx-toastr';
   standalone: true,
   imports: [
     SidenavComponent,
-    RankingBoxComponent
+    RankingBoxComponent,
   ],
   templateUrl: './default-dashboard-layout.component.html',
   styleUrl: './default-dashboard-layout.component.scss'

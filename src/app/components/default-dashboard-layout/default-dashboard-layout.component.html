@@ -1,22 +1,19 @@
+
 <main class="relative z-10 overflow-hidden grid grid-cols-10 gap-10 justify-center min-h-screen p-10
         bg-gradient-to-b from-dark-blue to-pale-blue  text-white">
-
+  
   <!-- Sidenav -->
-  <app-sidenav
-    [logoutText]="logoutText"
-    (logout)="onLogout()"
-    class="col-span-2 p-5 py-0 rounded-lg "
-  >
-  </app-sidenav>
-
-  <!-- Content (Cards) -->
-  <div class="col-span-6 flex flex-col gap-10 items-center pt-5">
-    <ng-content>
-    </ng-content>
+  <div class="flex flex-1 justify-start max-w-20">
+    <app-sidenav
+      [logoutText]="logoutText"
+      (logout)="onLogout()"
+      class="flex flex-col p-5 rounded-lg shadow-lg "
+    ></app-sidenav>
   </div>
 
-  <!-- Ranking-status -->
-  <app-ranking-box class="col-span-2">
-  </app-ranking-box>
-
+    <!-- Ranking -->
+    <div class="flex justify-end col-span-3 w-full flex-1 max-w-72">
+      <app-ranking-box class="w-full"></app-ranking-box>
+  </div>
 </main>
+

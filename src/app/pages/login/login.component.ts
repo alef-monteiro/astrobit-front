@@ -23,8 +23,8 @@ import {NgIf} from '@angular/common';
 })
 
 export class LoginComponent implements OnInit {
-  public loginForm!: FormGroup;
-  public loading = false;
+  loginForm!: FormGroup;
+  loading = false;
 
   constructor(
     private router: Router,
@@ -34,10 +34,10 @@ export class LoginComponent implements OnInit {
   ) {
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(6)]], // Synchronous validators in an array
-       password: ['', [Validators.required, Validators.minLength(6)]],
+      // email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
     })
   }
-
   ngOnInit() {
     this.loginForm.markAllAsTouched();
   }

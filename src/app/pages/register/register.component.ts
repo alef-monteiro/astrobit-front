@@ -42,7 +42,7 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  public ngOnInit() {
+  ngOnInit() {
     this.registerForm.markAllAsTouched();
   }
 
