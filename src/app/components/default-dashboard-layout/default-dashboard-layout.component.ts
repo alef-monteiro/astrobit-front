@@ -4,13 +4,17 @@ import {RankingBoxComponent} from './ranking-box/ranking-box.component';
 import {Router} from '@angular/router';
 import {UserDataService} from '../../../shared/services/user-data.service';
 import {ToastrService} from 'ngx-toastr';
+import {
+  DefaultAvatarRankingLayoutComponent
+} from '../default-ranking-layout/default-avatar-ranking-layout/default-avatar-ranking-layout.component';
 
 @Component({
   selector: 'app-default-dashboard-layout',
   standalone: true,
   imports: [
     SidenavComponent,
-    RankingBoxComponent
+    RankingBoxComponent,
+    DefaultAvatarRankingLayoutComponent
   ],
   templateUrl: './default-dashboard-layout.component.html',
   styleUrl: './default-dashboard-layout.component.scss'

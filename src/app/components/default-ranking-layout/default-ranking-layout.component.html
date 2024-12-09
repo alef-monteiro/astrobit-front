@@ -1,1 +1,23 @@
-<p>default-ranking-layout works!</p>
+<div  class="">
+  <div class="flex flex-col items-center gap-6">
+    <table class="gap-8 max-w-4xl border-collapse">
+      <thead>
+      <div class="flex flex-row w-full justify-around text-xl text-center bg-orange-600 rounded-lg">
+        <th class="px-6 py-3">POSITION</th>
+        <th class="px-6 py-3">USERNAME</th>
+        <th class="px-6 py-3">SCORE</th>
+      </div>
+      </thead>
+      <div class="overflow-y-scroll max-h-96 w-full">
+        <div *ngFor="let item of sortedData; let i = index" class="flex flex-row rounded-lg
+                        px-6 py-3 gap-x-96 font-bold text-xl uppercase
+                         shadow-inner m-3
+                        transition ease-in-out delay-150 bg-indigo-950 hover:-translate-y-1 hover:scale-x-105 hover:bg-indigo-900 duration-300 ">
+          <td class="px-6 py-3">{{i + 1 + '°'}}</td>
+          <td class="px-6 py-3">{{item.username}}</td>
+          <td class="px-6 py-3">{{'#' + item.score}}</td>
+        </div>
+      </div>
+    </table>
+  </div>
+</div>
