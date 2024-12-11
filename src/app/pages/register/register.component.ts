@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
 
 
   public onNavigate() {
-    this.router.navigate(['login']);
+    this.router.navigate(['login']).then();
   }
 
 
@@ -65,7 +65,8 @@ export class RegisterComponent implements OnInit {
           this.toastr.success(
             `Registered successifuly, ${nameUser}!`
           )
-          this.router.navigate(['login']);
+          this.router.navigate(['login']).then();
+          this.registerForm.reset();
         },
         error: () => {
           this.toastr.error(

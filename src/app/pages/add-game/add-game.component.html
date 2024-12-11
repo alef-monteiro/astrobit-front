@@ -3,80 +3,96 @@
     #{{ title.toUpperCase() }}
   </h1>
 
-  <section class="flex flex-row items-center justify-start
-          w-full gap-60 rounded-xl bg-white/10">
+  <section
+    class="flex flex-col lg:flex-row items-center justify-center
+         w-full gap-5 md:gap-10 lg:gap-40 p-4 md:p-8 bg-white/10 rounded-xl">
+
+
+    <!-- Preview -->
+    <section
+      class="flex flex-col items-center gap-5 p-5 w-full lg:w-1/3 order-1 lg:order-2
+             md:mt-5 md:block-hidden">
+      <div class="flex flex-col items-center gap-5">
+        <p *ngIf="!previewCard.image"
+           class="text-sm text-center text-gray-500 mt-2">
+          Nenhum link fornecido. Imagem Padrão.
+        </p>
+
+        <!-- IMAGEM -->
+        <div
+          class="overflow-hidden rounded-lg shadow-md mx-auto"
+          [ngClass]="{'w-[150px] h-[180px]': isSmallScreen(),
+                    'w-[226px] h-[270px]': !isSmallScreen()}">
+          <img
+            [src]=" previewCard.image || '/assets/illustration-game-card.png'"
+            alt="Preview da imagem"
+            class="w-full h-full object-cover"
+          />
+        </div>
+
+        <!-- TEXTO -->
+        <div class="flex flex-col justify-star p-5 w-full gap-2 text-white">
+          <!-- Autor -->
+          <span *ngIf="previewCard.author_name; else defaultAuthor"
+                class="text-xl block opacity-75 -mb-1">
+            {{ previewCard.author_name.length < 20 ? previewCard.author_name : previewCard.author_name.slice(0, 20) + '...' }}
+          </span>
+          <ng-template #defaultAuthor>
+            <span class="text-xl block opacity-75 -mb-1">Criador</span>
+          </ng-template>
+
+          <!-- Nome do jogo -->
+          <span *ngIf="previewCard.game_title; else defaultGameTitle"
+                class="text-2xl block font-bold">
+            {{ previewCard.game_title.length < 13 ? previewCard.game_title : previewCard.game_title.slice(0, 13) + '...' }}
+          </span>
+          <ng-template #defaultGameTitle>
+            <span class="text-2xl block font-bold">Nome do jogo</span>
+          </ng-template>
+        </div>
+      </div>
+    </section>
+
     <!-- Formulário -->
-    <form class="flex flex-col items-center p-5
-    ml-4 w-1/3 gap-5 ">
+    <form [formGroup]="registerCardForm" (ngSubmit)="onSubmit()"
+          class="flex flex-col items-center p-5
+    ml-4 w-full lg:w-1/3 gap-2 order-2 lg:order-1">
       <app-primary-input
+        formControlName="image"
         autofocus
         type="link"
-        label="Image"
-        placeholder="Url image">
+        label="Imagem"
+        placeholder="Url imagem">
       </app-primary-input>
 
       <app-primary-input
+        formControlName="game_title"
         type="text"
-        label="Title"
-        placeholder="Title">
+        label="Titulo"
+        placeholder="Titulo">
       </app-primary-input>
 
       <app-primary-input
+        formControlName="description"
         type="text"
-        label="Description"
-        placeholder="Description">
+        label="Descrição"
+        placeholder="Descrição">
       </app-primary-input>
 
       <app-primary-input
+        formControlName="link"
         type="link"
         label="Link"
-        placeholder="Url Game">
+        placeholder="Url Jogo">
       </app-primary-input>
 
       <button
         type="submit"
-        (click)="onSubmit()"
+        [disabled]="!registerCardForm.valid"
         class="w-1/3 h-10 rounded-lg text-center font-black italic
                text-base bg-orange-salmon hover:bg-light-salmon active:bg-cool-yellow disabled:bg-blue-950">
-        SAVE
+        {{ primaryBtnText.toUpperCase() }}
       </button>
     </form>
-
-    <!-- Card -->
-    <div
-      class="flex items-center justify-center h-fit">
-
-      <div
-        class="transform scale-[1.75] flex-shrink-0 p-3 relative overflow-hidden bg-white/10
-                hover:bg-gradient-to-t from-orange-salmon/80 to-light-salmon/80
-                active:bg-cool-yellow rounded-lg max-w-lg group">
-        <!-- Seção da imagem com animação -->
-        <div class="relative pt-2 px-2 flex items-center justify-center
-                    group-hover:scale-105 transition-transform">
-          <div
-            class="absolute w-40 h-40 bottom-0 left-0 -mb-20 ml-2"
-            style="background: radial-gradient(black, transparent 60%);
-                   transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1);
-                   opacity: 0.2;">
-          </div>
-
-          <!-- Imagem principal -->
-          <img class="relative w-32 h-auto" src="/assets/illustration-game-card.png" alt="illustration">
-        </div>
-
-        <div class="relative flex flex-col text-white gap-2 px-4 pb-4 mt-4">
-          <!-- Autor -->
-          <span class="block opacity-75 -mb-1 text-sm">
-            {{ authorName }}
-          </span>
-          <!-- Nome do jogo -->
-          <div class="flex justify-between">
-            <span class="block font-semibold text-lg">
-              Game Title
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
   </section>
 </app-default-dashboard-layout>

@@ -35,18 +35,16 @@ export class SidenavComponent {
   }
 
   public onNavigate(route:string) {
-    this.router.navigate([route]);
+    this.router.navigate([route]).then();
   }
 
 
   public changeMenu(menu: MenuItem) {
     this.menuList.forEach((item: MenuItem) => (item.isCurrent = item === menu));
-    this.router.navigate([menu.route]);
+    this.router.navigate([menu.route]).then();
   }
 
   public onLogout(): void {
     return this.logout.emit()
   }
-
 }
-

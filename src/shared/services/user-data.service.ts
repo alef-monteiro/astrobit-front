@@ -82,7 +82,6 @@ export class UserDataService {
   }
 
 
-
   public logout():
     void {
     sessionStorage.removeItem('auth-token');

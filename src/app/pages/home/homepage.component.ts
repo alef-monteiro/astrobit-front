@@ -28,6 +28,7 @@ export class HomepageComponent implements OnInit {
   public ngOnInit() {
     this.gamecardData.getGameCards().subscribe({
       next: (data) => {
+        console.log('Carregando jogos:', data);
         this.cardList = data;
       },
       error: (error) => {
@@ -40,7 +41,4 @@ export class HomepageComponent implements OnInit {
     this.route.navigate([route]).then();
   }
 
-  public onSubmit(id: number) {
-    this.gamecardData.getGameCardById(id);
-  }
 }

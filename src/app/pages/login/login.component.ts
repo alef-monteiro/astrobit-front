@@ -56,6 +56,7 @@ export class LoginComponent implements OnInit {
             this.toastr.info(`Login successfully, ${user.username}!`)
             this.toastr.success(`Welcome, ${user.name}!`)
             this.router.navigate(['game']);
+            this.loginForm.reset();
           } else {
             this.loading = false
             this.toastr.error(`Login fail!`);
