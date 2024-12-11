@@ -5,7 +5,6 @@ import {HomepageComponent} from './pages/home/homepage.component';
 import {ProfileComponent} from './pages/profile/profile.component';
 import {RankingComponent} from './pages/ranking/ranking.component';
 import {GameComponent} from './pages/game/game.component';
-import {AddGameComponent} from './pages/add-game/add-game.component';
 
 export const routes: Routes = [
   {
@@ -27,10 +26,7 @@ export const routes: Routes = [
   {
     path: "game/:action",
     component: GameComponent
-  },
-  {
-    path: "add-game",
-    component: AddGameComponent
+
   },
   {
     path: "profile",
