@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, tap} from 'rxjs';
-import { ApiEndpointsService } from './api-endpoints.service';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable, tap} from 'rxjs';
+import {ApiEndpointsService} from './api-endpoints.service';
 import {Card} from '../models/card';
 
 
@@ -29,34 +29,23 @@ export class GameCardDataService {
   }
 
   public getGameCardById(id: number): Observable<Card> {
-    const url = this.apiEndpoints.endpoints.getGameCards + id+'/';
+    const url = this.apiEndpoints.endpoints.getGameCards + id + '/';
     return this.httpClient.get<Card>(url);
   }
 
 
-  /**
-   * Cria um novo GameCard
-   * @param data Dados do GameCard
-   */
   public createGameCard(data: Card): Observable<Card> {
     return this.httpClient.post<Card>(this.apiEndpoints.endpoints.getGameCards, data);
   }
 
-  /**
-   * Atualiza um GameCard existente
-   * @param id ID do GameCard
-   * @param data Dados atualizados do GameCard
-   */
+
   public updateGameCard(id: number, data: Card): Observable<Card> {
-    return this.httpClient.put<Card>(`${this.apiEndpoints.endpoints.getGameCards}/${id}`, data);
+    return this.httpClient.put<Card>(`${this.apiEndpoints.endpoints.getGameCards}${id}`, data);
   }
 
-  /**
-   * Deleta um GameCard específico
-   * @param id ID do GameCard
-   */
-  public deleteGameCard(id: number): Observable<void> {
-    return this.httpClient.delete<void>(`${this.apiEndpoints.endpoints.getGameCards}/${id}`);
+
+  public deleteGameCard(id: number): Observable<Card> {
+    return this.httpClient.delete<Card>(`${this.apiEndpoints.endpoints.getGameCards}${id}`);
   }
 
 }

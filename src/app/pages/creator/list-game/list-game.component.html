@@ -1,0 +1,62 @@
+<section class="flex flex-row justify-between items-center w-full">
+  <h1 class=" text-start font-bold italic text-xl p-5 w-full">
+    #{{ title.toUpperCase() }}
+  </h1>
+  <button
+    (click)="onNavigate('/creator/' + 'register-game')"
+    class="flex flex-row w-fit items-center justify-center
+    rounded-full px-5 py-2 font-bold text-xl last: mb-0
+    bg-orange-salmon hover:bg-cool-yellow active:bg-light-salmon ">
+    <img src="assets/nav-icons/add.svg" class="w-full">
+  </button>
+</section>
+
+@if (cards.length === 0) {
+  <h1 class="text-center text-xl font-bold">
+    {{ noGamesTxt }}
+  </h1>
+} @else {
+  <!--Container-->
+
+    <!--  AINDA NÃO É CARD DO CRIADOR, SÃO TODOS OS CARDS CRIADOS-->
+  <div class="flex flex-row flex-wrap gap-5 p-5 h-2/3 justify-center rounded-xl
+bg-white/10 overflow-y-scroll ">
+    <!-- Cards -->
+    @for (card of cards; track card.id) {
+      <div
+        class="bg-white/20 p-4 gap-2 rounded-xl overflow-hidden flex-shrink-0"
+        style="width: 200px; height: 283px; margin-right: 20px;">
+        <img src="{{URLimage}}" [alt]="card.game_title" class="w-full rounded-md h-[150px] object-cover">
+        <div>
+          <h2 class="text-lg font-semibold text-white mb-2">
+            {{ card.game_title.length > 10 ? card.game_title.substring(0, 10) + '...' : card.game_title }}
+          </h2>
+          <p class="text-sm text-white">
+            {{ card.description.length > 20 ? card.description.substring(0, 20) + '...' : card.description }}
+          </p>
+        </div>
+        <div class="flex flex-row justify-evenly">
+          <button
+            (click)="onEdit(card.id)"
+            class="w-fit py-1 px-4 rounded">
+            <img src="assets/nav-icons/edit.svg">
+          </button>
+          <button
+            (click)="onDelete(card.id)"
+            class="w-fit py-1 px-4 rounded">
+            <img src="assets/nav-icons/delete.svg">
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+
+  @if (openUpdateWindow) {
+    <app-update-game
+      [id]="cardId"
+      (closeUpdateWindow)="onCloseUpdateWindow()">
+    </app-update-game>
+  }
+}
+
+

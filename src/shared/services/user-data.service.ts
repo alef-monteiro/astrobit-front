@@ -3,14 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {ApiEndpointsService} from './api-endpoints.service';
 import {tap} from 'rxjs';
 import {jwtDecode} from 'jwt-decode';
-
-
-interface User {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-}
+import {User} from '../models/user';
 
 interface LoginResponse {
   access: string;
@@ -74,6 +67,9 @@ export class UserDataService {
         name: payload.name,
         username: payload.username,
         email: payload.email,
+        active: true,
+        created_at: undefined,
+        modified_at: undefined,
       };
     } catch (error) {
       console.error('Erro ao decodificar o token JWT:', error);
