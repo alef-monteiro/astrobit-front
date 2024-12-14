@@ -11,6 +11,9 @@ module.exports = {
         "light-salmon": "#FF825F",  // cor 4
         "cool-yellow": "#FFA836",  // cor 5
         "white": "#FFFFFF",  // cor 6
+        "primary-black": "#101010",
+        "secondary-black": "#171717",
+        "cool-green": "#1AEA3D",
       }
     },
   },

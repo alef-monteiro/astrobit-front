@@ -1,29 +1,31 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {URLS} from '../urls';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiEndpointsService {
   private baseUrl: string = 'http://localhost:8000/api/';
-  private baseUrlCards: string = 'http://localhost:8000/gamecards/';
 
   public readonly endpoints = {
-
     // Usuários
     registerUser: `${this.baseUrl}register/`, // Endpoint para registro de usuário
-    loginUser: `${this.baseUrl}token/`, // Ajuste caso esteja utilizando JWT ou outro metodo
-    logoutUser: `${this.baseUrl}logout/`, // Ajuste conforme o metodo de autenticação
-    getUserById: (userId: number) => `${this.baseUrl}users/${userId}/`, // Para obter um usuário específico
+    loginUser: `${this.baseUrl}token/`, // Endpoint para obtenção de token (JWT)
+    logoutUser: `${this.baseUrl}logout/`, // Endpoint para logout do usuário
+    updateUserProfile: `${this.baseUrl}profile/`, // Atualizar perfil do usuário
 
-    // Pontuação
-    getUserScores: (userId: number) => `${this.baseUrl}scores/user/${userId}/`,
-    postUserScore: `${this.baseUrl}scores/`,
+    // Reset de senha
+    requestPasswordReset: `${this.baseUrl}reset/`, // Solicitação de reset de senha
+    confirmPasswordReset: `${this.baseUrl}confirmreset/`, // Confirmação de reset de senha
 
     // Game Cards
-    getGameCards: `${this.baseUrlCards}`, // Lista de cartões de jogo
-    getGameCardById: (id: number) => `${this.baseUrlCards}gamecards/${id}/`, // Cartão de jogo específico
+    getGameCards: this.baseUrl + URLS.GAME_CARD, // Lista de cartões de jogo
+    getGameCardById: (id: number) => this.baseUrl + URLS.GAME_CARD + id + '/', // Cartão de jogo específico
+
+    // Ranking
     rankUsers: `${this.baseUrl}rankusers/`, // Ranking de usuários
   };
 
-  constructor() {}
+  constructor() {
+  }
 }

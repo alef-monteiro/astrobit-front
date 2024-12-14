@@ -1,0 +1,62 @@
+<div class="fixed inset-0 flex items-center justify-center
+bg-gray-900 bg-opacity-50 z-50"
+>
+
+    <section class="flex flex-col items-center gap-5 w-1/4 min-w-[300px]
+bg-primary-black/80 backdrop-blur-md p-5 rounded-xl">
+
+        <p class="text-center font-bold text-xl">
+            {{ updateTxt.toUpperCase() }}
+        </p>
+
+        <form [formGroup]="updateForm" class="w-full">
+            <app-primary-input
+                    formControlName="game_title"
+                    type="text"
+                    label="Titulo"
+                    placeholder="Titulo">
+            </app-primary-input>
+            @if (updateForm.get('game_title').hasError('minlength')) {
+                <div class="text-start text-xs text-orange-salmon">
+                    Mínimo de 3 caracteres.
+                </div>
+            }
+
+
+            <app-primary-input
+                    formControlName="description"
+                    type="text"
+                    label="Descrição"
+                    placeholder="Descrição"
+            >
+            </app-primary-input>
+
+            @if (updateForm.get('description').hasError('minlength')) {
+                <div class="text-start text-xs text-orange-salmon">
+                    Mínimo de 10 caracteres.
+                </div>
+            }
+        </form>
+
+        <div class=" flex flex-row items-center justify-around w-full">
+            <button
+                    type="submit"
+                    (click)="onSubmit()"
+                    [disabled]="!updateForm.valid"
+                    class="w-1/3 h-10 rounded-lg text-center font-black italic
+          md:text-base sm:text-xs text-xs
+          bg-orange-salmon hover:bg-light-salmon active:bg-cool-yellow disabled:bg-blue-950">
+                {{ primaryBtnText.toUpperCase() }}
+            </button>
+
+            <button
+                    (click)="onNavigate()"
+                    class="w-1/3 h-10 rounded-lg text-center font-black italic
+          md:text-base sm:text-xs text-xs
+          bg-orange-salmon hover:bg-light-salmon active:bg-cool-yellow disabled:bg-blue-950">
+
+                {{ secondaryBtnText.toLocaleUpperCase() }}
+            </button>
+        </div>
+    </section>
+</div>

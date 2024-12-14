@@ -5,6 +5,8 @@ import {HomepageComponent} from './pages/home/homepage.component';
 import {ProfileComponent} from './pages/profile/profile.component';
 import {RankingComponent} from './pages/ranking/ranking.component';
 import {GameComponent} from './pages/game/game.component';
+import {CreatorComponent} from './pages/creator/creator.component';
+import {RegisterGameComponent} from './pages/creator/register-game/register-game.component';
 
 export const routes: Routes = [
   {
@@ -26,7 +28,14 @@ export const routes: Routes = [
   {
     path: "game/:action",
     component: GameComponent
-
+  },
+  {
+    path: "creator",
+    component: CreatorComponent
+  },
+  {
+    path: "creator/:action",
+    component: RegisterGameComponent
   },
   {
     path: "profile",

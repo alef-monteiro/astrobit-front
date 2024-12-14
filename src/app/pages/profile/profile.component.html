@@ -14,7 +14,7 @@
     </section>
 
     <section class="flex flex-col items-center gap-10">
-      @if (activeProfileData) {
+      @if (!activeProfileData) {
         <app-profile-data
           class="flex flex-col text-center gap-4 p-5">
         </app-profile-data>
@@ -27,8 +27,8 @@
           {{editBtnTxt.toUpperCase()}}
         </button>
       } @else {
-        <app-profile-edit>
-        </app-profile-edit>
+        <app-profile-update>
+        </app-profile-update>
         <button
           type="button"
           (click)="onNext()"
@@ -39,10 +39,6 @@
         </button>
       }
 
-
-
     </section>
-
-
   </div>
 </app-default-dashboard-layout>

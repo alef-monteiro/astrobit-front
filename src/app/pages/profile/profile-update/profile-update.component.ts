@@ -4,7 +4,7 @@ import {PrimaryInputComponent} from "../../../components/primary-input/primary-i
 import {ReactiveFormsModule} from "@angular/forms";
 
 @Component({
-  selector: 'app-profile-edit',
+  selector: 'app-profile-update',
   standalone: true,
     imports: [
         NgForOf,
@@ -12,9 +12,9 @@ import {ReactiveFormsModule} from "@angular/forms";
         PrimaryInputComponent,
         ReactiveFormsModule
     ],
-  templateUrl: './profile-edit.component.html',
-  styleUrl: './profile-edit.component.scss'
+  templateUrl: './profile-update.component.html',
+  styleUrl: './profile-update.component.scss'
 })
-export class ProfileEditComponent {
+export class ProfileUpdateComponent {
 
 }

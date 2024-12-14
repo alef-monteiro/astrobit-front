@@ -6,7 +6,7 @@ import { ReactiveFormsModule} from '@angular/forms';
 import {ProfileStatsComponent} from './profile-stats/profile-stats.component';
 import {ProfileDataComponent} from './profile-data/profile-data.component';
 import {NgIf} from '@angular/common';
-import {ProfileEditComponent} from './profile-edit/profile-edit.component';
+import {ProfileUpdateComponent} from './profile-update/profile-update.component';
 import {UserDataService} from '../../../shared/services/user-data.service';
 
 @Component({
@@ -17,7 +17,7 @@ import {UserDataService} from '../../../shared/services/user-data.service';
     ReactiveFormsModule,
     ProfileStatsComponent,
     ProfileDataComponent,
-    ProfileEditComponent
+    ProfileUpdateComponent
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'

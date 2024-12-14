@@ -1,0 +1,39 @@
+<!-- Card -->
+<div class="w-full mx-auto bg-white/20 hover:bg-white/30
+        rounded-lg hover:shadow-lg cursor-pointer">
+  <div class="px-6 py-5">
+    <div class="flex items-start">
+      <div class="flex-grow truncate">
+        <!-- Card header -->
+        <div class="w-full sm:flex justify-between items-center mb-3">
+          <!-- Title -->
+          <h2 class="text-2xl leading-snug font-extrabold
+          text-gray-50 truncate mb-1 sm:mb-0">
+            {{ cardTitle }}
+          </h2>
+
+          <!-- Toggle Button -->
+          <button
+            (click)="toggleContent()"
+            class="text-sm font-semibold text-indigo-100 hover:text-indigo-300">
+            {{ isContentVisible ? 'Esconder' : 'Mostrar' }} <!-- Texto do botão -->
+          </button>
+        </div>
+
+        <!-- Card body (toggle) -->
+        @if (isContentVisible) {
+        <div class="flex items-end justify-between whitespace-normal">
+          <!-- Paragraph -->
+          <div class="max-w-md text-indigo-100">
+            <p class="mb-2">
+              {{ cardContentTxt }}
+            </p>
+          </div>
+
+          <a href="https://github.com/ASTROBIT-PROJETO/ASTROBIT" target="_blank" rel="noopener noreferrer">{{linkSaibaMais.toUpperCase()}}</a>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

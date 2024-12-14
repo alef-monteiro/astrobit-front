@@ -6,7 +6,6 @@ import {Router} from '@angular/router';
 import {GameCardDataService} from '../../../shared/services/game-card-data.service';
 import {Card} from '../../../shared/models/card';
 
-
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -40,7 +39,4 @@ export class HomepageComponent implements OnInit {
     this.route.navigate([route]).then();
   }
 
-  public onSubmit(id: number) {
-    this.gamecardData.getGameCardById(id);
-  }
 }
