@@ -50,10 +50,10 @@ export class UpdateGameComponent implements OnInit {
           this.updateForm.patchValue(response);
         },
         error: (error) => {
-          console.error('Erro ao buscar o cartão:', error);
+          console.error('Erro ao buscar o Jogo:', error);
         },
         complete: () => {
-          console.log('Busca do cartão concluída.');
+          console.log('Busca do Jogo concluída.');
         },
       });
     }
@@ -69,10 +69,7 @@ export class UpdateGameComponent implements OnInit {
           this.closeUpdateWindow.emit(false);
         });
       } else {
-        this.service.createGameCard(data).subscribe(() => {
-          console.log('Criado com sucesso');
-          this.closeUpdateWindow.emit(false);
-        });
+          console.log('Erro ao atualizar');
       }
     } else {
       console.log('Formulário inválido');

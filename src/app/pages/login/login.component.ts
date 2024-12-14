@@ -15,7 +15,6 @@ import {NgIf} from '@angular/common';
     SharedModule,
     DefaultLoginLayoutComponent,
     PrimaryInputComponent,
-    NgIf
   ],
   providers: [],
   templateUrl: './login.component.html',
@@ -34,7 +33,7 @@ export class LoginComponent implements OnInit {
   ) {
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(6)]], // Synchronous validators in an array
-       password: ['', [Validators.required, Validators.minLength(6)]],
+       password: ['', [Validators.required, Validators.minLength(8)]],
     })
   }
 
@@ -43,7 +42,7 @@ export class LoginComponent implements OnInit {
   }
 
   public onNavigate() {
-    this.router.navigate(['register']);
+    this.router.navigate(['register']).then();
   }
 
   public onSubmit() {
@@ -55,7 +54,7 @@ export class LoginComponent implements OnInit {
           if (user) {
             this.toastr.info(`Login successfully, ${user.username}!`)
             this.toastr.success(`Welcome, ${user.name}!`)
-            this.router.navigate(['game']);
+            this.router.navigate(['game']).then();
           } else {
             this.loading = false
             this.toastr.error(`Login fail!`);
