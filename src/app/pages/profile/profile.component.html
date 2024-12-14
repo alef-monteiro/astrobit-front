@@ -14,26 +14,34 @@
     </section>
 
     <section class="flex flex-col items-center gap-10">
-<!--   Mostrar dados   -->
+      <!--   Mostrar dados   -->
 
-        <app-profile-data
-          class="flex flex-col text-center gap-4 p-5">
-        </app-profile-data>
+      <app-profile-data
+        class="flex flex-col text-center gap-4 p-5">
+      </app-profile-data>
+      <div class="flex flex-row items-center justify-around w-full">
         <button
           type="button"
           (click)="onNext()"
           class="w-1/3 h-10 rounded-lg text-center font-black italic
             md:text-base sm:text-xs text-xs
           bg-orange-salmon hover:bg-light-salmon active:bg-cool-yellow disabled:bg-blue-950">
-          {{editBtnTxt.toUpperCase()}}
+          {{ editBtnTxt.toUpperCase() }}
         </button>
-
+        <button class="w-1/3 h-10 rounded-lg text-center font-black italic
+            md:text-base sm:text-xs text-xs
+          bg-red-700 hover:bg-red-500 disabled:bg-blue-950"
+                (click)="onDelete()"
+                >
+          {{ deleteText.toUpperCase() }}
+        </button>
+      </div>
     </section>
   </div>
 
   @if (openUpdateWindow) {
     <app-profile-update
-    (closeUpdateWindow)="onCloseUpdateWindow()">
+      (closeUpdateWindow)="onCloseUpdateWindow()">
     </app-profile-update>
   }
 </app-default-dashboard-layout>

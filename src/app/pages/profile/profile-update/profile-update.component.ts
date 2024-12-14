@@ -60,7 +60,10 @@ export class ProfileUpdateComponent {
         next: (data) => {
           console.log('Next:', data);
           this.toastr.success('Perfil atualizado com sucesso!');
-          this.toClose()
+          this.closeUpdateWindow.emit(false);
+          this.toastr.info('Faça o login novamente para atualizar informações.')
+          this.userService.logout();
+          this.router.navigate(['login']).then();
         },
         error: (err) => {
           this.toastr.error('Ocorreu um erro ao atualizar o perfil. Tente novamente.');

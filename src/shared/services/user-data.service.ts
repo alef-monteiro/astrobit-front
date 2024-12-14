@@ -90,8 +90,15 @@ export class UserDataService {
 
   public updateProfile(name: string, username: string, email: string) {
     return this.httpClient.put(
-      this.apiEndPoints.endpoints.updateUserProfile,
+      this.apiEndPoints.endpoints.usersProfile,
       {name, username, email},
+      {headers: this.headers, withCredentials: true}
+    )
+  }
+
+  public deleteProfile() {
+    return this.httpClient.delete(
+      this.apiEndPoints.endpoints.usersProfile,
       {headers: this.headers, withCredentials: true}
     )
   }

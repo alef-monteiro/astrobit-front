@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {
   DefaultDashboardLayoutComponent
 } from '../../components/default-dashboard-layout/default-dashboard-layout.component';
@@ -7,6 +7,8 @@ import {ProfileStatsComponent} from './profile-stats/profile-stats.component';
 import {ProfileDataComponent} from './profile-data/profile-data.component';
 import {ProfileUpdateComponent} from './profile-update/profile-update.component';
 import {UserDataService} from '../../../shared/services/user-data.service';
+import {ToastrService} from 'ngx-toastr';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -23,11 +25,14 @@ import {UserDataService} from '../../../shared/services/user-data.service';
 })
 
 export class ProfileComponent {
-  public title: string = 'Profile';
-  public editBtnTxt: string = 'edit';
+  public title: string = 'Perfil';
+  public editBtnTxt: string = 'Editar';
   public openUpdateWindow: boolean = false;
+  public deleteText: string = "Deletar";
 
-  constructor(public userData: UserDataService) {
+  constructor(public userDataService: UserDataService,
+              private toastr: ToastrService,
+              private router: Router,) {
   }
 
   onNext() {
@@ -36,5 +41,22 @@ export class ProfileComponent {
 
   onCloseUpdateWindow() {
     this.openUpdateWindow = false;
+  }
+
+  onDelete() {
+    if (confirm("Deseja mesmo deletar sua conta?")) {
+      this.userDataService.deleteProfile().subscribe({
+        next: () => {
+          this.userDataService.logout();
+          this.router.navigate(['login']).then();
+          this.toastr.success("Conta deletada com sucesso!");
+
+        }
+        , error: () => {
+          window.location.reload();
+          this.toastr.error("Erro ao deletar conta!")
+        }
+      })
+    }
   }
 }

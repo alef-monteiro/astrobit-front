@@ -6,7 +6,6 @@ import {PrimaryInputComponent} from '../../components/primary-input/primary-inpu
 import {ToastrService} from 'ngx-toastr';
 import {SharedModule} from '../../../shared/shared.module';
 import {UserDataService} from '../../../shared/services/user-data.service';
-import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -52,19 +51,19 @@ export class LoginComponent implements OnInit {
         next: () => {
           const user = this.loginService.user;
           if (user) {
-            this.toastr.info(`Login successfully, ${user.username}!`)
-            this.toastr.success(`Welcome, ${user.name}!`)
+            this.toastr.info(`Login com sucesso, ${user.username}!`)
+            this.toastr.success(`Bem-vindo, ${user.name}!`)
             this.router.navigate(['game']).then();
           } else {
             this.loading = false
-            this.toastr.error(`Login fail!`);
+            this.toastr.error(`Problemas ao fazer login. Tente novamente.`);
           }
           this.loading = false
         },
         error: (err) => {
           this.loading = false
           console.error('Error', err);
-          this.toastr.error(`Login fail!`);
+          this.toastr.error(`Erro inesperado! Tente novamente mais tarde.`);
         },
 
       });

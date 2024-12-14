@@ -12,7 +12,7 @@ export class ApiEndpointsService {
     registerUser: `${this.baseUrl}register/`,
     loginUser: `${this.baseUrl}token/`,
     logoutUser: `${this.baseUrl}logout/`,
-    updateUserProfile: `${this.baseUrl}users/`,
+    usersProfile: `${this.baseUrl}users/`,
 
     // Game Cards
     getGameCards: this.baseUrl + URLS.GAME_CARD,
