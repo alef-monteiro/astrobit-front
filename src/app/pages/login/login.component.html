@@ -18,11 +18,12 @@
 
     >
     </app-primary-input>
-    <div *ngIf="loginForm.controls['username'].hasError('minlength')"
-    class="text-start text-xs">
-      Username must be at least 6 characters long.
-    </div>
-
+    @if (loginForm.controls['username'].hasError('minlength')) {
+      <div
+        class="text-start text-xs">
+        Username must be at least 6 characters long.
+      </div>
+    }
 
     <app-primary-input
       formControlName="password"
@@ -32,11 +33,12 @@
     >
     </app-primary-input>
 
-    <div *ngIf="loginForm.controls['password'].hasError('minlength')"
-         class="text-start text-xs mb-2">
-      Password must be at least 6 characters long.
-    </div>
-
+    @if (loginForm.controls['password'].hasError('minlength')) {
+      <div
+        class="text-start text-xs mb-2">
+        Password must be at least 6 characters long.
+      </div>
+    }
     <a
       class="flex flex-row-reverse w-full text-[0.7rem]
       text-amber-50 hover:text-orange-salmon active:text-light-salmon cursor-pointer underline"
@@ -49,13 +51,15 @@
 </app-default-login-layout>
 
 
-<div *ngIf="loading" class="fixed inset-0 z-50 flex items-center justify-center">
-  <!-- Fundo borrado -->
-  <div class="absolute inset-0 backdrop-blur-md bg-black/30">
+@if (loading) {
+  <div class="fixed inset-0 z-50 flex items-center justify-center">
+    <!-- Fundo borrado -->
+    <div class="absolute inset-0 backdrop-blur-md bg-black/30">
+    </div>
+    <!-- Ícone de loading -->
+    <img src="assets/icon.svg" alt="Carregando..." class="relative z-50 w-16 h-16 animate-ping">
   </div>
-  <!-- Ícone de loading -->
-  <img src="assets/icon.svg" alt="Carregando..." class="relative z-50 w-16 h-16 animate-ping">
-</div>
+}
 
 
 

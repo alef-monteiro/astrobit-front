@@ -15,7 +15,7 @@
 
   <section class="flex flex-col w-full p-10 gap-5
   bg-white/10 rounded-xl">
-    <form class="w-1/3" [formGroup]="updateGameForm">
+    <form class="w-1/3" [formGroup]="registerGameForm">
 
       <app-primary-input
         formControlName="game_title"
@@ -25,6 +25,12 @@
       >
       </app-primary-input>
 
+      @if (registerGameForm.get('game_title').hasError('minlength')) {
+        <div class="text-start text-xs text-orange-salmon">
+          Mínimo de 3 caracteres.
+        </div>
+      }
+
       <app-primary-input
         formControlName="description"
         type="text"
@@ -32,6 +38,12 @@
         placeholder="Descrição"
       >
       </app-primary-input>
+
+      @if (registerGameForm.get('description').hasError('minlength')) {
+        <div class="text-start text-xs text-orange-salmon">
+          Mínimo de 10 caracteres.
+        </div>
+      }
 
       <app-primary-input
         formControlName="link"
@@ -43,7 +55,7 @@
 
       <div class="flex flex-row items-center justify-around w-full">
         <button
-          [disabled]="!updateGameForm.valid"
+          [disabled]="!registerGameForm.valid"
           (click)="onSubmit()"
           type="submit"
           class="w-1/3 h-10 rounded-lg text-center font-black italic
@@ -53,7 +65,7 @@
         </button>
       </div>
     </form>
-
-
   </section>
+
+
 </app-default-dashboard-layout>

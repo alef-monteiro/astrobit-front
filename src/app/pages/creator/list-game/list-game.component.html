@@ -22,7 +22,7 @@
   <div class="flex flex-row flex-wrap gap-5 p-5 h-2/3 justify-center rounded-xl
 bg-white/10 overflow-y-scroll ">
     <!-- Cards -->
-    @for (card of cards; track card.id) {
+    @for (card of cards; track card.author === userData.user.id) {
       <div
         class="bg-white/20 p-4 gap-2 rounded-xl overflow-hidden flex-shrink-0"
         style="width: 200px; height: 283px; margin-right: 20px;">

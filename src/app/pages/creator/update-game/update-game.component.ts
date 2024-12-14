@@ -32,7 +32,7 @@ export class UpdateGameComponent implements OnInit {
   ) {
     this.updateForm = fb.group({
       game_title: ['', [Validators.required, Validators.minLength(3)]], // Ajustado
-      description: ['', [Validators.required, Validators.minLength(20)]], // Ajustado
+      description: ['', [Validators.required, Validators.minLength(10)]], // Ajustado
     });
   }
 
@@ -82,8 +82,6 @@ export class UpdateGameComponent implements OnInit {
   onNavigate() {
     if (confirm('Deseja realmente cancelar?')) {
       this.closeUpdateWindow.emit(false);
-    } else {
-      return;
     }
   }
 }

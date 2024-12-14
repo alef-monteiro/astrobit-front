@@ -4,6 +4,7 @@ import { GameCardDataService } from '../../../../shared/services/game-card-data.
 import { ToastrService } from 'ngx-toastr';
 import {UpdateGameComponent} from '../update-game/update-game.component';
 import {Router} from '@angular/router';
+import {UserDataService} from '../../../../shared/services/user-data.service';
 
 @Component({
   selector: 'app-list-game',
@@ -17,8 +18,6 @@ export class ListGameComponent implements OnInit {
 
   public title: string = 'Meus jogos';
   public URLimage: string = 'https://github.com/alef-monteiro/astrobit-front/blob/develop/src/assets/illustration-game-card.png?raw=true';
-  public editBtnTxt: string = 'Editar';
-  public deleteBtnTxt: string = 'Deletar';
 
   public cards: Card[] = [];
   public openUpdateWindow: boolean = false;
@@ -27,6 +26,7 @@ export class ListGameComponent implements OnInit {
   constructor(
     private toastr: ToastrService,
     private gamecardData: GameCardDataService,
+    public userData: UserDataService,
     private route: Router
   ) {}
 
