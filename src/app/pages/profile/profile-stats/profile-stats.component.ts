@@ -9,10 +9,10 @@ import {UserDataService} from '../../../../shared/services/user-data.service';
   styleUrl: './profile-stats.component.scss'
 })
 export class ProfileStatsComponent {
-  public positionText: string = "your position";
+  public positionText: string = "sua posição";
   public positionUser: string = "2";
   public pointsUser: string = "8.5";
-  public pointsText: string = "points";
+  public pointsText: string = "pontos";
 
 
   constructor(public userDataService: UserDataService) {

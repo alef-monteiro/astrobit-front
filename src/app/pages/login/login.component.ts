@@ -6,7 +6,6 @@ import {PrimaryInputComponent} from '../../components/primary-input/primary-inpu
 import {ToastrService} from 'ngx-toastr';
 import {SharedModule} from '../../../shared/shared.module';
 import {UserDataService} from '../../../shared/services/user-data.service';
-import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +14,6 @@ import {NgIf} from '@angular/common';
     SharedModule,
     DefaultLoginLayoutComponent,
     PrimaryInputComponent,
-    NgIf
   ],
   providers: [],
   templateUrl: './login.component.html',
@@ -34,7 +32,7 @@ export class LoginComponent implements OnInit {
   ) {
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(6)]], // Synchronous validators in an array
-       password: ['', [Validators.required, Validators.minLength(6)]],
+       password: ['', [Validators.required, Validators.minLength(8)]],
     })
   }
 
@@ -43,7 +41,7 @@ export class LoginComponent implements OnInit {
   }
 
   public onNavigate() {
-    this.router.navigate(['register']);
+    this.router.navigate(['register']).then();
   }
 
   public onSubmit() {
@@ -53,19 +51,19 @@ export class LoginComponent implements OnInit {
         next: () => {
           const user = this.loginService.user;
           if (user) {
-            this.toastr.info(`Login successfully, ${user.username}!`)
-            this.toastr.success(`Welcome, ${user.name}!`)
-            this.router.navigate(['game']);
+            this.toastr.info(`Login com sucesso, ${user.username}!`)
+            this.toastr.success(`Bem-vindo, ${user.name}!`)
+            this.router.navigate(['game']).then();
           } else {
             this.loading = false
-            this.toastr.error(`Login fail!`);
+            this.toastr.error(`Problemas ao fazer login. Tente novamente.`);
           }
           this.loading = false
         },
         error: (err) => {
           this.loading = false
           console.error('Error', err);
-          this.toastr.error(`Login fail!`);
+          this.toastr.error(`Erro inesperado! Tente novamente mais tarde.`);
         },
 
       });

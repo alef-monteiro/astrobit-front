@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ApiEndpointsService} from './api-endpoints.service';
 import {tap} from 'rxjs';
 import {jwtDecode} from 'jwt-decode';
@@ -20,6 +20,18 @@ export class UserDataService {
     private apiEndPoints: ApiEndpointsService) {
   }
 
+  get headers(): HttpHeaders {
+    const token = sessionStorage.getItem('auth-token');
+
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json', // Adiciona o token CSRF aos cabeçalhos
+    });
+    if (token) {
+      headers = headers.append('Authorization', 'Bearer '.concat(token));
+    }
+    return headers;
+  }
+
 
   public register(name: string, username: string, email: string, password: string) {
     return this.httpClient.post(
@@ -28,8 +40,6 @@ export class UserDataService {
     )
   }
 
-
-  // Seguinte, tem que fazer umas lógicas de tratamento de erro aqui ainda
   public login(username: string, password: string) {
     return this.httpClient.post<LoginResponse>(
       this.apiEndPoints.endpoints.loginUser,
@@ -78,6 +88,20 @@ export class UserDataService {
   }
 
 
+  public updateProfile(name: string, username: string, email: string) {
+    return this.httpClient.put(
+      this.apiEndPoints.endpoints.usersProfile,
+      {name, username, email},
+      {headers: this.headers, withCredentials: true}
+    )
+  }
+
+  public deleteProfile() {
+    return this.httpClient.delete(
+      this.apiEndPoints.endpoints.usersProfile,
+      {headers: this.headers, withCredentials: true}
+    )
+  }
 
   public logout():
     void {

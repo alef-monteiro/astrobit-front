@@ -19,12 +19,12 @@
     >
     </app-primary-input>
 
-    <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')">
-      <small class="text-start text-xs text-light-salmon" *ngIf="registerForm.get('name')?.hasError('minlength')">
-        Name must be at least 3
-        characters</small>
-    </div>
-
+    @if (registerForm.get('name')?.hasError('minlength')) {
+      <div>
+        <small class="text-start text-xs text-light-salmon" >
+          Mínimo de 3 caracteres.</small>
+      </div>
+    }
     <app-primary-input
       formControlName="username"
       type='text'
@@ -33,11 +33,13 @@
     >
     </app-primary-input>
 
-    <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')">
-      <small class="text-start text-xs text-light-salmon" *ngIf="registerForm.get('username')?.hasError('minlength')">
-        Name must be at least 6 characters</small>
-    </div>
-
+    @if (registerForm.get('username')?.hasError('minlength')) {
+      <div>
+        <small class="text-start text-xs text-light-salmon">
+          Mínimo de 6 caracteres.
+        </small>
+      </div>
+    }
     <app-primary-input
       formControlName="email"
       type='email'
@@ -53,10 +55,10 @@
       placeholder='Password'
     >
     </app-primary-input>
-    <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')">
-      <small class="text-start text-xs text-light-salmon" *ngIf="registerForm.get('password')?.hasError('minlength')">Password must be at
-        least 8 characters</small>
-    </div>
-
+    @if (registerForm.get('password')?.hasError('minlength')) {
+      <div>
+        <small class="text-start text-xs text-light-salmon">Mínimo de 8 caracteres.</small>
+      </div>
+    }
   </form>
 </app-default-register-layout>

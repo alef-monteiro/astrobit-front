@@ -14,7 +14,7 @@
 
     <div>
       <h2 class="text-center font-extrabold text-xl">
-        #{{ loginService.user.username.toUpperCase() }}
+        #{{ loginService.user?.username.toUpperCase() }}
       </h2>
       <p class="text-center font-regular text-xl text-cool-yellow font-bold">
         {{ userPoints }}

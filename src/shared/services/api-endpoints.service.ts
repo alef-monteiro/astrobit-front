@@ -9,21 +9,17 @@ export class ApiEndpointsService {
 
   public readonly endpoints = {
     // Usuários
-    registerUser: `${this.baseUrl}register/`, // Endpoint para registro de usuário
-    loginUser: `${this.baseUrl}token/`, // Endpoint para obtenção de token (JWT)
-    logoutUser: `${this.baseUrl}logout/`, // Endpoint para logout do usuário
-    updateUserProfile: `${this.baseUrl}profile/`, // Atualizar perfil do usuário
-
-    // Reset de senha
-    requestPasswordReset: `${this.baseUrl}reset/`, // Solicitação de reset de senha
-    confirmPasswordReset: `${this.baseUrl}confirmreset/`, // Confirmação de reset de senha
+    registerUser: `${this.baseUrl}register/`,
+    loginUser: `${this.baseUrl}token/`,
+    logoutUser: `${this.baseUrl}logout/`,
+    usersProfile: `${this.baseUrl}users/`,
 
     // Game Cards
-    getGameCards: this.baseUrl + URLS.GAME_CARD, // Lista de cartões de jogo
-    getGameCardById: (id: number) => this.baseUrl + URLS.GAME_CARD + id + '/', // Cartão de jogo específico
+    getGameCards: this.baseUrl + URLS.GAME_CARD,
+    getGameCardById: (id: number) => this.baseUrl + URLS.GAME_CARD + id + '/',
 
     // Ranking
-    rankUsers: `${this.baseUrl}rankusers/`, // Ranking de usuários
+    rankUsers: `${this.baseUrl}rankusers/`,
   };
 
   constructor() {

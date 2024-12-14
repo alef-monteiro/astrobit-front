@@ -6,7 +6,6 @@ import {Router} from '@angular/router';
 import {PrimaryInputComponent} from '../../components/primary-input/primary-input.component';
 import {SharedModule} from '../../../shared/shared.module';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {NgIf} from '@angular/common';
 import {ToastrService} from 'ngx-toastr';
 import {UserDataService} from '../../../shared/services/user-data.service';
 
@@ -17,15 +16,14 @@ import {UserDataService} from '../../../shared/services/user-data.service';
     SharedModule,
     DefaultRegisterLayoutComponent,
     PrimaryInputComponent,
-    NgIf
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
 
 export class RegisterComponent implements OnInit {
-  public title: string = "Register";
-  public primaryBtnText: string = "Save";
+  public title: string = "Cadastro";
+  public primaryBtnText: string = "Salvar";
   public registerForm!: FormGroup;
 
   constructor(
@@ -48,7 +46,7 @@ export class RegisterComponent implements OnInit {
 
 
   public onNavigate() {
-    this.router.navigate(['login']);
+    this.router.navigate(['login']).then();
   }
 
 
@@ -63,19 +61,37 @@ export class RegisterComponent implements OnInit {
       ).subscribe({
         next: () => {
           this.toastr.success(
-            `Registered successifuly, ${nameUser}!`
+            `Cadastro completo, ${nameUser}!`
           )
-          this.router.navigate(['login']);
+          this.router.navigate(['login']).then();
         },
-        error: () => {
-          this.toastr.error(
-            'Sorry, something went wrong. Please try again.'
-          )
+        error: (err) => {
+          if (err.error) {
+            // Pega as mensagens de erro do objeto
+            const errorMessages = [];
+            for (const field in err.error) {
+              if (err.error.hasOwnProperty(field)) {
+                errorMessages.push(...err.error[field]); // Adiciona as mensagens ao array
+              }
+            }
+
+            // Mostra as mensagens no Toastr
+            if (errorMessages.length > 0) {
+              errorMessages.forEach(message => {
+                this.toastr.error(message);
+              });
+            } else {
+              this.toastr.error('Ocorreu um erro ao registrar. Tente novamente.');
+            }
+          } else {
+            this.toastr.error('Erro desconhecido. Por favor, tente novamente.');
+          }
+          console.error('Erro ao registrar:', err);
         }
       })
     } else {
       this.toastr.error(
-        'Sorry, Invalid form. Please try again.'
+        'Desculpe, formulário invalido. Por favor, verifique os campos.'
       )
     }
   }
