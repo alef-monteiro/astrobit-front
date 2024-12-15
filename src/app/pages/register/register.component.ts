@@ -71,7 +71,7 @@ export class RegisterComponent implements OnInit {
             const errorMessages = [];
             for (const field in err.error) {
               if (err.error.hasOwnProperty(field)) {
-                errorMessages.push(...err.error[field]); // Adiciona as mensagens ao array
+                errorMessages.push(...err.error[field]);// Adiciona as mensagens ao array
               }
             }
 

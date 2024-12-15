@@ -6,12 +6,12 @@
     (click)="onNavigate('/creator/' + 'register-game')"
     class="flex flex-row w-fit items-center justify-center
     rounded-lg px-5 py-2 font-bold text-lg
-    bg-orange-salmon hover:bg-cool-yellow active:bg-light-salmon ">
-    <p>{{addBtnTxt.toUpperCase()}}</p>
+    bg-cool-green/75 hover:bg-cool-green/60 active:bg-cool-yellow ">
+    <p>{{ addBtnTxt.toUpperCase() }}</p>
   </button>
 </section>
 
-@if (cards.length === 0) {
+@if (cardsList.length === 0) {
   <h1 class="text-center text-xl font-bold">
     {{ noGamesTxt }}
   </h1>
@@ -19,36 +19,55 @@
   <!--Container-->
 
     <!--  AINDA NÃO É CARD DO CRIADOR, SÃO TODOS OS CARDS CRIADOS-->
-  <div class="flex flex-row flex-wrap gap-5 p-5 h-2/3 justify-center rounded-xl
-bg-white/10 overflow-y-scroll ">
+  <div
+    class="flex flex-row gap-5 p-10 h-fit justify-start items-center rounded-xl
+         bg-gradient-to-r from-white/5 via-white/10 to-white/5 overflow-x-auto scroll-smooth"
+    style="width: 100%; max-width: 100%; overflow-y: hidden;">
     <!-- Cards -->
-    @for (card of cards; track card.author === userData.user.id) {
-      <div
-        class="bg-white/20 p-4 gap-2 rounded-xl overflow-hidden flex-shrink-0"
-        style="width: 200px; height: 283px; margin-right: 20px;">
-        <img src="{{URLimage}}" [alt]="card.game_title" class="w-full rounded-md h-[150px] object-cover">
-        <div>
-          <h2 class="text-lg font-semibold text-white mb-2">
-            {{ card.game_title.length > 10 ? card.game_title.substring(0, 10) + '...' : card.game_title }}
-          </h2>
-          <p class="text-sm text-white">
-            {{ card.description.length > 20 ? card.description.substring(0, 20) + '...' : card.description }}
-          </p>
-        </div>
-        <div class="flex flex-row justify-evenly">
-          <button
-            (click)="onEdit(card.id)"
-            class="w-fit py-1 px-4 rounded">
-            <img src="assets/nav-icons/edit.svg">
-          </button>
-          <button
-            (click)="onDelete(card.id)"
-            class="w-fit py-1 px-4 rounded">
-            <img src="assets/nav-icons/delete.svg">
-          </button>
-        </div>
-      </div>
-    }
+    <ng-container>
+      @if (hasGames()) {
+
+        @for (card of cardsList; track card.id) {
+          @if (card.author == userData.user?.id) {
+            <div
+              class="p-4 rounded-xl overflow-hidden flex-shrink-0 cursor-pointer
+                    bg-white/20 hover:bg-orange-salmon/80 active:bg-light-salmon/60"
+              style="width: 200px; height: 283px;">
+              <img src="{{URLimage}}" [alt]="card.game_title"
+                   class="w-full rounded-md h-[150px] mb-2 object-cover">
+              <section class="flex flex-col gap-2">
+                <div
+                  (click)="onOpenInfoWindow(card.id)"
+                >
+                  <h2 class="text-lg font-semibold text-white mb-2">
+                    {{ card.game_title.length > 10 ? card.game_title.substring(0, 10) + '...' : card.game_title }}
+                  </h2>
+                  <p class="text-sm text-white">
+                    {{ card.description.length > 20 ? card.description.substring(0, 20) + '...' : card.description }}
+                  </p>
+                </div>
+                <div class="flex flex-row justify-evenly">
+                  <button
+                    (click)="onEdit(card.id)"
+                    class="w-fit py-1 px-4 rounded ">
+                    <img src="assets/nav-icons/edit.svg">
+                  </button>
+                  <button
+                    (click)="onDelete(card.id)"
+                    class="w-fit py-1 px-4 rounded bg-red-400 hover:bg-red-300 active:bg-red-500">
+                    <img src="assets/nav-icons/delete.svg">
+                  </button>
+                </div>
+              </section>
+            </div>
+          }
+        }
+      } @else {
+        <h1 class="text-center text-xl font-bold">
+          {{ noGamesTxt }}
+        </h1>
+      }
+    </ng-container>
   </div>
 
   @if (openUpdateWindow) {
@@ -56,6 +75,13 @@ bg-white/10 overflow-y-scroll ">
       [id]="cardId"
       (closeUpdateWindow)="onCloseUpdateWindow()">
     </app-update-game>
+  }
+
+  @if (openInfoWindow) {
+    <app-card-info
+    [id]="cardId"
+    (closeInfoWindow)="onCloseInfoWindow()">
+    </app-card-info>
   }
 }
 

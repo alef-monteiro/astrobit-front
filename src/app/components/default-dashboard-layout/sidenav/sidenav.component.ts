@@ -23,14 +23,14 @@ export class SidenavComponent {
 
   public userPoints: string = '100';
   public menuList: MenuItem[] = [];
+  public addGameBtnTxt: string = "Meus Jogos";
 
   constructor(private router: Router,
               public loginService: UserDataService) {
     this.menuList = [
-      {title: 'Home', icon: '/assets/nav-icons/home.svg', route: 'game', isCurrent: false},
-      {title: 'Profile', icon: '/assets/nav-icons/account.svg', route: 'profile', isCurrent: false},
-      {title: 'Ranking', icon: '/assets/nav-icons/ranking.svg', route: 'ranking', isCurrent: false},
-      {title: 'Settings', icon: '/assets/nav-icons/settings.svg', route: 'settings', isCurrent: false},
+      {title: 'Início', icon: '/assets/nav-icons/home.svg', route: 'game', isCurrent: false},
+      {title: 'Perfil', icon: '/assets/nav-icons/account.svg', route: 'profile', isCurrent: false},
+      {title: 'Posições', icon: '/assets/nav-icons/ranking.svg', route: 'profile', isCurrent: false},
     ];
   }
 

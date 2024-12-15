@@ -13,21 +13,21 @@ img {
 
 /* Estilos da barra de rolagem */
 ::-webkit-scrollbar {
-  width: 2px; /* Largura da barra */
-  height: 2px; /* Altura da barra horizontal */
+  width: 10px; /* Largura da barra */
+  height: 7px; /* Altura da barra horizontal */
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #161949, #000020); /* Cor com degradê */
+  //background: linear-gradient(to bottom, #161949, #000020); /* Cor com degradê */
   border-radius: 4px; /* Arredondado */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #161949; /* Cor mais escura ao hover */
+  background: #ffffff; /* Cor mais escura ao hover */
 }
 
 ::-webkit-scrollbar-track {
-  background: linear-gradient(to bottom, #161949, #000020); /* Fundo da barra */
+  background:  #161949; /* Fundo da barra */
 }
 
 /* Imagem de fundo responsiva com zoom */
@@ -61,13 +61,6 @@ img {
 }
 
 
-.scrollbar-hide {
-  -ms-overflow-style: none; /* IE e Edge */
-  scrollbar-width: none; /* Firefox */
-}
 
-.scrollbar-hide::-webkit-scrollbar {
-  display: none; /* Chrome, Safari e Opera */
-}
 
 

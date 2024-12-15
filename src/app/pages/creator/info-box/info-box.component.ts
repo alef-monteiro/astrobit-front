@@ -1,20 +1,22 @@
-import { Component } from '@angular/core';
-import {NgIf} from '@angular/common';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-info-box',
   standalone: true,
-  imports: [
-  ],
+  imports: [],
   templateUrl: './info-box.component.html',
   styleUrl: './info-box.component.scss'
 })
 export class InfoBoxComponent {
   public cardTitle: string = 'Como criar um jogo?';
-  public cardContentTxt: string = 'Este é o conteúdo do card que pode ser exibido ou escondido.';
+  public cardContentTxt: string =
+    'Criar um jogo é fácil! É só clicar no botão "Adicionar", ' +
+    'preencher os detalhes e adicionar o link do seu projeto no GitHub ' +
+    '– a comunidade vai adorar avaliar! ' +
+    'Quer saber mais? Clique no link e descubra como participar!';
 
   public isContentVisible: boolean = false;
-  public linkSaibaMais = "saiba mais" ;
+  public linkSaibaMais = "saiba mais";
 
   toggleContent() {
     this.isContentVisible = !this.isContentVisible;

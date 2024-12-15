@@ -17,6 +17,7 @@ export class HomepageComponent implements OnInit {
   public cardList: Card [] = [];
 
   public title: string = 'GAMES';
+  public noGamesTxt: string = "Nenhum jogo cadastrado.";
 
   constructor(
     private route: Router,

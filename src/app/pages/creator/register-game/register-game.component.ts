@@ -9,7 +9,6 @@ import {ToastrService} from 'ngx-toastr';
 import {GameCardDataService} from '../../../../shared/services/game-card-data.service';
 import {UserDataService} from '../../../../shared/services/user-data.service';
 import {Router} from '@angular/router';
-import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-register-game',
@@ -23,12 +22,13 @@ import {NgIf} from '@angular/common';
   styleUrl: './register-game.component.scss'
 })
 export class RegisterGameComponent {
-
-
   public title: string = 'Adicionar jogo';
   public registerGameForm!: FormGroup;
   public primaryBtnText: string = "salvar";
 
+  public previewData: Card = new Card();
+  public URLimage: string = 'https://github.com/alef-monteiro/astrobit-front/blob/develop/src/assets/illustration-game-card.png?raw=true';
+  public titlePreview: string = "Prévia";
 
   constructor(
     private fb: FormBuilder,
@@ -51,6 +51,7 @@ export class RegisterGameComponent {
       link: ['', [Validators.required]],
     });
   }
+
 
   public onSubmit(): void {
     if (!this.registerGameForm.valid) {

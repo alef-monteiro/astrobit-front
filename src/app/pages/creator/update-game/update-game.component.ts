@@ -3,6 +3,7 @@ import {Card} from '../../../../shared/models/card';
 import {GameCardDataService} from '../../../../shared/services/game-card-data.service';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {PrimaryInputComponent} from '../../../components/primary-input/primary-input.component';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-update-game',
@@ -27,8 +28,9 @@ export class UpdateGameComponent implements OnInit {
 
 
   constructor(
-    private service: GameCardDataService,
+    private serviceCard: GameCardDataService,
     public fb: FormBuilder,
+    private toastr: ToastrService,
   ) {
     this.updateForm = fb.group({
       game_title: ['', [Validators.required, Validators.minLength(3)]], // Ajustado
@@ -44,13 +46,16 @@ export class UpdateGameComponent implements OnInit {
       console.log('create');
     } else {
       this.object.id = this.id;
-      this.service.getGameCardById(this.object.id).subscribe({
+      this.serviceCard.getGameCardById(this.object.id).subscribe({
         next: (response) => {
           this.object = response;
           this.updateForm.patchValue(response);
+          this.toastr.info(`${response.game_title}, encontrado!`)
         },
         error: (error) => {
           console.error('Erro ao buscar o Jogo:', error);
+          this.closeUpdateWindow.emit(true);
+          this.toastr.error('Erro ao buscar o Jogo. Tente novamente.');
         },
         complete: () => {
           console.log('Busca do Jogo concluída.');
@@ -64,21 +69,32 @@ export class UpdateGameComponent implements OnInit {
     if (this.updateForm.valid && confirm('Deseja realmente salvar?')) {
       const data = this.updateForm.value;
       if (this.id) {
-        this.service.updateGameCard(this.id, data).subscribe(() => {
-          console.log('Atualizado com sucesso');
-          this.closeUpdateWindow.emit(false);
+        this.serviceCard.updateGameCard(this.id, data).subscribe({
+          next: (response) => {
+            console.log('Next:', response);
+            this.closeUpdateWindow.emit(true);
+            this.toastr.success(`${response.game_title}, atualizado com sucesso!`)
+          },
+          error: (error) => {
+            console.error('Erro ao atualizar o Jogo:', error);
+            this.toastr.error('Erro ao atualizar o Jogo. Tente novamente.');
+            this.closeUpdateWindow.emit(true);
+          },
         });
       } else {
           console.log('Erro ao atualizar');
+        this.closeUpdateWindow.emit(true);
+
       }
     } else {
       console.log('Formulário inválido');
+
     }
   }
 
   onNavigate() {
     if (confirm('Deseja realmente cancelar?')) {
-      this.closeUpdateWindow.emit(false);
+      this.closeUpdateWindow.emit(true);
     }
   }
 }
