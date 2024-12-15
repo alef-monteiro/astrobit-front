@@ -16,7 +16,7 @@ import {Card} from '../../../shared/models/card';
 export class HomepageComponent implements OnInit {
   public cardList: Card[] = [];
   public currentPage: number = 1;
-  public itemsPerPage: number = 6;
+  public itemsPerPage: number = 5;
   public totalPages: number = 0;
 
   public title: string = 'GAMES';
