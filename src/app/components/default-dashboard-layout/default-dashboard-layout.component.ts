@@ -10,7 +10,6 @@ import {ToastrService} from 'ngx-toastr';
   standalone: true,
   imports: [
     SidenavComponent,
-    RankingBoxComponent
   ],
   templateUrl: './default-dashboard-layout.component.html',
   styleUrl: './default-dashboard-layout.component.scss'
@@ -25,7 +24,7 @@ export class DefaultDashboardLayoutComponent {
   }
 
   onLogout() {
-    this.toastr.info(`See you later, ${this.loginService.user.name}`);
+    this.toastr.info(`Até mais, ${this.loginService.user.name}!`);
     return this.loginService.logout(),
       this.router.navigate(['login']);
   }

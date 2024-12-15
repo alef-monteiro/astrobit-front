@@ -1,11 +1,4 @@
-// interface PositionItem {
-//   id: number;
-//   username: string;
-//   // route: string;
-//   isCurrent: boolean;
-// }
 import {Component, OnInit} from '@angular/core';
-import {NgForOf, NgIf} from '@angular/common';
 import {Observable} from 'rxjs';
 import {URLS} from '../../../../shared/urls';
 import {HttpClient} from '@angular/common/http';
@@ -16,8 +9,7 @@ import {UserDataService} from '../../../../shared/services/user-data.service';
   selector: 'app-ranking-box',
   standalone: true,
   imports: [
-    NgForOf,
-    NgIf,
+
   ],
   templateUrl: './ranking-box.component.html',
   styleUrl: './ranking-box.component.scss'
@@ -84,38 +76,3 @@ export class RankingBoxComponent implements OnInit {
     this.userPosition = position >= 0 ? position + 1 : null; // Ajusta para índice humano (1-based)
   }
 }
-
-
-
-// private calculateUserPosition(): void {
-//   // Verifica se o userId está definido
-//   if (!this.userId) {
-//   console.error('ID do usuário não está definido.');
-//   this.userPosition = null;
-//   return;
-// }
-//
-// const sorted = this.sortedDataEverybody;
-//
-// // Verifica se o array ordenado está correto
-// if (!sorted || sorted.length === 0) {
-//   console.error('O array sortedDataEverybody está vazio ou indefinido.');
-//   this.userPosition = null;
-//   return;
-// }
-//
-// console.log('Dados ordenados:', sorted);
-// console.log('ID do usuário:', this.userId);
-//
-// // Encontra a posição pelo ID
-// const position = sorted.findIndex((item) => String(item.id) === String(this.userId));
-// this.userPosition = position >= 0 ? position + 1 : null;
-//
-// if (this.userPosition === null) {
-//   console.warn('Usuário não encontrado no ranking.');
-// } else {
-//   console.log('Posição do usuário no ranking:', this.userPosition);
-// }
-// }
-//
-//
