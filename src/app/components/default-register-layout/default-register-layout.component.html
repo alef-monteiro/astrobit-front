@@ -1,6 +1,7 @@
-<main class="relative flex items-center justify-start p-12 min-h-screen overflow-hidden text-white bg-gradient-to-b from-dark-blue to-pale-blue">
+<main class="relative flex items-center justify-start p-12
+min-h-screen overflow-hidden text-white bg-gradient-to-b from-dark-blue to-pale-blue">
   <section class="relative z-10 flex flex-col items-center gap-5 w-1/4
-  min-w-[300px] bg-black/10 backdrop-blur-md p-6 rounded-2xl max-h-[90vh] ">
+  min-w-[300px] bg-black/10 backdrop-blur-md p-6 rounded-2xl max-h-[100vh] ">
     <!-- Logo -->
     <a class="flex flex-col items-center cursor-pointer" (click)="onNavigate()">
       <img class="w-full h-auto" src="/assets/logo.svg" alt="astrobit-logo">
@@ -21,7 +22,7 @@
           class="w-1/3 h-10 rounded-lg text-center font-black italic
           md:text-base sm:text-xs text-xs
           bg-orange-salmon hover:bg-light-salmon active:bg-cool-yellow disabled:bg-blue-950">
-          BACK
+          VOLTAR
         </button>
         <button
           [disabled]="disablePrimaryBtn"
