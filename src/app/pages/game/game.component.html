@@ -17,7 +17,8 @@
   <section class="flex flex-col w-full h-full rounded-xl p-10 bg-white/10">
     <!-- Canvas ajustado -->
     <div class="game-container">
-      <canvas #gameCanvas class="w-full h-fit"></canvas>
+      <!-- Usando o safeUrl diretamente no src -->
+      <iframe [src]="safeUrl" class="w-full h-[700px]"></iframe>
     </div>
 
     <section class="flex flex-col gap-5 p-10">
@@ -25,7 +26,7 @@
         <h2 class="text-3xl font-bold uppercase italic">
           #{{ object.game_title }}
         </h2>
-        <p class="text-2xl">{{ object.author }}</p>
+        <p class="text-2xl">{{ object.author}}</p>
       </div>
       <p class="text-2xl">{{object.description}}</p>
     </section>
