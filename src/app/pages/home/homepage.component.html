@@ -6,14 +6,14 @@
   <section class="w-full flex-col 2xl:3/4 3xl:w-2/3 mx-auto space-y-2 p-4 mb-8">
 
     @for (data of paginatedCards(); track data.id) {
-
         <!-- Card -->
       <div class="flex flex-row w-full gap-6 p-5 bg-white/10 shadow-xl text-white rounded-xl
-      hover:scale-105 transition-transform transform">
+      hover:bg-white/20">
         <!-- Image Section (hidden on small screens) -->
         <div class="hidden md:flex">
             <figure>
-              <img width="200" [src]=URLimage alt="{{ data.game_title }}-illustration" class="rounded-lg">
+              <img width="200" [src]=URLimage alt="{{ data.game_title }}-illustration"
+                   class="rounded-lg hover:scale-105 transition-transform transform">
             </figure>
         </div>
 
@@ -23,19 +23,20 @@
             <!-- Title and Description -->
             <div class="flex flex-row gap-2">
               <h2 class="card-title font-black text-2xl hover:link">
-                {{data.game_title}}
+                {{data.game_title.length > 30 ? data.game_title.substring(0, 30) + '...' : data.game_title}}
               </h2>
 
             </div>
-            <div>
-             {{data.description}}
+            <div class=" text-sm md:text-base">
+              {{data.description.length > 100 ? data.description.substring(0, 100) + '...' : data.description}}
             </div>
+
           </div>
 
           <!-- Button Section -->
           <div class="flex min-w-fit justify-end pt-2 items-end">
             <div class="flex">
-              <a [href]="'/game/' + data.id"
+              <button (click)="onNavigate('game/' + data.id)"
                  class="flex items-center flex-row text-white
                  bg-primary-700 hover:bg-primary-800 focus:ring-4
                  focus:ring-primary-300 font-bold rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5
@@ -46,8 +47,8 @@
                   <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                         stroke-width="2" d="m6 17l5-5l-5-5m7 10l5-5l-5-5"></path>
                 </svg>
-                Get started
-              </a>
+                {{ primaryBtnText.toUpperCase() }}
+              </button>
             </div>
           </div>
         </div>
