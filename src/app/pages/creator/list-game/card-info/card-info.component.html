@@ -1,0 +1,69 @@
+<div class="fixed inset-0 flex items-center justify-center
+bg-gray-900 bg-opacity-50 z-50">
+  <section class="flex flex-col items-center gap-5 w-2/5 min-w-[300px]
+bg-primary-black/80 backdrop-blur-md p-5 rounded-xl">
+
+    <div class="flex flex-row items-center justify-between w-full">
+      <button
+        type="submit"
+        (click)="onCloseInfoWindow()"
+        class="w-fit px-3 py-2 rounded-lg text-center font-black italic
+          md:text-base sm:text-xs text-lg
+          bg-orange-salmon hover:bg-light-salmon active:bg-cool-yellow disabled:bg-blue-950">
+        {{ primaryBtnText.toUpperCase() }}
+      </button>
+    </div>
+    <p class="text-center font-bold text-xl">
+      {{ cardInfoTxt.toUpperCase() }}
+    </p>
+    <ng-container class="flex flex-col gap-2 justify-start">
+      <div class="flex flex-row w-full flex-wrap gap-2 text-xl border-b border-white/10 p-5">
+        <p class="font-bold">{{ gameTitleTxt }}:</p>
+        <p class="italic text-start">
+          {{ this.object.game_title }}
+        </p>
+      </div>
+
+      <div class="flex flex-row w-full flex-wrap gap-2 text-xl border-b border-white/10 p-5">
+        <p class="font-bold ">{{ descriptionTxt }}:</p>
+        <p class="italic text-wrap">
+          {{ this.object.description.length > 30 ? this.object.description.substring(0, 30) + '...' : this.object.description }}
+        </p>
+      </div>
+
+      <div class="flex flex-row w-full flex-wrap gap-2 text-xl p-5">
+        <p class="font-bold ">{{ linkTxt }}:</p>
+        <p class="italic text-wrap">
+          {{ this.object.link.length > 30 ? this.object.link.substring(0, 30) + '...' : this.object.link }}
+        </p>
+      </div>
+
+      <div class="flex flex-row w-full flex-wrap gap-2 text-xl p-5">
+        <p class="font-bold ">{{ activeTxt }}:</p>
+        @if (this.object.active) {
+          <p class="italic text-cool-green">
+            Verdadeiro
+          </p>
+        } @else if (!this.object.active) {
+          <p class="italic text-red-600">
+            Falso
+          </p>
+        } @else {
+          <p class="italic text-orange-600">
+            Indefinido
+          </p>
+        }
+      </div>
+    </ng-container>
+
+
+    <button
+      (click)="onNavigate('game/' + object.id)"
+      class="w-fit px-3 py-2 h-10 rounded-lg text-center font-black italic
+          md:text-base sm:text-xs text-xs
+          bg-orange-salmon hover:bg-light-salmon active:bg-cool-yellow disabled:bg-blue-950">
+      {{ secondaryBtnText.toUpperCase() }}
+    </button>
+
+  </section>
+</div>
