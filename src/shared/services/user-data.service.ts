@@ -103,6 +103,13 @@ export class UserDataService {
     )
   }
 
+  public getUserById(id: number) {
+    return this.httpClient.get(
+      this.apiEndPoints.endpoints.usersProfile + id,
+      {headers: this.headers, withCredentials: true}
+    )
+  }
+
   public logout():
     void {
     sessionStorage.removeItem('auth-token');

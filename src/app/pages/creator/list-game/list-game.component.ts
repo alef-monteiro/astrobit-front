@@ -22,6 +22,7 @@ export class ListGameComponent implements OnInit {
   public cards: Card[] = [];
   public openUpdateWindow: boolean = false;
   public noGamesTxt: string = 'Nenhum jogo cadastrado.';
+  public addBtnTxt: string = 'Adicionar';
 
   constructor(
     private toastr: ToastrService,
