@@ -3,52 +3,77 @@
     #{{ title.toUpperCase() }}
   </h1>
   <section class="flex flex-row flex-wrap gap-10 items-start justify-center">
-
-    @if (cardList.length === 0) {
-      <h1 class="text-center text-xl font-bold">
-        {{ noGamesTxt }}
-      </h1>
-    } @else {
-      @for (data of cardList; track data.game_title) {
-        <div (click)="onNavigate('/game/' + data.id)"
-             class="flex items-center justify-center hover:cursor-pointer">
-          <div
-            class="flex-shrink-0 p-2 relative overflow-hidden bg-white/10
+    @for (data of paginatedCards(); track data.id) {
+      <div (click)="onNavigate('/game/' + data.id)"
+           class="flex items-center justify-center hover:cursor-pointer">
+        <div
+          class="flex-shrink-0 p-2 relative overflow-hidden bg-white/10
                 hover:bg-gradient-to-t  from-orange-salmon/80 to-light-salmon/80
                active:bg-cool-yellow
                rounded-lg max-w-xl group">
 
-            <!-- Seção da imagem com animação -->
-            <div class="relative pt-3 px-3 flex items-center justify-center
+          <!-- Seção da imagem com animação -->
+          <div class="relative pt-3 px-3 flex items-center justify-center
                 group-hover:scale-110 transition-transform over">
 
-              <div class="absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3 "
-                   style="background: radial-gradient(black, transparent 60%);
+            <div class="absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3 "
+                 style="background: radial-gradient(black, transparent 60%);
                       transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1);
                       opacity: 0.2;">
-              </div>
-
-              <!-- Imagem principal -->
-              <img class="relative w-40 h-auto "
-                   src="/assets/illustration-game-card.png"
-                   alt="{{ data.game_title }}-illustration">
             </div>
 
-            <div class="relative text-white px-4 pb-4 mt-6">
-              <!-- Autor -->
-              <span class="block opacity-75 -mb-1">
+            <!-- Imagem principal -->
+            <img class="relative w-40 h-auto "
+                 src="/assets/illustration-game-card.png"
+                 alt="{{ data.game_title }}-illustration">
+          </div>
+
+          <div class="relative text-white px-4 pb-4 mt-6">
+            <!-- Autor -->
+            <span class="block opacity-75 -mb-1">
               {{ data.author }}
             </span>
-              <!-- Nome do jogo -->
-              <div class="flex justify-between">
+            <!-- Nome do jogo -->
+            <div class="flex justify-between">
               <span class="block font-semibold text-xl">
                 {{ data.game_title.length > 10 ? data.game_title.substring(0, 10) + '...' : data.game_title }}
               </span>
-              </div>
             </div>
           </div>
         </div>
-      }
+      </div>
+    } @empty {
+      <h1 class="text-center text-xl font-bold">
+        {{ noGamesTxt }}
+      </h1>
     }
   </section>
+
+  <nav class="inline-flex items-center p-1 rounded space-x-4">
+    <!-- Botão de página anterior -->
+    <button
+      (click)="prevPage()"
+      [disabled]="currentPage === 1"
+      class="p-2 rounded bg-white/10 text-black
+           hover:bg-gradient-to-t from-orange-salmon/80 to-light-salmon/80
+           active:bg-cool-yellow transition-colors duration-200 disabled:opacity-50">
+
+    </button>
+
+    <!-- Indicador de página -->
+    <p class="text-white text-sm font-semibold">
+      {{ currentPage }} de {{ totalPages }}
+    </p>
+
+    <!-- Botão de próxima página -->
+    <button
+      (click)="nextPage()"
+      [disabled]="currentPage === totalPages"
+      class="p-2 rounded bg-white/10 text-black
+           hover:bg-gradient-to-t from-orange-salmon/80 to-light-salmon/80
+           active:bg-cool-yellow transition-colors duration-200 disabled:opacity-50">
+
+    </button>
+  </nav>
+
 </app-default-dashboard-layout>
