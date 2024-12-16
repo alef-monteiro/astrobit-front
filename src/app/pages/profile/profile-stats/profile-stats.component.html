@@ -20,7 +20,7 @@ max-lg:flex-row">
           {{ positionText.toUpperCase() }}
         </h2>
         <h1 class="text-5xl italic text-white/80 font-black">
-          #{{ positionUser }}°
+          #{{ position }}°
         </h1>
       </div>
       <div class="flex flex-col items-center gap-4 border-t border-white/20 p-5">
@@ -28,7 +28,11 @@ max-lg:flex-row">
           {{ pointsText.toUpperCase() }}
         </h2>
         <h2 class=" text-3xl font-black text-cool-yellow">
-          {{ pointsUser }}
+          @if ( score !== null) {
+            {{ score }}
+          }@else {
+            {{noScoreTxt}}
+          }
         </h2>
       </div>
     </section>

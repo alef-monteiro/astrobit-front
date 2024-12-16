@@ -1,6 +1,8 @@
 <table class="gap-2 w-full rounded-xl max-md:h-screen max-sm:overflow-x-scroll">
   <!-- Cabeçalho da Tabela -->
   <thead class="w-full border-white/10 border-b-2 max-sm:overflow-x-scroll">
+
+
   <tr class="flex flex-row w-full justify-around text-lg text-center max-sm:overflow-x-scroll">
     <th class="flex-1 px-6 py-3 max-sm:text-sm">{{ positionTitle.toUpperCase() }}</th>
     <th class="flex-1 px-6 py-3 max-sm:text-sm">{{ usernameTitle.toUpperCase() }}</th>
@@ -11,11 +13,14 @@
   <!-- Corpo da Tabela -->
   <tbody class="w-full h-full overflow-y-scroll max-h-96">
     @for (item of sortedData; track item.id; let i = $index) {
-      <tr class="flex flex-row w-full rounded-lg px-6 py-3 gap-x-4 font-bold text-xl">
-        <td class="flex-1 text-center">{{ i + 1 + '°' }}</td>
-        <td class="flex-1 text-center">{{ '#' + item.player }}</td>
-        <td class="flex-1 text-center">{{ item.score }}</td>
-      </tr>
+      @if(item.player === this.userService.user.id) {
+        <tr class="flex flex-row w-full rounded-lg px-6 py-3 gap-x-4 font-bold text-xl
+        bg-light-salmon/85">
+          <td class="flex-1 text-center">{{ i + 1 + '°' }}</td>
+          <td class="flex-1 text-center">#{{ getUserName(item.player).toUpperCase() }}</td>
+          <td class="flex-1 text-center">{{ item.score }}</td>
+        </tr>
+      }
     } @empty {
       <tr>
         <td colspan="3" class="text-center text-xl font-bold mt-20 py-6">

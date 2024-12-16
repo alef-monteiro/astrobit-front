@@ -56,14 +56,14 @@ export class ProfileUpdateComponent {
       };
       console.log('UserData', userData);
 
-      this.userService.updateProfile(userData.name, userData.username, userData.email).subscribe({
+      this.userService.updateProfile(this.userService.user.id, userData).subscribe({
         next: (data) => {
           console.log('Next:', data);
-          this.toastr.success('Perfil atualizado com sucesso!');
-          this.closeUpdateWindow.emit(false);
-          this.toastr.info('Faça o login novamente para atualizar informações.')
-          this.userService.logout();
+          this.closeUpdateWindow.emit(true);
+          this.userService.logout()
           this.router.navigate(['login']).then();
+          this.toastr.info(`Novo username: ${userData.username}`)
+          this.toastr.success(`Atualização completa, ${userData.name}!`);
         },
         error: (err) => {
           this.toastr.error('Ocorreu um erro ao atualizar o perfil. Tente novamente.');
