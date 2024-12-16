@@ -1,5 +1,5 @@
-<div class="flex flex-col items-center gap-6">
-  <table class="max-w-4xl border-collapse">
+<div class="flex flex-col items-center justify-center h-screen gap-6">
+  <table class="flex max-w-4xl w-full border-collapse">
     <!-- Cabeçalho da Tabela -->
     <thead>
     <tr class="flex flex-row w-full justify-around text-xl text-center bg-light-salmon rounded-lg">
@@ -7,6 +7,13 @@
       <th class="px-6 py-3">{{ usernameTitle.toUpperCase() }}</th>
       <th class="px-6 py-3">{{ scoreTitle.toUpperCase() }}</th>
     </tr>
+    <button
+      (click)="onUpdate()"
+      class="flex flex-row w-fit items-center justify-center
+          rounded-full px-5 py-2 font-bold text-xl last: mb-0
+          bg-orange-salmon hover:bg-cool-yellow active:bg-light-salmon ">
+      <p class="font-regular text-xl block">{{ updtBtnTxt }}</p>
+    </button>
     </thead>
 
     <!-- Corpo da Tabela -->

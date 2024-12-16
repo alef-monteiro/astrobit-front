@@ -16,11 +16,16 @@ export class DefaultRankingLayoutComponent  implements OnInit {
   public positionTitle = 'posição'
   public usernameTitle = 'APELIDO'
   public scoreTitle = 'PONTUAÇÃO'
+  public updtBtnTxt: string = 'Atualizar';
 
   constructor(private userService: UserDataService) {}
 
   ngOnInit() {
-    this.onSearch()
+    this.onSearch();
+  }
+
+  public onUpdate() {
+    window.location.reload();
   }
 
   public onSearch(): void {
