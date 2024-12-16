@@ -1,21 +1,21 @@
 
-<div class="flex flex-col gap-2 text-xl border-b border-white/10 p-5">
+<div class="flex flex-col gap-2 text-xl border-b border-white/10 p-5 max-lg:p-3 max-lg:border-none">
   <p class="font-bold ">{{usernameTxt}}</p>
-  <p class="italic">
+  <p class="italic max-sm:text-base">
     #{{userData.user.username.toUpperCase()}}
   </p>
 </div>
 
-<div class="flex flex-col gap-2 text-xl border-b border-white/10 p-5">
+<div class="flex flex-col gap-2 text-xl border-b border-white/10 p-5 max-lg:p-3 max-lg:border-none">
   <p class="font-bold ">{{ nameTxt }}</p>
-  <p class="italic">
+  <p class="italic max-sm:text-base">
     {{userData.user.name}}
   </p>
 </div>
 
-<div class="flex flex-col gap-2 text-xl p-5">
+<div class="flex flex-col gap-2 text-xl p-5 max-lg:p-3 max-lg:border-none">
   <p class="font-bold ">{{ emailTxt }}</p>
-  <p class="italic">
+  <p class="italic max-sm:text-base">
     {{userData.user.email}}
   </p>
 </div>

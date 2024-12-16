@@ -18,9 +18,9 @@ interface MenuItem {
 })
 
 export class SidenavComponent {
-  @Input() logoutText: string;
   @Output("logout") logout = new EventEmitter();
 
+  public logoutText: string = 'Sair';
   public userPoints: string = '100';
   public menuList: MenuItem[] = [];
   public addGameBtnTxt: string = "Meus Jogos";
@@ -48,5 +48,6 @@ export class SidenavComponent {
     return this.logout.emit()
   }
 
+  protected readonly window = window;
 }
 

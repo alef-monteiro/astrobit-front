@@ -1,13 +1,14 @@
 <app-default-dashboard-layout>
   <!-- Título da Página -->
-  <h1 class="text-start font-bold italic text-3xl w-full">
+  <h1 class="text-start font-bold italic text-3xl w-full max-lg:text-center">
     #{{ title.toUpperCase() }}
   </h1>
 
   <div class="grid grid-cols-2 items-center w-full p-10 gap-4
-                 rounded-xl bg-white/10 ">
+                 rounded-xl bg-white/10
+               max-lg:flex flex-col">
     <section class="flex flex-col items-center gap-5
-        border-white/10 border-r">
+        border-white/10 border-r max-lg:border-none">
 
       <app-profile-stats class="flex justify-center w-full">
       </app-profile-stats>
@@ -19,7 +20,7 @@
       <app-profile-data
         class="flex flex-col text-center gap-4 p-5">
       </app-profile-data>
-      <div class="flex flex-row items-center justify-around w-full">
+      <div class="flex flex-row items-center justify-around w-full max-md:flex-col gap-5">
         <button
           type="button"
           (click)="onNext()"

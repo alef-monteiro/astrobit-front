@@ -1,14 +1,14 @@
 <app-default-dashboard-layout>
-  <h1 class="text-start font-bold italic text-3xl w-full">
+  <h1 class="text-start font-bold italic text-3xl w-full max-lg:text-center">
     #{{ title.toUpperCase() }}
   </h1>
   <!--  <section class="flex flex-row flex-wrap gap-10 items-start justify-center">-->
-  <section class="w-full flex-col 2xl:3/4 3xl:w-2/3 mx-auto space-y-2 p-4 mb-8">
+  <section class="w-full flex-col 2xl:3/4 3xl:w-2/3 mx-auto space-y-2 p-4 mb-8 overflow-hidden">
 
     @for (data of paginatedCards(); track data.id) {
         <!-- Card -->
       <div class="flex flex-row w-full gap-6 p-5 bg-white/10 shadow-xl text-white rounded-xl
-      hover:bg-white/20">
+      hover:bg-white/20 overflow-hidden">
         <!-- Image Section (hidden on small screens) -->
         <div class="hidden md:flex">
             <figure>
@@ -23,12 +23,12 @@
             <!-- Title and Description -->
             <div class="flex flex-row gap-2">
               <h2 class="card-title font-black text-2xl hover:link">
-                {{data.game_title.length > 30 ? data.game_title.substring(0, 30) + '...' : data.game_title}}
+                {{data.game_title.length > 10 ? data.game_title.substring(0, 10) + '...' : data.game_title}}
               </h2>
 
             </div>
-            <div class=" text-sm md:text-base">
-              {{data.description.length > 100 ? data.description.substring(0, 100) + '...' : data.description}}
+            <div class=" text-sm md:text-base text-wrap">
+              {{data.description.length > 50 ? data.description.substring(0, 50) + '...' : data.description}}
             </div>
 
           </div>
