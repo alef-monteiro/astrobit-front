@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Rankuser} from '../../../shared/models/rankuser';
-import {URLS} from '../../../shared/urls';
-import {HttpClient} from '@angular/common/http';
-import {RankingService2} from '../../../shared/services/ranking2';
+import {RankUser} from '../../../shared/models/rankuser';
+import {UserDataService} from '../../../shared/services/user-data.service';
 
 @Component({
   selector: 'app-default-ranking-layout',
@@ -11,38 +9,32 @@ import {RankingService2} from '../../../shared/services/ranking2';
   templateUrl: './default-ranking-layout.component.html',
   styleUrl: './default-ranking-layout.component.scss'
 })
-export class DefaultRankingLayoutComponent extends RankingService2<Rankuser> implements OnInit {
+export class DefaultRankingLayoutComponent  implements OnInit {
 
-  public dataSource: Rankuser[] = [];
-  public positionTitle = 'POSIÇÃO'
+  public rankList: RankUser[] = [];
+
+  public positionTitle = 'posição'
   public usernameTitle = 'APELIDO'
   public scoreTitle = 'PONTUAÇÃO'
 
-  constructor(http: HttpClient) {
-    super(http, URLS.RANKUSER);
-  }
-
-
-  // constructor(private rankingService: RankingService<Rankuser>,) {}
+  constructor(private userService: UserDataService) {}
 
   ngOnInit() {
-    this.search()
+    this.onSearch()
   }
 
-  public search(): void {
-    this.getAll<Rankuser>(URLS.RANKUSER).subscribe({
-      next: (data: Rankuser[]) => {
-        this.dataSource = data;
-        console.log(data);
-
+  public onSearch(): void {
+    this.userService.getRankData().subscribe({
+      next: (data: RankUser[]) => {
+        this.rankList = data;
       },
-      error: (e: any) => {
-        console.error('Error loading ranking', e);
+      error: (error: any) => {
+        console.error('Error loading ranking', error);
       }
     })
   }
 
   get sortedData() {
-    return this.dataSource.slice().sort((a, b) => b.score - a.score);
+    return this.rankList.slice().sort((a, b) => b.score - a.score);
   }
 }

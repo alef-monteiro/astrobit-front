@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {URLS} from '../../../../shared/urls';
-import {Rankuser} from '../../../../shared/models/rankuser';
+import {RankUser} from '../../../../shared/models/rankuser';
 import {UserDataService} from '../../../../shared/services/user-data.service';
 
 @Component({
@@ -14,28 +13,25 @@ import {UserDataService} from '../../../../shared/services/user-data.service';
 })
 export class RankingBoxComponent implements OnInit {
 
-  public dataSource: Rankuser[] = []
-  public userPosition: number | null = null; // Posição do usuário
-  public username: string = ''; // Nome de usuário atual
+  public dataSource: RankUser[] = []
+  public userPosition: number | null = null;
+  public username: string = '';
   public userId: number | null = null;
 
 
-  constructor(public userService: UserDataService,) {
-
-  }
+  constructor(public userService: UserDataService,) {}
 
   ngOnInit() {
     this.onSearch()
   }
 
   public onSearch(): void {
-    this.userService.getAll<Rankuser>(URLS.RANKUSER).subscribe({
-      next: (data: Rankuser[]) => {
+    this.userService.getRankData().subscribe({
+      next: (data: RankUser[]) => {
         this.dataSource = data;
-        console.log(data);
       },
-      error: (e: any) => {
-        console.error('Error loading ranking', e);
+      error: (error: any) => {
+        console.error('Error loading ranking', error);
       }
     })
   }

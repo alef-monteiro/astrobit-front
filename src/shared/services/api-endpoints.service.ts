@@ -18,7 +18,7 @@ export class ApiEndpointsService {
     getGameCardById: (id: number) => this.baseUrl + URLS.GAME_CARD + id + '/',
 
     // Ranking
-    rankUsers: `${this.baseUrl}rankusers/`,
+    rankUsers: URLS.BASE + URLS.RANKUSER,
   };
 
   constructor() {

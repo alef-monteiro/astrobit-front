@@ -4,7 +4,7 @@ import {ApiEndpointsService} from './api-endpoints.service';
 import {Observable, tap} from 'rxjs';
 import {jwtDecode} from 'jwt-decode';
 import {User} from '../models/user';
-import {URLS} from '../urls';
+import {RankUser} from '../models/rankuser';
 
 interface LoginResponse {
   access: string;
@@ -118,8 +118,11 @@ export class UserDataService {
     console.log('Usuário desconectado.');
   }
 
-  public getAll<T>(route: string): Observable<T[]> {
-    const url = URLS.BASE;
-    return this.httpClient.get<T[]>(url, {headers: this.headers, withCredentials: true});
+  public getRankData(): Observable<RankUser[]> {
+   return this.httpClient.get<RankUser[]>(
+     this.apiEndPoints.endpoints.rankUsers,
+     {headers: this.headers, withCredentials: true}
+   )
   }
+
 }
