@@ -1,25 +1,21 @@
 <main class="relative z-10 overflow-hidden grid grid-cols-10 gap-10 justify-center min-h-screen p-10
-        bg-gradient-to-br from-dark-blue to-pale-blue  text-white
-        max-xl:grid-cols-8 max-lg:flex flex-col max-lg:justify-start max-lg:gap-3
-">
-
-<!--  max-xl:grid-cols-8 max-lg:grid-rows-6 max-md:grid-rows-4 max-sm:grid-rows-3-->
+        bg-gradient-to-br from-dark-blue to-pale-blue text-white
+        max-xl:grid-cols-8 max-lg:flex flex-col max-lg:justify-start max-lg:gap-3">
 
   <!-- Sidenav -->
   <app-sidenav
     (logout)="onLogout()"
-    class="col-span-2 py-0 rounded-lg"
-  >
+    class="col-span-2 py-0 rounded-lg shadow-md backdrop-blur-md">
   </app-sidenav>
 
   <!-- Content (Cards) -->
   <div class="col-span-6 flex flex-col gap-10 items-center pt-5">
-    <ng-content>
-    </ng-content>
+    <ng-content></ng-content>
   </div>
 
-  <!-- Ranking-status -->
-<!--  <app-ranking-box class="col-span-2">-->
-<!--  </app-ranking-box>-->
+  <!-- Future Extension for Ranking -->
+  <!-- Uncomment to use Ranking box -->
+  <!-- <app-ranking-box class="col-span-2"> -->
+  <!-- </app-ranking-box> -->
 
 </main>
