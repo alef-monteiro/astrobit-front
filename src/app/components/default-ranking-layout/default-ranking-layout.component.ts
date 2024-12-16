@@ -9,22 +9,19 @@ import {UserDataService} from '../../../shared/services/user-data.service';
   templateUrl: './default-ranking-layout.component.html',
   styleUrl: './default-ranking-layout.component.scss'
 })
-export class DefaultRankingLayoutComponent  implements OnInit {
-
+export class DefaultRankingLayoutComponent implements OnInit {
   public rankList: RankUser[] = [];
 
-  public positionTitle = 'posição'
-  public usernameTitle = 'APELIDO'
-  public scoreTitle = 'PONTUAÇÃO'
-  public noDataTxt: string = "Sem dados para exibir";
+  public positionTitle = 'posição';
+  public usernameTitle = 'APELIDO';
+  public scoreTitle = 'PONTUAÇÃO';
+  public noDataTxt: string = 'Sem dados para exibir';
 
   constructor(private userService: UserDataService) {}
 
   ngOnInit() {
     this.onSearch();
   }
-
-
 
   public onSearch(): void {
     this.userService.getRankData().subscribe({
@@ -33,11 +30,14 @@ export class DefaultRankingLayoutComponent  implements OnInit {
       },
       error: (error: any) => {
         console.error('Error loading ranking', error);
-      }
-    })
+      },
+    });
   }
 
-  get sortedData() {
-    return this.rankList.slice().sort((a, b) => b.score - a.score);
+  // Retorna os 10 primeiros itens ordenados por pontuação
+  get sortedData(): RankUser[] {
+    return this.rankList.slice().sort((a, b) => b.score - a.score).slice(0, 10);
   }
 }
+
+

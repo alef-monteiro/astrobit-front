@@ -1,26 +1,27 @@
 <table class="gap-2 w-full rounded-xl">
   <!-- Cabeçalho da Tabela -->
   <thead class="w-full border-white/10 border-b-2">
-  <tr class="flex flex-row w-full justify-around text-lg text-center ">
-    <th class="px-6 py-3">{{ positionTitle.toUpperCase() }}</th>
-    <th class="px-6 py-3">{{ usernameTitle.toUpperCase() }}</th>
-    <th class="px-6 py-3">{{ scoreTitle.toUpperCase() }}</th>
+  <tr class="flex flex-row w-full justify-around text-lg text-center">
+    <th class="flex-1 px-6 py-3">{{ positionTitle.toUpperCase() }}</th>
+    <th class="flex-1 px-6 py-3">{{ usernameTitle.toUpperCase() }}</th>
+    <th class="flex-1 px-6 py-3">{{ scoreTitle.toUpperCase() }}</th>
   </tr>
   </thead>
 
   <!-- Corpo da Tabela -->
-  <tbody class="w-full h-full overflow-y-scroll max-h-96 ">
+  <tbody class="w-full h-full overflow-y-scroll max-h-96">
     @for (item of sortedData; track item.id; let i = $index) {
-      <tr class="flex flex-row rounded-lg px-6 py-3 gap-x-96 font-bold text-xl">
-        <td class="px-6 py-3">{{ i + 1 + '°' }}</td>
-        <td class="px-6 py-3">{{ item.username }}</td>
-        <td class="px-6 py-3">{{ '#' + item.score }}</td>
+      <tr class="flex flex-row w-full rounded-lg px-6 py-3 gap-x-4 font-bold text-xl">
+        <td class="flex-1 text-center">{{ i + 1 + '°' }}</td>
+        <td class="flex-1 text-center">{{ '#' + item.username }}</td>
+        <td class="flex-1 text-center">{{ item.score }}</td>
       </tr>
     } @empty {
-      <div class="text-center text-xl font-bold mt-20">
-        {{ noDataTxt }}
-      </div>
+      <tr>
+        <td colspan="3" class="text-center text-xl font-bold mt-20 py-6">
+          {{ noDataTxt }}
+        </td>
+      </tr>
     }
   </tbody>
 </table>
-
