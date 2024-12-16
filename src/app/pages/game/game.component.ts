@@ -27,7 +27,9 @@ export class GameComponent implements OnInit {
   }
 
   public onNavigate() {
-    this.router.navigate(['game']).then();
+    if(confirm('Deseja realmente cancelar?')) {
+      this.router.navigate(['game']).then();
+    }
   }
 
   ngOnInit() {

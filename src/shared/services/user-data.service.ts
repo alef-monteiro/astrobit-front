@@ -1,10 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ApiEndpointsService} from './api-endpoints.service';
-import {Observable, tap} from 'rxjs';
+import { tap} from 'rxjs';
 import {jwtDecode} from 'jwt-decode';
 import {User} from '../models/user';
-import {RankUser} from '../models/rankuser';
 
 interface LoginResponse {
   access: string;
@@ -89,13 +88,13 @@ export class UserDataService {
   }
 
 
-  public updateProfile(name: string, username: string, email: string) {
+public updateProfile(id: number, data: User) {
     return this.httpClient.put(
-      this.apiEndPoints.endpoints.usersProfile,
-      {name, username, email},
+      this.apiEndPoints.endpoints.usersProfileById(id),
+      data,
       {headers: this.headers, withCredentials: true}
     )
-  }
+}
 
   public deleteProfile() {
     return this.httpClient.delete(
@@ -106,7 +105,7 @@ export class UserDataService {
 
   public getUserById(id: number) {
     return this.httpClient.get(
-      this.apiEndPoints.endpoints.usersProfile + id,
+      this.apiEndPoints.endpoints.usersProfileById(id),
       {headers: this.headers, withCredentials: true}
     )
   }
@@ -118,11 +117,29 @@ export class UserDataService {
     console.log('Usuário desconectado.');
   }
 
-  public getRankData(): Observable<RankUser[]> {
-   return this.httpClient.get<RankUser[]>(
-     this.apiEndPoints.endpoints.rankUsers,
+  // Rank
+  private position: number | null = null;
+
+  public getRankData() {
+   return this.httpClient.get(
+     this.apiEndPoints.endpoints.getRankUsers,
      {headers: this.headers, withCredentials: true}
    )
+  }
+
+  public getRankUsersById(id: number) {
+    return this.httpClient.get(
+      this.apiEndPoints.endpoints.getRankUsersById(id),
+      {headers: this.headers, withCredentials: true}
+    )
+  }
+
+  public setPosition(position: number): void {
+    this.position = position;
+  }
+
+  public getPosition(): number | null {
+    return this.position;
   }
 
 }

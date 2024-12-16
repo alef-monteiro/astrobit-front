@@ -9,18 +9,7 @@ bg-gray-900 bg-opacity-50 z-50">
 
     <div>
       <form [formGroup]="updateUSerForm">
-        <app-primary-input
-          formControlName="name"
-          type="text"
-          label="Name"
-          placeholder="Nome">
-        </app-primary-input>
-        @if (updateUSerForm.get('name')?.hasError('minlength')) {
-          <div>
-            <small class="text-start text-xs text-light-salmon">
-              Mínimo de 3 caracteres.</small>
-          </div>
-        }
+
         <app-primary-input
           formControlName="username"
           type="text"
@@ -34,6 +23,20 @@ bg-gray-900 bg-opacity-50 z-50">
             </small>
           </div>
         }
+
+        <app-primary-input
+          formControlName="name"
+          type="text"
+          label="Name"
+          placeholder="Nome">
+        </app-primary-input>
+        @if (updateUSerForm.get('name')?.hasError('minlength')) {
+          <div>
+            <small class="text-start text-xs text-light-salmon">
+              Mínimo de 3 caracteres.</small>
+          </div>
+        }
+
         <app-primary-input
           formControlName="email"
           type="email"

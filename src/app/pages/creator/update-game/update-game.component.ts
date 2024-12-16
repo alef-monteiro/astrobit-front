@@ -4,6 +4,7 @@ import {GameCardDataService} from '../../../../shared/services/game-card-data.se
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {PrimaryInputComponent} from '../../../components/primary-input/primary-input.component';
 import {ToastrService} from 'ngx-toastr';
+import {UserDataService} from '../../../../shared/services/user-data.service';
 
 @Component({
   selector: 'app-update-game',
@@ -31,10 +32,14 @@ export class UpdateGameComponent implements OnInit {
     private serviceCard: GameCardDataService,
     public fb: FormBuilder,
     private toastr: ToastrService,
+    private userService: UserDataService,
   ) {
     this.updateForm = fb.group({
-      game_title: ['', [Validators.required, Validators.minLength(3)]], // Ajustado
-      description: ['', [Validators.required, Validators.minLength(10)]], // Ajustado
+      game_title: ['', [Validators.required, Validators.minLength(3)]],
+      description: ['', [Validators.required, Validators.minLength(10)]],
+      author: this.userService.user.id,
+      link: this.object.link,
+      active: this.object.active,
     });
   }
 
@@ -68,7 +73,7 @@ export class UpdateGameComponent implements OnInit {
   onSubmit() {
     if (this.updateForm.valid && confirm('Deseja realmente salvar?')) {
       const data = this.updateForm.value;
-      if (this.id) {
+
         this.serviceCard.updateGameCard(this.id, data).subscribe({
           next: (response) => {
             console.log('Next:', response);
@@ -81,11 +86,7 @@ export class UpdateGameComponent implements OnInit {
             this.closeUpdateWindow.emit(true);
           },
         });
-      } else {
-          console.log('Erro ao atualizar');
-        this.closeUpdateWindow.emit(true);
 
-      }
     } else {
       console.log('Formulário inválido');
 
