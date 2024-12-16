@@ -16,13 +16,14 @@ import {Card} from '../../../shared/models/card';
 export class HomepageComponent implements OnInit {
   public cardList: Card[] = [];
   public currentPage: number = 1;
-  public itemsPerPage: number = 6;
+  public itemsPerPage: number = 5;
   public totalPages: number = 0;
 
   public title: string = 'GAMES';
   public noGamesTxt: string = "Nenhum jogo cadastrado.";
 
   public URLimage: string = 'https://github.com/alef-monteiro/astrobit-front/blob/develop/src/assets/illustration-game-card.png?raw=true';
+  public primaryBtnText: string = "Go!";
 
   constructor(
     private route: Router,
@@ -62,8 +63,6 @@ export class HomepageComponent implements OnInit {
       this.currentPage--;
     }
   }
-
-  protected readonly URL = URL;
 
 }
 
