@@ -1,36 +1,26 @@
 import {Component} from '@angular/core';
-import {
-    DefaultAvatarRankingLayoutComponent
-} from "../../components/default-ranking-layout/default-avatar-ranking-layout/default-avatar-ranking-layout.component";
-import {SidenavComponent} from "../../components/default-dashboard-layout/sidenav/sidenav.component";
-import {Router} from '@angular/router';
-import {UserDataService} from '../../../shared/services/user-data.service';
-import {ToastrService} from 'ngx-toastr';
+
 import {DefaultRankingLayoutComponent} from '../../components/default-ranking-layout/default-ranking-layout.component';
+import {
+  DefaultDashboardLayoutComponent
+} from '../../components/default-dashboard-layout/default-dashboard-layout.component';
 
 @Component({
   selector: 'app-ranking',
   standalone: true,
   imports: [
-    DefaultAvatarRankingLayoutComponent,
-    SidenavComponent,
     DefaultRankingLayoutComponent,
+    DefaultDashboardLayoutComponent,
   ],
   templateUrl: './ranking.component.html',
   styleUrl: './ranking.component.scss'
 })
 export class RankingComponent{
-  public logoutText: string = 'Logout';
+  public title: string = "Ranking";
+  public loading: boolean = false;
 
-  constructor(private router: Router,
-              private loginService: UserDataService,
-              private toastr: ToastrService) {
+  public onUpdate() {
+    window.location.reload();
+    this.loading = true;
   }
-
-  onLogout() {
-    this.toastr.info(`See you later, ${this.loginService.user.name}`);
-    return this.loginService.logout(),
-      this.router.navigate(['login']);
-  }
-
 }

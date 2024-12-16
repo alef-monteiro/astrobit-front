@@ -1,13 +1,13 @@
 <div class="flex flex-col items-center content-evenly max-w-72 w-full">
     <div class="max-h-70 w-full">
       <div><h1 class="flex justify-center text-2xl font-black tracking-wide">RANKING</h1></div>
-      @for(item of sortedData; track item.id){
+      @for(item of sortedData; track item.player; let idx = $index){
       <div  class="flex flex-row rounded-lg
                       px-6 py-3 gap-x-1 font-bold text-xl uppercase
                        shadow-inner m-3
                       bg-[#d9d9d930]  hover:bg-[#d9d9d950] ">
-        <td class="px-6 py-3">{{item.id + 1 + '°'}}</td>
-        <td class="px-6 py-3">{{item.username}}</td>
+        <td class="px-6 py-3">{{idx + 1 + '°'}}</td>
+        <td class="px-6 py-3">{{item.player}}</td>
       </div>
       }
         <hr class="w-full border-t border-white my-6" />

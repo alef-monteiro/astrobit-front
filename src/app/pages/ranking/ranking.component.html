@@ -1,20 +1,27 @@
-<main
-  class="flex flex-row grid-rows-3 md:grid-cols-3 gap-4 justify-between items-start min-h-screen p-10 bg-gradient-to-b from-dark-blue to-pale-blue text-white"
->
-  <!-- Sidenav -->
-  <div class="flex flex-1 justify-start max-w-20">
-    <app-sidenav
-      [logoutText]="logoutText"
-      (logout)="onLogout()"
-      class="flex flex-col p-5 rounded-lg shadow-lg "
-    ></app-sidenav>
+<app-default-dashboard-layout xmlns="http://www.w3.org/1999/html">
+  <section class="flex flex-row items-center w-full gap-4">
+    <h1 class="text-start font-bold italic text-3xl w-full max-lg:text-center">
+      #{{ title.toUpperCase() }}
+    </h1>
 
-  </div>
-  <div class="flex flex-col items-center self-center place-content-center pr-10">
-    <app-default-avatar-ranking-layout class="mb-6"></app-default-avatar-ranking-layout>
-    <!-- Ranking -->
-    <div class="w-full">
-      <app-default-ranking-layout class="w-full"></app-default-ranking-layout>
+    <button
+      (click)="onUpdate()"
+      class="flex flex-row w-fit items-center justify-center
+          rounded-full px-2 py-1 font-bold text-xl last: mb-0
+          bg-orange-salmon hover:bg-cool-yellow active:bg-light-salmon ">
+      <img src="assets/nav-icons/refresh.svg" alt="refresh-icon">
+    </button>
+  </section>
+  <app-default-ranking-layout class="w-full h-full p-2 bg-white/10 rounded-xl max-sm:overflow-x-scroll">
+  </app-default-ranking-layout>
+</app-default-dashboard-layout>
+
+
+@if (loading) {
+  <div class="fixed inset-0 z-50 flex items-center justify-center">
+    <!-- Fundo borrado -->
+    <div class="absolute inset-0 backdrop-blur-md bg-black/30">
     </div>
+    <!-- Ícone de loading -->
   </div>
-</main>
+}

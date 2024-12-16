@@ -1,51 +1,45 @@
 import {Component, OnInit} from '@angular/core';
-import {NgForOf} from "@angular/common";
-import {Score} from '../../../shared/models/rankuser';
-import {HttpClient} from '@angular/common/http';
-import {URLS} from '../../../shared/urls';
-import {Observable} from 'rxjs';
+import {RankUser} from '../../../shared/models/rankuser';
+import {UserDataService} from '../../../shared/services/user-data.service';
 
 @Component({
   selector: 'app-default-ranking-layout',
   standalone: true,
-    imports: [
-        NgForOf
-    ],
+    imports: [],
   templateUrl: './default-ranking-layout.component.html',
   styleUrl: './default-ranking-layout.component.scss'
 })
 export class DefaultRankingLayoutComponent implements OnInit {
+  public rankList: RankUser[] = [];
 
-  public dataSource: Score[] = [];
-  public username: string = 'a';
+  public positionTitle = 'posição';
+  public usernameTitle = 'APELIDO';
+  public scoreTitle = 'PONTUAÇÃO';
+  public noDataTxt: string = 'Sem dados para exibir';
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private userService: UserDataService) {}
 
   ngOnInit() {
-    this.search()
+    this.onSearch();
   }
 
-  public search(): void {
-    this.getAll<Score>(URLS.SCORE).subscribe({
-      next: (data: Score[]) => {
-        this.dataSource = data;
+  public onSearch(): void {
+    this.userService.getRankData().subscribe({
+      next: (data: RankUser[]) => {
         console.log(data);
-
+        this.rankList = data;
       },
-      error: (e: any) => {
-        console.error('Error loading ranking', e);
-      }
-    })
+      error: (error: any) => {
+        console.log(error);
+        console.error('Error loading ranking', error);
+      },
+    });
   }
 
-  public getAll<T>(route: string): Observable<T[]> {
-    const url = URLS.BASE + route;
-    return this.http.get<T[]>(url)
+  // Retorna os 10 primeiros itens ordenados por pontuação
+  get sortedData(): RankUser[] {
+    return this.rankList.slice().sort((a, b) => b.score - a.score).slice(0, 10);
   }
-
-  get sortedData() {
-    return this.dataSource.slice().sort((a, b) => b.score - a.score);
-  }
-
 }
+
+

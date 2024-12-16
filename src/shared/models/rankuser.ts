@@ -1,6 +1,6 @@
-export interface Score {
-  id: number;
-  username: string;
+import {ModelBase} from './model-base';
+
+export interface RankUser extends ModelBase{
+  player: string;
   score: number;
-  photo_user: string
 }

@@ -1,11 +1,14 @@
 <main class="relative z-10 overflow-hidden grid grid-cols-10 gap-10 justify-center min-h-screen p-10
-        bg-gradient-to-br from-dark-blue to-pale-blue  text-white">
+        bg-gradient-to-br from-dark-blue to-pale-blue  text-white
+        max-xl:grid-cols-8 max-lg:flex flex-col max-lg:justify-start max-lg:gap-3
+">
+
+<!--  max-xl:grid-cols-8 max-lg:grid-rows-6 max-md:grid-rows-4 max-sm:grid-rows-3-->
 
   <!-- Sidenav -->
   <app-sidenav
-    [logoutText]="logoutText"
     (logout)="onLogout()"
-    class="col-span-2 p-5 py-0 rounded-lg "
+    class="col-span-2 py-0 rounded-lg"
   >
   </app-sidenav>
 

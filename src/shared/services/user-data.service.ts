@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ApiEndpointsService} from './api-endpoints.service';
-import {tap} from 'rxjs';
+import {Observable, tap} from 'rxjs';
 import {jwtDecode} from 'jwt-decode';
 import {User} from '../models/user';
+import {RankUser} from '../models/rankuser';
 
 interface LoginResponse {
   access: string;
@@ -17,7 +18,7 @@ export class UserDataService {
 
   constructor(
     private httpClient: HttpClient,
-    private apiEndPoints: ApiEndpointsService) {
+    private apiEndPoints: ApiEndpointsService,) {
   }
 
   get headers(): HttpHeaders {
@@ -116,4 +117,12 @@ export class UserDataService {
     sessionStorage.removeItem('refresh');
     console.log('Usuário desconectado.');
   }
+
+  public getRankData(): Observable<RankUser[]> {
+   return this.httpClient.get<RankUser[]>(
+     this.apiEndPoints.endpoints.rankUsers,
+     {headers: this.headers, withCredentials: true}
+   )
+  }
+
 }

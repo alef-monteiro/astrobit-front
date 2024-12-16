@@ -38,7 +38,7 @@
       </div>
     </section>
 
-    <form class="w-1/3" [formGroup]="registerGameForm">
+    <form class="w-1/3 max-lg:w-fit" [formGroup]="registerGameForm">
 
       <app-primary-input
         formControlName="game_title"
@@ -76,12 +76,12 @@
       >
       </app-primary-input>
 
-      <div class="flex flex-row items-center justify-around w-full">
+      <div class="flex flex-row items-center justify-around w-full ">
         <button
           [disabled]="!registerGameForm.valid"
           (click)="onSubmit()"
           type="submit"
-          class="w-1/3 h-10 rounded-lg text-center font-black italic
+          class="w-fit px-2 py-1 h-10 rounded-lg text-center font-black italic
           md:text-base sm:text-xs text-xs
           bg-orange-salmon hover:bg-light-salmon active:bg-cool-yellow disabled:bg-blue-950">
           {{ primaryBtnText.toUpperCase() }}

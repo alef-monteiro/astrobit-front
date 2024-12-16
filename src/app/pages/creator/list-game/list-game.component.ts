@@ -12,7 +12,7 @@ import {CardInfoComponent} from './card-info/card-info.component';
   standalone: true,
   imports: [UpdateGameComponent, CardInfoComponent],
   templateUrl: './list-game.component.html',
-  styleUrl: './list-game.component.scss',
+  styleUrl: 'list-game.component.scss',
 })
 export class ListGameComponent implements OnInit {
   @Output('cardID') cardId: number;

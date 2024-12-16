@@ -1,8 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
-import {URLS} from '../../../../shared/urls';
-import {HttpClient} from '@angular/common/http';
-import {Score} from '../../../../shared/models/rankuser';
+import {RankUser} from '../../../../shared/models/rankuser';
 import {UserDataService} from '../../../../shared/services/user-data.service';
 
 @Component({
@@ -16,40 +13,27 @@ import {UserDataService} from '../../../../shared/services/user-data.service';
 })
 export class RankingBoxComponent implements OnInit {
 
-  public dataSource: Score[] = []
-  public userPosition: number | null = null; // Posição do usuário
-  public username: string = ''; // Nome de usuário atual
+  public dataSource: RankUser[] = []
+  public userPosition: number | null = null;
+  public username: string = '';
   public userId: number | null = null;
 
-  constructor(private http: HttpClient,
-              public loginService: UserDataService) {
-  }
+
+  constructor(public userService: UserDataService,) {}
 
   ngOnInit() {
-    this.search()
-    if (this.loginService.user && this.loginService.user.id) {
-      this.userId = this.loginService.user.id;
-    } else {
-      console.error('Usuário ou username não definido no loginService');
-    }
+    this.onSearch()
   }
 
-  public search(): void {
-    this.getAll<Score>(URLS.SCORE).subscribe({
-      next: (data: Score[]) => {
+  public onSearch(): void {
+    this.userService.getRankData().subscribe({
+      next: (data: RankUser[]) => {
         this.dataSource = data;
-        this.calculateUserPosition();
-        console.log(data);
       },
-      error: (e: any) => {
-        console.error('Error loading ranking', e);
+      error: (error: any) => {
+        console.error('Error loading ranking', error);
       }
     })
-  }
-
-  public getAll<T>(route: string): Observable<T[]> {
-    const url = URLS.BASE + route;
-    return this.http.get<T[]>(url)
   }
 
   get sortedData() {
@@ -57,22 +41,5 @@ export class RankingBoxComponent implements OnInit {
       .slice()
       .sort((a, b) => b.score - a.score)
       .slice(0, 3);
-  }
-
-  get sortedDataEverybody() {
-    return this.dataSource.slice().sort((a, b) => b.score - a.score);
-  }
-
-  private calculateUserPosition(): void {
-    if (!this.userId) {
-      console.error('ID do usuário não está definido.');
-      return;
-    }
-
-    const sorted = this.sortedDataEverybody;
-
-    // Encontrar a posição pelo ID do usuário
-    const position = sorted.findIndex((item) => item.id === this.userId);
-    this.userPosition = position >= 0 ? position + 1 : null; // Ajusta para índice humano (1-based)
   }
 }
