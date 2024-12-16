@@ -7,14 +7,19 @@
 
     @for (data of paginatedCards(); track data.id) {
         <!-- Card -->
-      <div class="flex flex-row w-full gap-6 p-5 bg-white/10 shadow-xl text-white rounded-xl
-      hover:bg-white/20 overflow-hidden">
+      <div
+        class="flex flex-row w-full gap-6 p-5 bg-white/10 shadow-xl text-white rounded-xl hover:bg-white/20 overflow-hidden cursor-pointer"
+        (click)="onNavigate('game/' + data.id)">
+
         <!-- Image Section (hidden on small screens) -->
         <div class="hidden md:flex">
-            <figure>
-              <img width="200" [src]=URLimage alt="{{ data.game_title }}-illustration"
-                   class="rounded-lg hover:scale-105 transition-transform transform">
-            </figure>
+          <figure>
+            <img
+              width="200"
+              [src]="URLimage"
+              alt="{{ data.game_title }}-illustration"
+              class="rounded-lg hover:scale-105 transition-transform transform">
+          </figure>
         </div>
 
         <!-- Text and Button Section -->
@@ -22,37 +27,30 @@
           <div class="flex flex-col w-full">
             <!-- Title and Description -->
             <div class="flex flex-row gap-2">
-              <h2 class="card-title font-black text-2xl hover:link">
-                {{data.game_title.length > 10 ? data.game_title.substring(0, 10) + '...' : data.game_title}}
+              <h2 class="card-title font-black text-2xl hover:link break-words">
+                {{ data.game_title.length > 10 ? data.game_title.substring(0, 10) + '...' : data.game_title }}
               </h2>
-
             </div>
-            <div class=" text-sm md:text-base text-wrap">
-              {{data.description.length > 50 ? data.description.substring(0, 50) + '...' : data.description}}
+            <div class="text-sm md:text-base break-words">
+              {{ data.description.length > 50 ? data.description.substring(0, 50) + '...' : data.description }}
             </div>
-
           </div>
 
           <!-- Button Section -->
           <div class="flex min-w-fit justify-end pt-2 items-end">
-            <div class="flex">
-              <button (click)="onNavigate('game/' + data.id)"
-                 class="flex items-center flex-row text-white
-                 bg-primary-700 hover:bg-primary-800 focus:ring-4
-                 focus:ring-primary-300 font-bold rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5
-                 focus:outline-none">
-                <!-- Arrow Icon -->
-                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" class="iconify iconify--lucide"
-                     width="22" height="22" viewBox="0 0 24 24">
-                  <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" d="m6 17l5-5l-5-5m7 10l5-5l-5-5"></path>
-                </svg>
-                {{ primaryBtnText.toUpperCase() }}
-              </button>
-            </div>
+            <button
+              (click)="onNavigate('game/' + data.id); $event.stopPropagation()"
+              class="flex items-center flex-row text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-bold rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 focus:outline-none">
+              <!-- Arrow Icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" class="iconify iconify--lucide" width="22" height="22" viewBox="0 0 24 24">
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6 17l5-5l-5-5m7 10l5-5l-5-5"></path>
+              </svg>
+              {{ primaryBtnText.toUpperCase() }}
+            </button>
           </div>
         </div>
       </div>
+
 
     } @empty {
       <h1 class="text-center text-xl font-bold">
@@ -84,7 +82,6 @@
       class="p-2 rounded bg-white/10 text-black
            hover:bg-gradient-to-t from-orange-salmon/80 to-light-salmon/80
            active:bg-cool-yellow transition-colors duration-200 disabled:opacity-50">
-
     </button>
   </nav>
 
