@@ -14,7 +14,7 @@ module.exports = {
         "primary-black": "#101010",
         "secondary-black": "#171717",
         "cool-green": "#1AEA3D",
-      }
+      },
     },
   },
   plugins: [],

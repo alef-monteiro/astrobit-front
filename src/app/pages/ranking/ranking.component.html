@@ -1,6 +1,6 @@
 <app-default-dashboard-layout xmlns="http://www.w3.org/1999/html">
   <section class="flex flex-row items-center w-full gap-4">
-    <h1 class="text-start font-bold italic text-3xl w-full">
+    <h1 class="text-start font-bold italic text-3xl w-full max-lg:text-center">
       #{{ title.toUpperCase() }}
     </h1>
 
@@ -12,7 +12,7 @@
       <img src="assets/nav-icons/refresh.svg" alt="refresh-icon">
     </button>
   </section>
-  <app-default-ranking-layout class="w-full h-full p-2 bg-white/10 rounded-xl">
+  <app-default-ranking-layout class="w-full h-full p-2 bg-white/10 rounded-xl max-sm:overflow-x-scroll">
   </app-default-ranking-layout>
 </app-default-dashboard-layout>
 
