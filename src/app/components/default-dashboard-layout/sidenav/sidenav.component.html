@@ -1,63 +1,52 @@
-<section
-  class="flex flex-col justify-items-center w-fit gap-8
-  text-white rounded-xl
-max-2xl:block max-lg:bg-white/10 py-6 max-xl:flex-row max-xl:w-full">
+<section class="flex flex-col justify-items-center w-fit gap-8
+text-white rounded-xl p-6 max-2xl:block max-lg:bg-white/10 max-lg:w-full">
   <!-- Logo Section -->
   <a (click)="onNavigate('game')" class="flex flex-col items-center cursor-pointer">
     <img src="assets/logo.svg" class="p-2 max-lg:hidden" alt="logo">
   </a>
 
   <!-- User Info Section -->
-  <div class="flex flex-col w-full items-center gap-3 backdrop-blur-xl rounded-lg p-2
-  max-lg:hidden ">
+  <div class="flex flex-col w-full items-center gap-3 backdrop-blur-xl bg-white/10 rounded-lg p-2 max-lg:hidden">
     <div class="overflow-hidden rounded-full w-32 h-32">
-      <img class="w-full" src="assets/user-profile2.png" alt="illustration-game-card">
+      <img class="w-full" src="assets/user-profile2.png" alt="user profile">
     </div>
 
     <div>
-      <h2 class="text-center font-extrabold text-xl">
-        #{{ loginService.user?.username.toUpperCase() }}
-      </h2>
-      <p class="text-center font-regular text-xl text-cool-yellow font-bold">
-        {{ userPoints }}
-      </p>
+      <h2 class="text-center font-extrabold text-xl">#{{ loginService.user?.username.toUpperCase() }}</h2>
+      <p class="text-center font-bold text-xl text-cool-yellow">{{ userPoints }}</p>
     </div>
   </div>
 
   <!-- Menu Section -->
-  <div class="flex flex-col w-full items-center justify-center px-3 gap-5 mb-5
-  max-lg:p-0 max-lg:flex-row max-sm:gap-2 overflow-x-scroll max-sm:hidden-scrollbar">
-    @for (menu of menuList; track menu.isCurrent) {
-      <button
-        (click)="changeMenu(menu)"
-        class="flex flex-row w-2/3 items-center justify-start max-lg:justify-center max-sm:w-fit
-          rounded-lg px-2 py-2 gap-5 font-bold text-xl mb-0
-          bg-transparent hover:bg-orange-salmon active:bg-cool-yellow
-
-          ">
-        <div class="flex flex-row items-center gap-2 ">
-          <img [src]="menu.icon" alt="{{menu.title}}-icon" class="min-h-8 min-w-8">
-
-          <p class="font-regular text-xl max-md:hidden lg:text-lg md:text-base sm:text-xs">{{ menu.title }}</p>
-        </div>
-      </button>
+  <div class="flex flex-col w-full items-center justify-center px-3 gap-5 mb-5 max-lg:p-0 max-lg:flex-row max-sm:gap-2 overflow-x-auto max-sm:hidden-scrollbar">
+    @for(menu of menuList; track menu.title;) {
+      <ng-container>
+        <button
+          (click)="changeMenu(menu)"
+          class="flex flex-row w-2/3 items-center justify-start max-lg:justify-center max-sm:w-fit rounded-lg px-2 py-2 gap-5 font-bold text-xl bg-transparent hover:bg-orange-salmon active:bg-cool-yellow">
+          <div class="flex flex-row items-center gap-2">
+            <img [src]="menu.icon" alt="{{menu.title}}-icon" class="min-h-8 min-w-8">
+            <p class="font-regular text-xl max-md:hidden lg:text-lg md:text-base sm:text-xs">{{ menu.title }}</p>
+          </div>
+        </button>
+      </ng-container>
     }
-    <!--  Add button  -->
+
+    <!-- Add Game Button -->
     <button
       (click)="onNavigate('creator')"
       class="flex flex-row w-fit items-center justify-start
           rounded-full px-5 py-2 font-bold text-xl
           bg-orange-salmon hover:bg-cool-yellow active:bg-light-salmon sm:justify max-lg:bg-transparent">
-      <p class="font-regular text-xl block max-lg:hidden lg:text-lg md:text-base sm:text-xs">{{ addGameBtnTxt }}</p>
-      <img src="assets/nav-icons/add.svg" alt="add-icon" class="max-2xl:hidden max-lg:block min-w-8 min-h-8">
+      <p class="font-regular text-xl block max-lg:hidden lg:text-lg md:text-base sm:text-xs ">{{ addGameBtnTxt }}</p>
+      <img src="assets/nav-icons/add.svg" alt="add-icon" class="hidden max-2xl:hidden max-lg:block min-w-8 min-h-8">
     </button>
   </div>
 
   <!-- Logout Section -->
   <a
     (click)="onLogout()"
-    class="flex justify-center cursor-pointer hover:font-semibold
-      text-red-500 active:text-white">
+    class="flex justify-center cursor-pointer hover:font-semibold text-red-500 active:text-white">
     {{ logoutText }}
   </a>
 </section>

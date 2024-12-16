@@ -16,6 +16,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 export class GameComponent implements OnInit {
   public object: Card = new Card();
   public safeUrl: SafeResourceUrl;
+  public checkSiteTxt: string = "Melhor perfomance";
 
   constructor(
     private router: Router,
@@ -64,6 +65,12 @@ export class GameComponent implements OnInit {
       } else {
         console.warn('ID do jogo não é válido');
       }
+    }
+  }
+
+  openInNewTab(url: string): void {
+    if (confirm('Deseja realmente abrir o jogo em uma nova aba?')) {
+      window.open(url, '_blank'); // Abre o link em uma nova aba}
     }
   }
 }
