@@ -1,5 +1,5 @@
 export const URLS = {
-  BASE: 'http://localhost:8000/api/',
+  BASE: 'astrobit-backend-production.up.railway.app/api/',
   RANKUSER: 'rankusers/',
   GAME_CARD: 'game_cards/',
   REGISTER: 'register/',
