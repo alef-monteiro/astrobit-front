@@ -16,7 +16,7 @@ export class DefaultRankingLayoutComponent  implements OnInit {
   public positionTitle = 'posição'
   public usernameTitle = 'APELIDO'
   public scoreTitle = 'PONTUAÇÃO'
-  public updtBtnTxt: string = 'Atualizar';
+  public noDataTxt: string = "Sem dados para exibir";
 
   constructor(private userService: UserDataService) {}
 
@@ -24,9 +24,7 @@ export class DefaultRankingLayoutComponent  implements OnInit {
     this.onSearch();
   }
 
-  public onUpdate() {
-    window.location.reload();
-  }
+
 
   public onSearch(): void {
     this.userService.getRankData().subscribe({

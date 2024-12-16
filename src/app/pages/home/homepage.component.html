@@ -2,7 +2,7 @@
   <h1 class="text-start font-bold italic text-3xl w-full">
     #{{ title.toUpperCase() }}
   </h1>
-  <section class="flex flex-row flex-wrap gap-10 items-start justify-center">
+  <section class="flex flex-row rounded-lg min-w-full min-h-screen flex-wrap gap-10 items-start justify-center">
     @for (data of paginatedCards(); track data.id) {
       <div (click)="onNavigate('/game/' + data.id)"
            class="flex items-center justify-center hover:cursor-pointer">

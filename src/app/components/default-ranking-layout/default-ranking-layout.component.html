@@ -1,30 +1,26 @@
-<div class="flex flex-col items-center justify-center h-screen gap-6">
-  <table class="flex max-w-4xl w-full border-collapse">
-    <!-- Cabeçalho da Tabela -->
-    <thead>
-    <tr class="flex flex-row w-full justify-around text-xl text-center bg-light-salmon rounded-lg">
-      <th class="px-6 py-3">{{ positionTitle.toUpperCase() }}</th>
-      <th class="px-6 py-3">{{ usernameTitle.toUpperCase() }}</th>
-      <th class="px-6 py-3">{{ scoreTitle.toUpperCase() }}</th>
-    </tr>
-    <button
-      (click)="onUpdate()"
-      class="flex flex-row w-fit items-center justify-center
-          rounded-full px-5 py-2 font-bold text-xl last: mb-0
-          bg-orange-salmon hover:bg-cool-yellow active:bg-light-salmon ">
-      <p class="font-regular text-xl block">{{ updtBtnTxt }}</p>
-    </button>
-    </thead>
+<table class="gap-2 w-full rounded-xl">
+  <!-- Cabeçalho da Tabela -->
+  <thead class="w-full border-white/10 border-b-2">
+  <tr class="flex flex-row w-full justify-around text-lg text-center ">
+    <th class="px-6 py-3">{{ positionTitle.toUpperCase() }}</th>
+    <th class="px-6 py-3">{{ usernameTitle.toUpperCase() }}</th>
+    <th class="px-6 py-3">{{ scoreTitle.toUpperCase() }}</th>
+  </tr>
+  </thead>
 
-    <!-- Corpo da Tabela -->
-    <tbody class="overflow-y-scroll max-h-96 w-full">
-      @for (item of sortedData; track item.id; let i = $index) {
-        <tr class="flex flex-row rounded-lg px-6 py-3 gap-x-96 font-bold text-xl">
-          <td class="px-6 py-3">{{ i + 1 + '°' }}</td>
-          <td class="px-6 py-3">{{ item.username }}</td>
-          <td class="px-6 py-3">{{ '#' + item.score }}</td>
-        </tr>
-      }
-    </tbody>
-  </table>
-</div>
+  <!-- Corpo da Tabela -->
+  <tbody class="w-full h-full overflow-y-scroll max-h-96 ">
+    @for (item of sortedData; track item.id; let i = $index) {
+      <tr class="flex flex-row rounded-lg px-6 py-3 gap-x-96 font-bold text-xl">
+        <td class="px-6 py-3">{{ i + 1 + '°' }}</td>
+        <td class="px-6 py-3">{{ item.username }}</td>
+        <td class="px-6 py-3">{{ '#' + item.score }}</td>
+      </tr>
+    } @empty {
+      <div class="text-center text-xl font-bold mt-20">
+        {{ noDataTxt }}
+      </div>
+    }
+  </tbody>
+</table>
+
