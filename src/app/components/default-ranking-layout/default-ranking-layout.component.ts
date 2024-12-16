@@ -26,9 +26,11 @@ export class DefaultRankingLayoutComponent implements OnInit {
   public onSearch(): void {
     this.userService.getRankData().subscribe({
       next: (data: RankUser[]) => {
+        console.log(data);
         this.rankList = data;
       },
       error: (error: any) => {
+        console.log(error);
         console.error('Error loading ranking', error);
       },
     });

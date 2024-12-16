@@ -13,7 +13,7 @@
     @for (item of sortedData; track item.id; let i = $index) {
       <tr class="flex flex-row w-full rounded-lg px-6 py-3 gap-x-4 font-bold text-xl">
         <td class="flex-1 text-center">{{ i + 1 + '°' }}</td>
-        <td class="flex-1 text-center">{{ '#' + item.username }}</td>
+        <td class="flex-1 text-center">{{ '#' + item.player }}</td>
         <td class="flex-1 text-center">{{ item.score }}</td>
       </tr>
     } @empty {

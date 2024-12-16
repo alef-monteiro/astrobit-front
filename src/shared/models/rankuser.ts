@@ -1,6 +1,6 @@
 import {ModelBase} from './model-base';
 
 export interface RankUser extends ModelBase{
-  username: string;
+  player: string;
   score: number;
 }
