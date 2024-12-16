@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ApiEndpointsService} from './api-endpoints.service';
-import {tap} from 'rxjs';
+import {Observable, tap} from 'rxjs';
 import {jwtDecode} from 'jwt-decode';
 import {User} from '../models/user';
+import {URLS} from '../urls';
 
 interface LoginResponse {
   access: string;
@@ -17,7 +18,7 @@ export class UserDataService {
 
   constructor(
     private httpClient: HttpClient,
-    private apiEndPoints: ApiEndpointsService) {
+    private apiEndPoints: ApiEndpointsService,) {
   }
 
   get headers(): HttpHeaders {
@@ -115,5 +116,10 @@ export class UserDataService {
     sessionStorage.removeItem('auth-token');
     sessionStorage.removeItem('refresh');
     console.log('Usuário desconectado.');
+  }
+
+  public getAll<T>(route: string): Observable<T[]> {
+    const url = URLS.BASE;
+    return this.httpClient.get<T[]>(url, {headers: this.headers, withCredentials: true});
   }
 }

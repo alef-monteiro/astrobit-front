@@ -1,34 +1,37 @@
 import {Component, OnInit} from '@angular/core';
-import {NgForOf} from "@angular/common";
-import {Score} from '../../../shared/models/rankuser';
-import {HttpClient} from '@angular/common/http';
+import {Rankuser} from '../../../shared/models/rankuser';
 import {URLS} from '../../../shared/urls';
-import {Observable} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {RankingService2} from '../../../shared/services/ranking2';
 
 @Component({
   selector: 'app-default-ranking-layout',
   standalone: true,
-    imports: [
-        NgForOf
-    ],
+    imports: [],
   templateUrl: './default-ranking-layout.component.html',
   styleUrl: './default-ranking-layout.component.scss'
 })
-export class DefaultRankingLayoutComponent implements OnInit {
+export class DefaultRankingLayoutComponent extends RankingService2<Rankuser> implements OnInit {
 
-  public dataSource: Score[] = [];
-  public username: string = 'a';
+  public dataSource: Rankuser[] = [];
+  public positionTitle = 'POSIÇÃO'
+  public usernameTitle = 'APELIDO'
+  public scoreTitle = 'PONTUAÇÃO'
 
-  constructor(private http: HttpClient) {
+  constructor(http: HttpClient) {
+    super(http, URLS.RANKUSER);
   }
+
+
+  // constructor(private rankingService: RankingService<Rankuser>,) {}
 
   ngOnInit() {
     this.search()
   }
 
   public search(): void {
-    this.getAll<Score>(URLS.SCORE).subscribe({
-      next: (data: Score[]) => {
+    this.getAll<Rankuser>(URLS.RANKUSER).subscribe({
+      next: (data: Rankuser[]) => {
         this.dataSource = data;
         console.log(data);
 
@@ -39,13 +42,7 @@ export class DefaultRankingLayoutComponent implements OnInit {
     })
   }
 
-  public getAll<T>(route: string): Observable<T[]> {
-    const url = URLS.BASE + route;
-    return this.http.get<T[]>(url)
-  }
-
   get sortedData() {
     return this.dataSource.slice().sort((a, b) => b.score - a.score);
   }
-
 }

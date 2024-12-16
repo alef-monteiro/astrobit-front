@@ -30,7 +30,7 @@ export class SidenavComponent {
     this.menuList = [
       {title: 'Início', icon: '/assets/nav-icons/home.svg', route: 'game', isCurrent: false},
       {title: 'Perfil', icon: '/assets/nav-icons/account.svg', route: 'profile', isCurrent: false},
-      {title: 'Posições', icon: '/assets/nav-icons/ranking.svg', route: 'profile', isCurrent: false},
+      {title: 'Posições', icon: '/assets/nav-icons/ranking.svg', route: 'ranking', isCurrent: false},
     ];
   }
 

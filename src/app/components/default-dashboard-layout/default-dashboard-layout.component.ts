@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {SidenavComponent} from './sidenav/sidenav.component';
-import {RankingBoxComponent} from './ranking-box/ranking-box.component';
 import {Router} from '@angular/router';
 import {UserDataService} from '../../../shared/services/user-data.service';
 import {ToastrService} from 'ngx-toastr';

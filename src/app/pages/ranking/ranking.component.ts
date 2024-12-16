@@ -1,7 +1,4 @@
 import {Component} from '@angular/core';
-import {
-    DefaultAvatarRankingLayoutComponent
-} from "../../components/default-ranking-layout/default-avatar-ranking-layout/default-avatar-ranking-layout.component";
 import {SidenavComponent} from "../../components/default-dashboard-layout/sidenav/sidenav.component";
 import {Router} from '@angular/router';
 import {UserDataService} from '../../../shared/services/user-data.service';
@@ -12,7 +9,6 @@ import {DefaultRankingLayoutComponent} from '../../components/default-ranking-la
   selector: 'app-ranking',
   standalone: true,
   imports: [
-    DefaultAvatarRankingLayoutComponent,
     SidenavComponent,
     DefaultRankingLayoutComponent,
   ],
