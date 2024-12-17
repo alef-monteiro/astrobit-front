@@ -3,8 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "ng serve --host=0.0.0.0 --port=4200",
+    "start-prod": "node server.js",
+    "start-ssl": "ng serve --host=0.0.0.0 --port=4200 --ssl=tru --ssl-cert=/etec/ssl/chained.crt --ssl-key=/etc/ssl/domain.key",
+    "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
